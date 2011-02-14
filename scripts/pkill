@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# This is yet another tool to kill processes by name.
+# Note that it's pretty dangerous, so be careful.
+
 abort "Usage: pkill <process regex>" if ARGV.size < 1
 
 FORCE = (ARGV.size == 2 && ARGV[1] == "-f") ? true : false
