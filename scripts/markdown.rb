@@ -5,7 +5,7 @@
 require "rubygems"
 require "github/markup"
 
-TEMP_FILE = "/var/markdown/markdown.html"
+TEMP_FILE = "/tmp/markdown.html"
 
 puts ARGV[0]
 if ARGV.size < 1 || ARGV[0] !~ /([^\.]+\.(md|markdown))/ || !File.file?(ARGV[0])
