@@ -1,11 +1,11 @@
 [user]
-	name = Caleb Spare
-	email = cespare@gmail.com
+  name = Caleb Spare
+  email = cespare@gmail.com
 [core]
   excludesfile = /Users/caleb/.gitignore
   editor = vim
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [color]
   diff = auto
   status = auto
@@ -22,8 +22,8 @@
   b = branch
   sub = submodule
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [gc]
-	auto = 0
+  auto = 0
 [push]
-	default = tracking
+  default = tracking
