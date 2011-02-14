@@ -2,7 +2,7 @@
   name = Caleb Spare
   email = cespare@gmail.com
 [core]
-  excludesfile = $HOME/.gitignore
+  excludesfile = ~/.git-global-ignore
   editor = vim
 [diff]
   tool = vimdiff
