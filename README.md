@@ -16,3 +16,5 @@ Some notes about specific files/directories:
   control.
 * `scripts/` This is a directory of useful little scripts. Some of them are very platform-specific. Some are
   things I wrote years ago. There's no guarantee any of them are sane/useful/safe.
+* `.vimrc` My vim configuration is a [separate repository](https://github.com/cespare/vim-config), and so
+  `.vimrc` and `.gvimrc` symlink to the config files in there.
