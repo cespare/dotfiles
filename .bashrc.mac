@@ -1,0 +1,12 @@
+# Mac OS-specific bash stuff.
+
+# I think I have this because of macports
+PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
+
+alias e='mvim'
+alias o='open'
+alias ls='ls -G'
+alias gvimdiff='mvim -U NONE -d'
+
+# Google go
+export GOOS=darwin

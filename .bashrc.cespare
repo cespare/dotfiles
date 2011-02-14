@@ -1,0 +1,64 @@
+# Pull in platform-specific configurations.
+uname=`uname`
+if [[ "$uname" == "Linux" ]]; then
+  export PLATFORM=LINUX # for scripts
+  source $HOME/.bashrc.linux
+elif [[ "$uname" == "Darwin" ]]; then
+  export PLATFORM=MAC
+  source $HOME/.bashrc.mac
+  # Load work-specific stuff
+  if [[ `hostname` == "caleb-macbookpro" ]]; then
+    source $HOME/.bashrc.ooyala
+  fi
+fi
+
+export CLICOLOR=1
+export TERM="xterm-color"
+
+# Sweet bash stuff
+export HISTSIZE=1000000
+export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoreboth
+
+# #1 best bash config option of all time. Also, see .inputrc for more vi goodness in readline-enabled apps.
+set -o vi
+
+PATH=$HOME/bin:$HOME/scripts:$PATH
+export PATH
+
+# Aliases
+alias g='git'
+alias hdfs='hadoop fs'
+
+# Handy server
+alias pserve='python -m SimpleHTTPServer'
+
+# Bash completion for git
+source ~/bin/git-completion.bash
+
+# Let's get a nice colorized prompt which knows about git
+source ~/scripts/bash_colorize.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+# Nice prompt
+RED="\[\033[0;31m\]"
+GREEN="\[\033[01;32m\]"
+YELLOW="\[\033[0;33m\]"A
+BLUE="\[\033[01;34m\]"
+PLAIN="\[\e[m\]"
+function prompt_command {
+  git_ps1_colored
+  export PS1="$GREEN[\$(date +%H:%M)|\u] $BLUE\w\[$git_ps1_color\]$git_ps1_string$BLUE \$$PLAIN "
+}
+PROMPT_COMMAND=prompt_command
+
+# Google Go
+export PATH=$PATH:$HOME/Apps/go/bin
+export GOROOT=$HOME/Apps/go
+export GOARCH=amd64
+export GOMAXPROCS=4
+
+# Scala
+alias iscala='rlwrap scala -Xnojline'
+
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

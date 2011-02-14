@@ -1,0 +1,11 @@
+# Linux-specific bash settings.
+
+# I think this is an Ubuntu thing.
+alias o='xdg-open'
+alias open='xdg-open'
+
+alias e='gvim'
+alias ls='ls --color=auto'
+
+# Google Go
+export GOOS=linux
