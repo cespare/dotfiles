@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# I can never remember these grep options.
+grep -iIro "$@" ./ 2> /dev/null

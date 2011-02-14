@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+abort "Usage: pkill <process regex>" if ARGV.size < 1
+
+FORCE = (ARGV.size == 2 && ARGV[1] == "-f") ? true : false
+
+def confirm(message, &block)
+  if FORCE
+    yield if block_given?
+    return true
+  end
+  print message + " [yN] "
+  input = STDIN.gets.chomp
+  if input =~ /^y(es)?$/
+    yield if block_given?
+    return true
+  end
+  false
+end
+
+def process_string(process)
+  "(#{process[:pid]}) #{process[:command]}"
+end
+
+def kill(process)
+  puts "Killing #{process_string(process)}."
+  (1..10).each do # Give it 1 second to shut its crap down.
+    begin
+      Process.kill("SIGINT", process[:pid])
+    rescue
+      return # probably a 'no such process' error => sucessfully killed
+    end
+    sleep(0.1)
+  end
+  puts "kill -9ing this bitch."
+  Process.kill 9, process[:pid]
+end
+
+def kill_all(processes)
+  confirm "Are you sure you want to kill these #{processes.length} processes?" do
+    processes.each { |process| kill(process) }
+  end
+end
+
+process_lines = `ps -ef | tail +2`.split("\n")
+matched = []
+process_lines.each do |line|
+  matches = line.match(/^\s+\S+\s+(\S+)(\s+\S+){5}\s+(.+)$/)
+  pid = matches[1].to_i
+  next if pid == $$ # ignore ourself
+  command = matches[3]
+  matched << {:command => command, :pid => pid} if command =~ Regexp.new(ARGV[0])
+end
+
+if matched.size == 0
+  abort "No matching processes."
+end
+
+if matched.size > 5
+  abort unless confirm "More than 5 matches. Continue?"
+end
+
+if matched.size == 1
+  abort unless confirm "Kill the following process?\n #{process_string(matched[0])}" do
+    kill(matched[0])
+  end
+else
+  puts "Found the following processes:"
+  matched.each_with_index do |match, i|
+    puts "\t#{i+1}. #{process_string(match)}"
+  end
+  print "Which do you want to kill? (# to pick a process, 'all' to kill all of them) "
+  input = STDIN.gets.chomp
+  case input
+  when /^\d+$/
+    kill(matched[input.to_i - 1])
+  when /^a(ll)?$/
+    kill_all(matched)
+  else
+    abort "ERROR: unrecognized option."
+  end
+end

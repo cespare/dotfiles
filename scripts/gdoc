@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# godoc spits out a bunch of text; this pipes it into less automatically.
+
+godoc $@ | less

@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# Takes a list of file names and adds them to git-ignore.
+if ARGV.size < 1
+  puts "usage: git-ignore filename[s]"
+  exit
+end
+
+cd = `pwd`.chomp
+git_path = cd.split("/")
+
+while !File.exists?(git_path.join("/") + "/.git") and !git_path.empty? do
+  git_path.pop
+end
+
+if git_path.empty?
+  puts "Not in a git repository."
+  exit
+end
+
+git_path = File.expand_path(git_path.join("/"))
+
+puts "Appending these lines to git-ignore:"
+File.open("#{git_path}/.git/info/exclude", "a") do |git_ignore|
+  ARGV.each do |filename|
+    # Expand the path of filename to resolve any relative "/tmp/../tmp/" path junk, so the lines we add
+    # to .git-ignore will be clean and minimal.
+    new_ignore = File.expand_path(cd + "/" + filename)[git_path.size + 1..-1]
+    puts new_ignore
+    git_ignore.puts new_ignore
+  end
+end
