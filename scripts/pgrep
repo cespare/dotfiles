@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+# Tool to grep processes
+
+abort "Usage: pgrep <process regex>" if ARGV.size < 1
+
+def process_string(process)
+  "(#{process[:pid]}) #{process[:command]}"
+end
+
+search = Regexp.new(ARGV[0], true)
+process_lines = `ps -ef | tail +2`.split("\n")
+process_lines.each do |line|
+  matches = line.match(/^\s+\S+\s+(\S+)(\s+\S+){5}\s+(.+)$/)
+  pid = matches[1].to_i
+  next if pid == $$ # ignore ourself
+  command = matches[3]
+  puts process_string({:command => command, :pid => pid}) if search =~ command
+end

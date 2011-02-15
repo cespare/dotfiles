@@ -45,6 +45,7 @@ def kill_all(processes)
   end
 end
 
+search = Regexp.new(ARGV[0], true)
 process_lines = `ps -ef | tail +2`.split("\n")
 matched = []
 process_lines.each do |line|
@@ -52,7 +53,7 @@ process_lines.each do |line|
   pid = matches[1].to_i
   next if pid == $$ # ignore ourself
   command = matches[3]
-  matched << {:command => command, :pid => pid} if command =~ Regexp.new(ARGV[0])
+  matched << {:command => command, :pid => pid} if search =~ command
 end
 
 if matched.size == 0
