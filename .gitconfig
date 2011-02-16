@@ -21,6 +21,7 @@
   l = log
   b = branch
   sub = submodule
+  pom = push origin master
 [branch]
   autosetuprebase = always
 [gc]
