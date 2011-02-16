@@ -7,9 +7,7 @@ elif [[ "$uname" == "Darwin" ]]; then
   export PLATFORM=MAC
   source $HOME/.bashrc.mac
   # Load work-specific stuff
-  if [[ `hostname` == "caleb-macbookpro" ]]; then
-    source $HOME/.bashrc.ooyala
-  fi
+  [[ -s "$HOME/.bashrc.ooyala" ]] && source "$HOME/.bashrc.ooyala"
 fi
 
 export CLICOLOR=1
