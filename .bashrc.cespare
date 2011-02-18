@@ -25,24 +25,28 @@ PATH=$HOME/bin:$HOME/scripts:$PATH
 export PATH
 
 # Aliases
+alias l='ls -l'
 alias g='git'
 alias hdfs='hadoop fs'
 
 # Handy server
 alias pserve='python -m SimpleHTTPServer'
 
-# Bash completion for git
-source ~/bin/git-completion.bash
+# Completion scripts:
+. ~/scripts/completion/git-completion.bash
+. ~/scripts/completion/completion-ruby/completion-ruby-all
 
 # Let's get a nice colorized prompt which knows about git
 source ~/scripts/bash_colorize.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
+
 # Nice prompt
 RED="\[\033[0;31m\]"
 GREEN="\[\033[01;32m\]"
 YELLOW="\[\033[0;33m\]"A
 BLUE="\[\033[01;34m\]"
 PLAIN="\[\e[m\]"
+
 function prompt_command {
   git_ps1_colored
   export PS1="$GREEN[\$(date +%H:%M)|\u] $BLUE\w\[$git_ps1_color\]$git_ps1_string$BLUE \$$PLAIN "
@@ -60,3 +64,4 @@ alias iscala='rlwrap scala -Xnojline'
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
