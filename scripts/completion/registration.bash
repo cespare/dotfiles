@@ -2,4 +2,4 @@
 # Modifying this file by hand is not recommended -- use `completion.rb register`
 # or `completion.rb unregister` instead.
 
-
+complete -F _ruby_complete completion.rb
