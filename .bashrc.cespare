@@ -24,6 +24,8 @@ set -o vi
 PATH=$HOME/bin:$HOME/scripts:$PATH
 export PATH
 
+export EDITOR=vim
+
 # Aliases
 alias l='ls -l'
 alias g='git'
