@@ -12,7 +12,7 @@
   branch = auto
 [alias]
   stat = status
-  s = status
+  s = status --ignore-submodules=untracked
   c = commit
   a = add
   sn = status --untracked=no
