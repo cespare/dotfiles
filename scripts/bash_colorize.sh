@@ -63,7 +63,7 @@ git_ps1_colored () {
     elif [ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
       if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ]; then
         if [ "$(git config --bool bash.showDirtyState)" != "false" ]; then
-          git diff --no-ext-diff --quiet --exit-code || w=$YELLOW
+          git diff --ignore-submodules=untracked --no-ext-diff --quiet --exit-code || w=$YELLOW
           if git rev-parse --quiet --verify HEAD >/dev/null; then
             git diff-index --cached --quiet HEAD -- || i="+"
           else
