@@ -64,10 +64,10 @@ export GOMAXPROCS=4
 # Scala
 alias iscala='rlwrap scala -Xnojline'
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
-
 # Ruby-complete
 export RUBY_COMPLETE_DIR="$HOME/scripts/completion"
 source $HOME/scripts/ruby-complete.bash
+
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
