@@ -11,7 +11,7 @@ elif [[ "$uname" == "Darwin" ]]; then
 fi
 
 export CLICOLOR=1
-export TERM="xterm-color"
+export TERM="xterm-256color"
 
 # Sweet bash stuff
 export HISTSIZE=1000000
