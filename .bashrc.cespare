@@ -30,6 +30,7 @@ export EDITOR=vim
 alias l='ls -l'
 alias g='git'
 alias hdfs='hadoop fs'
+alias src='source ~/.bashrc'
 
 # Handy server
 alias pserve='python -m SimpleHTTPServer'
