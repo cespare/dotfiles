@@ -7,6 +7,9 @@ alias open='xdg-open'
 alias e='gvim'
 alias ls='ls --color=auto'
 
+# Ubuntu calls 'ack' ack-grep
+alias ack='ack-grep'
+
 # Google Go
 export GOOS=linux
 
