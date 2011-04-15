@@ -9,3 +9,6 @@ alias ls='ls --color=auto'
 
 # Google Go
 export GOOS=linux
+
+# Android development
+export PATH=$PATH:$HOME/Apps/android-sdk/android-sdk-linux_x86/tools
