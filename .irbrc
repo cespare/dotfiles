@@ -3,6 +3,8 @@ require "wirble"
 require 'irb/completion'
 require 'pp'
 require "ap"
+require "rr"
+include RR::Adapters::RRMethods
 Wirble.init
 Wirble.colorize
 
