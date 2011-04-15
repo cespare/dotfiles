@@ -28,9 +28,16 @@ export EDITOR=vim
 
 # Aliases
 alias l='ls -l'
-alias g='git'
 alias hdfs='hadoop fs'
 alias src='source ~/.bashrc'
+
+# Alias g=git and add bash completion
+alias g='git'
+complete -o bashdefault -o default -o nospace -F _git g
+
+# Same for vim
+alias v='vim'
+complete -o filenames -F _filedir_xspec v
 
 # Handy server
 alias pserve='python -m SimpleHTTPServer'
