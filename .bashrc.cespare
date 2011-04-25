@@ -76,9 +76,6 @@ alias iscala='rlwrap scala -Xnojline'
 export RUBY_COMPLETE_DIR="$HOME/scripts/completion"
 source $HOME/scripts/ruby-complete.bash
 
-# z: https://github.com/rupa/z
-source $HOME/scripts/external/z/z.sh
-
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion

@@ -4,6 +4,3 @@
 [submodule "scripts/completion/completion-ruby"]
 	path = scripts/completion/completion-ruby
 	url = https://github.com/mernen/completion-ruby.git
-[submodule "scripts/external/z"]
-	path = scripts/external/z
-	url = https://github.com/rupa/z.git
