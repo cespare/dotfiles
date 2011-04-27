@@ -63,6 +63,15 @@ function prompt_command {
 }
 PROMPT_COMMAND=prompt_command
 
+# Screen stuff
+s() {
+  screen -S $1 $1
+}
+alias sr='screen -r'
+complete -o filenames -F _command s
+# A hack until I get around to writing completion for screen resume
+complete -o filenames -F _command sr
+
 # Google Go
 export PATH=$PATH:$HOME/Apps/go/bin
 export GOROOT=$HOME/Apps/go
