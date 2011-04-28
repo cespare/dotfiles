@@ -29,5 +29,7 @@
   auto = 0
 [push]
   default = tracking
+[merge]
+  stat = 1
 [github]
 	user = cespare
