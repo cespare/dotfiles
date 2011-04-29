@@ -9,9 +9,9 @@ def process_string(process)
 end
 
 search = Regexp.new(ARGV[0], true)
-process_lines = `ps -ef | tail +2`.split("\n")
+process_lines = `ps -ef | tail -n +2`.split("\n")
 process_lines.each do |line|
-  matches = line.match(/^\s+\S+\s+(\S+)(\s+\S+){5}\s+(.+)$/)
+  matches = line.match(/^\s*\S+\s+(\S+)(\s+\S+){5}\s+(.+)$/)
   pid = matches[1].to_i
   next if pid == $$ # ignore ourself
   command = matches[3]
