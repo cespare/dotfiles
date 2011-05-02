@@ -43,8 +43,8 @@ complete -o filenames -F _filedir_xspec v
 alias pserve='python -m SimpleHTTPServer'
 
 # Completion scripts:
-. ~/scripts/completion/git-completion.bash
-. ~/scripts/completion/completion-ruby/completion-ruby-all
+source ~/scripts/completion/git-completion.bash
+source ~/scripts/completion/completion-ruby/completion-ruby-all
 
 # Let's get a nice colorized prompt which knows about git
 source ~/scripts/bash_colorize.sh
