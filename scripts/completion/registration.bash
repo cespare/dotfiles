@@ -3,3 +3,4 @@
 # or `completion.rb unregister` instead.
 
 complete -F _ruby_complete completion.rb
+complete -F _ruby_complete sr
