@@ -7,3 +7,6 @@
 [submodule "scripts/external/j2"]
 	path = scripts/external/j2
 	url = https://github.com/rupa/j2.git
+[submodule "scripts/external/ruby-complete"]
+	path = scripts/external/ruby-complete
+	url = git@github.com:cespare/ruby-complete.git

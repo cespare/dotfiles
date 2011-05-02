@@ -82,7 +82,7 @@ alias iscala='rlwrap scala -Xnojline'
 
 # Ruby-complete
 export RUBY_COMPLETE_DIR="$HOME/scripts/completion"
-source $HOME/scripts/ruby-complete.bash
+source $HOME/scripts/external/ruby-complete/ruby-complete.bash
 
 # j2: https://github.com/rupa/j2
 export JPY=~/scripts/external/j2/j.py
