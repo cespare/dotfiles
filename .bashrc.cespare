@@ -68,9 +68,8 @@ s() {
   screen -S $1 $1
 }
 alias sr='screen -r'
+# See the 'sr' ruby-complete script for auto-completion of sr
 complete -o filenames -F _command s
-# A hack until I get around to writing completion for screen resume
-complete -o filenames -F _command sr
 
 # Google Go
 export PATH=$PATH:$HOME/Apps/go/bin
