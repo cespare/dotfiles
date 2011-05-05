@@ -1,0 +1,117 @@
+-- vim: set ft=lua:
+
+conky.config = {
+  background=false,
+  use_xft=true,
+  font="terminus-8",
+  xftalpha=0.8,
+  update_interval=3.0,
+  total_run_times=0
+}
+
+conky.text = [[
+$stippled_hr
+$nodename - $sysname $kernel ($machine)
+$stippled_hr
+
+Kernel: $alignr $kernel
+Uptime: $alignr $uptime
+
+$stippled_hr
+SYSTEM
+$stippled_hr
+
+CPU1: ${alignr} ${cpu cpu1}%
+CPU2: ${alignr} ${cpu cpu2}%
+${cpugraph 25}
+Load: $alignr $loadavg
+Processes: $alignr $processes
+Running: $alignr $running_processes
+
+Total memory usage: $alignr $memwithbuffers/$memmax
+${memwithbuffersbar 5}
+User memory usage: $alignr $mem/$memmax
+${membar 5}
+Swap: $alignr $swap / $swapmax
+${swapbar 5}
+
+$stippled_hr
+TOP
+$stippled_hr
+
+
+Name $alignr PID     CPU%   MEM%
+ ${top name 2} $alignr ${top pid 2} ${top cpu 2} ${top mem 2}
+ ${top name 3} $alignr ${top pid 3} ${top cpu 3} ${top mem 3}
+
+Mem usage$color
+${color #ddaa00} ${top_mem name 1} $alignr ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}$color
+ ${top_mem name 2} $alignr ${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+ ${top_mem name 3} $alignr ${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+
+$stippled_hr
+Temp
+$stippled_hr
+
+${color #ddaa00} CPU: ${alignr}${acpitemp}C$color
+ GPU: $alignr ${execi 30 nvidia-settings -q [gpu:0]/GPUCoreTemp | grep '):' | awk '{print $4}' | sed 's/\.//'}C
+
+$stippled_hr
+HDD
+$stippled_hr
+
+I/O:
+
+ Write: $alignr $diskio_write
+${diskiograph_write /dev/sda 25}
+ Read: $alignr $diskio_read
+${diskiograph_read /dev/sda 25}
+
+ROOT: $alignr ${fs_free /} / ${fs_size /}
+${fs_bar 5 /}
+ESTE: $alignr ${fs_free /mnt/este} / ${fs_size /mnt/este}
+${fs_bar 5 /mnt/este}
+
+$stippled_hr
+Network
+$stippled_hr
+
+Down:
+${color #ddaa00} Speed: $alignr ${downspeed eth0} k/s$color
+ Tot: $alignr ${totaldown eth0}
+
+${downspeedgraph eth0 25}
+
+Up:
+${color #ddaa00} Speed: $alignr ${upspeed eth0} k/s$color
+ Tot: $alignr ${totalup eth0}
+
+${upspeedgraph eth0 25}
+]]
+--own_window yes
+---- own_window_type override
+---- own_window_type widget
+---- own_window_transparent yes
+--own_window_argb_visual yes
+--own_window_argb_value 120
+--own_window_transparent no
+--own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+--double_buffer yes
+--minimum_size 220 5
+--maximum_width 300
+--draw_shades no
+--draw_outline no
+--draw_borders no
+--draw_graph_borders yes
+--default_color white
+--default_shade_color black
+--alignment top_right
+--gap_x 12
+--gap_y 10
+--no_buffers yes
+--cpu_avg_samples 2
+--override_utf8_locale no
+--uppercase yes
+
+--TEXT
+
