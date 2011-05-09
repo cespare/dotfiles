@@ -91,6 +91,9 @@ source ~/scripts/external/j2/j.sh
 # Trying out pry instead of irb
 alias irb='pry'
 
+# Import more sweet bash stuff
+source ~/scripts/bash_extras.sh
+
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
