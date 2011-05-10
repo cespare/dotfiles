@@ -31,6 +31,9 @@ alias l='ls -l'
 alias hdfs='hadoop fs'
 alias src='source ~/.bashrc'
 
+# Make it quicker to edit this file
+alias b='vim ~/.bashrc.cespare'
+
 # Alias g=git and add bash completion
 alias g='git'
 complete -o bashdefault -o default -o nospace -F _git g
@@ -93,6 +96,10 @@ alias irb='pry'
 
 # Import more sweet bash stuff
 source ~/scripts/bash_extras.sh
+
+# t: https://github.com/sjl/t
+export TASKS=~/Dropbox/tasks/
+alias t='python ~/tools/t/t.py --task-dir $TASKS --list tasks'
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
