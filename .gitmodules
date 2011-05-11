@@ -1,6 +1,3 @@
-[submodule "scripts/external/markdown_doctor"]
-	path = scripts/external/markdown_doctor
-	url = git@github.com:cespare/markdown_doctor.git
 [submodule "scripts/completion/completion-ruby"]
 	path = scripts/completion/completion-ruby
 	url = https://github.com/mernen/completion-ruby.git
