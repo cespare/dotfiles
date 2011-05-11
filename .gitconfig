@@ -23,6 +23,7 @@
   b = branch
   sub = submodule
   pom = push origin master
+  t = tag
 [branch]
   autosetuprebase = always
 [gc]
