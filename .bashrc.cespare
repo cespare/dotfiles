@@ -101,7 +101,13 @@ source ~/scripts/bash_extras.sh
 export TASKS=~/Dropbox/tasks/
 alias t='python ~/tools/t/t.py --task-dir $TASKS --list tasks'
 alias te="vim $TASKS"
-alias tl="t | discoball '\+\S+'"
+function tl() {
+  if [ -z  "$1" ]; then
+    t | discoball '\+\S+'
+  else
+    t | discoball -m "\+$1"
+  fi
+}
 
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
