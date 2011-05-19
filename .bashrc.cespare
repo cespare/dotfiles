@@ -28,6 +28,7 @@ export EDITOR=vim
 
 # Aliases
 alias l='ls -l'
+alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
 alias hdfs='hadoop fs'
 alias src='source ~/.bashrc'
 
