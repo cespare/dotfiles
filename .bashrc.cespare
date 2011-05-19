@@ -57,7 +57,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 # Nice prompt
 RED="\[\033[0;31m\]"
 GREEN="\[\033[01;32m\]"
-YELLOW="\[\033[0;33m\]"A
+YELLOW="\[\033[0;33m\]"
 BLUE="\[\033[01;34m\]"
 PLAIN="\[\e[m\]"
 
