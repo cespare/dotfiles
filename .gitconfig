@@ -24,6 +24,9 @@
   sub = submodule
   pom = push origin master
   t = tag
+  root = rev-parse --show-toplevel
+  su = !"cd `git root` && git sub update && cd -"
+  ff = merge --ff-only
 [branch]
   autosetuprebase = always
 [gc]
