@@ -5,7 +5,7 @@ alias o='xdg-open'
 alias open='xdg-open'
 
 alias e='gvim'
-alias ls='ls --color=auto'
+alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
 
 # Ubuntu calls 'ack' ack-grep
 alias ack='ack-grep'

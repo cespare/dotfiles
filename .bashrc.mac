@@ -1,11 +1,18 @@
+# vim: set filetype=sh:
 # Mac OS-specific bash stuff.
 
 # I think I have this because of macports
-PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
+# PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
+
+# Homebrew
+PATH=/usr/local/bin:/usr/local/sbin/:/usr/local/share/python:$PATH
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  source `brew --prefix`/etc/bash_completion
+fi
 
 alias e='mvim'
 alias o='open'
-alias ls='ls -G'
+alias ls='gls -h -F --color=auto --tabsize=0 --group-directories-first'
 alias gvimdiff='mvim -U NONE -d'
 
 # Google go
