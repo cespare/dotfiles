@@ -1,9 +1,6 @@
 # vim: set filetype=sh:
 # Mac OS-specific bash stuff.
 
-# I think I have this because of macports
-# PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
-
 # Homebrew
 PATH=/usr/local/bin:/usr/local/sbin/:/usr/local/share/python:$PATH
 if [ -f `brew --prefix`/etc/bash_completion ]; then
