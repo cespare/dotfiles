@@ -91,9 +91,6 @@ source $HOME/scripts/external/ruby-complete/ruby-complete.bash
 export JPY=~/scripts/external/j2/j.py
 source ~/scripts/external/j2/j.sh
 
-# Trying out pry instead of irb
-alias irb='pry'
-
 # Import more sweet bash stuff
 source ~/scripts/bash_extras.sh
 
