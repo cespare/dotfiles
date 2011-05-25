@@ -65,6 +65,7 @@ function prompt_command {
   export PS1="$GREEN[\$(date +%H:%M)|\u|\h] $BLUE\w\[$git_ps1_color\]$git_ps1_string$BLUE ▶$PLAIN "
 }
 PROMPT_COMMAND=prompt_command
+export PS1='$ '
 
 # Screen stuff
 s() {
@@ -105,7 +106,3 @@ function tl() {
     t | discoball -a "${@/#/\+}" # Bash magical parameter expansion/string manipulation: `\+arg1 \+arg2 ...`
   fi
 }
-
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
