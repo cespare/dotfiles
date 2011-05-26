@@ -37,6 +37,12 @@ bind pad1:ctrl,cmd corner bottom-left
 bind pad2:ctrl,cmd push bottom center
 bind pad3:ctrl,cmd corner bottom-right
 
+# Move with ctrl-arrow
+bind left:ctrl nudge -100 +0
+bind up:ctrl nudge +0 -100
+bind right:ctrl nudge +100 +0
+bind down:ctrl nudge +0 +100
+
 # Expand in a direction with arrows
 bind left:ctrl,cmd move screenOriginX,windowTopLeftY windowSizeX+windowTopLeftX-screenOriginX,windowSizeY
 bind right:ctrl,cmd move windowTopLeftX,windowTopLeftY screenSizeX-windowTopLeftX+screenOriginX,windowSizeY
