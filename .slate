@@ -25,8 +25,8 @@ bind p:ctrl;cmd move  screenOriginX+(screenSizeX-windowSizeX)/2;screenOriginY+(s
 bind {:ctrl;cmd move  screenOriginX+(screenSizeX-windowSizeX)/2;windowTopLeftY                              windowSizeX;windowSizeY
 bind }:ctrl;cmd move  windowTopLeftX;screenOriginY+(screenSizeY-windowSizeY)/2                              windowSizeX;windowSizeY
 
-# Nice center and resize: space
-bind space:ctrl;cmd move screenOriginX+screenSizeX/6;screenOriginY+screenSizeY/6 2*screenSizeX/3;2*screenSizeY/3
+# Nice center and resize that works on all my screens/orientations: space
+bind space:ctrl;cmd move screenOriginX+(screenSizeX-max({1000,2*screenSizeX/3}))/2;screenOriginY+(screenSizeY-min({1000,2*screenSizeY/3}))/2        max({1000,2*screenSizeX/3});min({1000,2*screenSizeY/3})
 
 # Number pad grid for movement
 bind pad7:ctrl;cmd corner top-left
