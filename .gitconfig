@@ -9,7 +9,7 @@
 [color]
   ui = auto
   diff = auto
-  status = auto
+  status = always
   branch = auto
 [alias]
   stat = status
