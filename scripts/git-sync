@@ -10,6 +10,9 @@ Usage:
   $ git rebase master topic
   $ git checkout master
   $ git merge topic
+  $ git checkout <previous branch>
+
+Note that the ordering of the arguments here is the same as for rebase. In general, use "git sync master" from your topic branch.
 
 EOS
 
