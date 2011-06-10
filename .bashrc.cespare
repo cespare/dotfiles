@@ -21,15 +21,15 @@ export HISTCONTROL=ignoreboth
 # #1 best bash config option of all time. Also, see .inputrc for more vi goodness in readline-enabled apps.
 set -o vi
 
-PATH=$HOME/bin:$HOME/scripts:$PATH
-export PATH
+export PATH=$HOME/bin:$HOME/scripts:$PATH
+export MANPATH=$HOME/man:$MANPATH
 
 export EDITOR=vim
 
 # Aliases
 alias l='ls -l'
 alias hdfs='hadoop fs'
-alias src='source ~/.bashrc'
+alias src='source ~/.bash_profile; source ~/.bashrc'
 
 # Make it quicker to edit this file
 alias b='vim ~/.bashrc.cespare'
@@ -87,10 +87,6 @@ alias iscala='rlwrap scala -Xnojline'
 # Ruby-complete
 export RUBY_COMPLETE_DIR="$HOME/scripts/completion"
 source $HOME/scripts/external/ruby-complete/ruby-complete.bash
-
-# j2: https://github.com/rupa/j2
-export JPY=~/scripts/external/j2/j.py
-source ~/scripts/external/j2/j.sh
 
 # Import more sweet bash stuff
 source ~/scripts/bash_extras.sh

@@ -1,12 +1,12 @@
 [submodule "scripts/completion/completion-ruby"]
 	path = scripts/completion/completion-ruby
 	url = https://github.com/mernen/completion-ruby.git
-[submodule "scripts/external/j2"]
-	path = scripts/external/j2
-	url = https://github.com/rupa/j2.git
 [submodule "tools/t"]
 	path = tools/t
 	url = https://github.com/sjl/t.git
 [submodule "scripts/external/ruby-complete"]
 	path = scripts/external/ruby-complete
 	url = https://github.com/cespare/ruby-complete.git
+[submodule "scripts/external/z"]
+	path = scripts/external/z
+	url = https://github.com/rupa/z.git
