@@ -1,8 +1,5 @@
 config defaultToCurrentScreen true
 
-# Fullscreen: cmd-ctrl-enter
-bind  return:ctrl;cmd   move    screenOriginX;screenOriginY screenSizeX;screenSizeY
-
 # Left half: cmd-ctrl-h
 bind h:ctrl;cmd push left bar-resize:screenSizeX/2
 
@@ -25,8 +22,8 @@ bind p:ctrl;cmd move  screenOriginX+(screenSizeX-windowSizeX)/2;screenOriginY+(s
 bind {:ctrl;cmd move  screenOriginX+(screenSizeX-windowSizeX)/2;windowTopLeftY                              windowSizeX;windowSizeY
 bind }:ctrl;cmd move  windowTopLeftX;screenOriginY+(screenSizeY-windowSizeY)/2                              windowSizeX;windowSizeY
 
-# Nice center and resize that works on all my screens/orientations: space
-bind space:ctrl;cmd move screenOriginX+(screenSizeX-max({1000,2*screenSizeX/3}))/2;screenOriginY+(screenSizeY-min({1000,2*screenSizeY/3}))/2        max({1000,2*screenSizeX/3});min({1000,2*screenSizeY/3})
+# Nice center and resize (toggles fullscreen) that works on all my screens/orientations: space
+bind space:ctrl;cmd chain move screenOriginX+(screenSizeX-max({1000,2*screenSizeX/3}))/2;screenOriginY+(screenSizeY-min({1000,2*screenSizeY/3}))/2 max({1000,2*screenSizeX/3});min({1000,2*screenSizeY/3}) | move screenOriginX;screenOriginY screenSizeX;screenSizeY
 
 # Number pad grid for movement
 bind pad7:ctrl;cmd corner top-left
