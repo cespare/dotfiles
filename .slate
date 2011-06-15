@@ -1,36 +1,82 @@
+#### Config ####
+
 config defaultToCurrentScreen true
 
-# Left half: cmd-ctrl-h
-bind h:ctrl;cmd push left bar-resize:screenSizeX/2
+#### Aliases ####
+alias top-left screenOriginX;screenOriginY
+alias screen-size screenSizeX;screenSizeY
 
-# Right half: cmd-ctrl-l
-bind l:ctrl;cmd push right bar-resize:screenSizeX/2
+alias left-screen 1
+alias middle-screen 0
+alias right-screen 2
 
-# Upper half: cmd-ctrl-k
-bind k:ctrl;cmd push up bar-resize:screenSizeY/2
+alias left-half push left bar-resize:screenSizeX/2
+alias right-half push right bar-resize:screenSizeX/2
+alias bottom-half push down bar-resize:screenSizeY/2
+alias top-half push up bar-resize:screenSizeY/2
 
-# Lower half: cmd-ctrl-j
-bind j:ctrl;cmd push down bar-resize:screenSizeY/2
+alias move-with-truncate move screenOriginX;screenOriginY min({screenSizeX,windowSizeX});min({screenSizeY,windowSizeY})
+alias move-left-screen ${move-with-truncate} ${left-screen}
+alias move-middle-screen ${move-with-truncate} ${middle-screen}
+alias move-right-screen ${move-with-truncate} ${right-screen}
 
-# Screens: 8;9;0 -- equivalent to throw, but with size truncation
-bind 8:ctrl;cmd move  screenOriginX;screenOriginY min({screenSizeX,windowSizeX});min({screenSizeY,windowSizeY}) 1
-bind 9:ctrl;cmd move  screenOriginX;screenOriginY min({screenSizeX,windowSizeX});min({screenSizeY,windowSizeY}) 0
-bind 0:ctrl;cmd move  screenOriginX;screenOriginY min({screenSizeX,windowSizeX});min({screenSizeY,windowSizeY}) 2
+alias current-dims windowSizeX;windowSizeY
+alias center-both move screenOriginX+(screenSizeX-windowSizeX)/2;screenOriginY+(screenSizeY-windowSizeY)/2 ${current-dims}
+alias center-horizontal move screenOriginX+(screenSizeX-windowSizeX)/2;windowTopLeftY ${current-dims}
+alias center-vertical move windowTopLeftX;screenOriginY+(screenSizeY-windowSizeY)/2 ${current-dims}
 
-# Centering: p for both; [ for horizontal; ] for vertical
-bind p:ctrl;cmd move  screenOriginX+(screenSizeX-windowSizeX)/2;screenOriginY+(screenSizeY-windowSizeY)/2   windowSizeX;windowSizeY
-bind {:ctrl;cmd move  screenOriginX+(screenSizeX-windowSizeX)/2;windowTopLeftY                              windowSizeX;windowSizeY
-bind }:ctrl;cmd move  windowTopLeftX;screenOriginY+(screenSizeY-windowSizeY)/2                              windowSizeX;windowSizeY
+alias fullscreen move ${top-left} ${screen-size}
 
-# Nice center and resize (toggles fullscreen) that works on all my screens/orientations: space
-bind space:ctrl;cmd chain move screenOriginX+(screenSizeX-max({1000,2*screenSizeX/3}))/2;screenOriginY+(screenSizeY-min({1000,2*screenSizeY/3}))/2 max({1000,2*screenSizeX/3});min({1000,2*screenSizeY/3}) | move screenOriginX;screenOriginY screenSizeX;screenSizeY
+# Nice center and resize that works on all my screens/orientations: space
+alias nice-center move screenOriginX+(screenSizeX-max({1000,2*screenSizeX/3}))/2;screenOriginY+(screenSizeY-min({1000,2*screenSizeY/3}))/2 max({1000,2*screenSizeX/3});min({1000,2*screenSizeY/3})
 
-# Number pad grid for movement
+alias expand-right move windowTopLeftX;windowTopLeftY screenSizeX-windowTopLeftX+screenOriginX;windowSizeY
+alias expand-left move screenOriginX;windowTopLeftY windowSizeX+windowTopLeftX-screenOriginX;windowSizeY
+alias expand-up move windowTopLeftX;screenOriginY windowSizeX;windowSizeY+windowTopLeftY-screenOriginY
+alias expand-down move windowTopLeftX;windowTopLeftY windowSizeX;screenSizeY-windowTopLeftY+screenOriginY
+
+#### Application-specific default positions ####
+
+alias adium-pos-1 move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3 ${left-screen} | move ${top-left} screenSizeX/3;screenSizeY/3 ${left-screen}
+alias yammer-pos-1 move screenOriginX+screenSizeX/3;screenOriginY screenSizeX/3;2*screenSizeY/3 ${left-screen}
+alias iterm-pos-1 ${bottom-half} ${right-screen}
+alias chrome-pos-1 ${top-half} ${right-screen}
+alias safari-pos-1 move screenOriginX+screenSizeX/3;screenOriginY 2*screenSizeX/3;screenSizeY ${middle-screen}
+alias macvim-pos-1 ${fullscreen} ${middle-screen}
+
+#### Layouts ####
+
+# 3-screen default
+layout 3-screen 'Adium':IGNORE_FAIL move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3 ${left-screen} | move ${top-left} screenSizeX/3;screenSizeY/3 ${left-screen}
+layout 3-screen 'Yammer' ${yammer-pos-1}
+layout 3-screen 'iTerm' ${iterm-pos-1}
+layout 3-screen 'Google Chrome' ${chrome-pos-1}
+layout 3-screen 'Safari' ${safari-pos-1}
+layout 3-screen 'MacVim':REPEAT ${macvim-pos-1}
+
+#### Bindings ####
+
+bind h:ctrl;cmd ${left-half}
+bind l:ctrl;cmd ${right-half}
+bind k:ctrl;cmd ${top-half}
+bind j:ctrl;cmd ${bottom-half}
+
+bind 8:ctrl;cmd ${move-left-screen}
+bind 9:ctrl;cmd ${move-middle-screen}
+bind 0:ctrl;cmd ${move-right-screen}
+
+bind p:ctrl;cmd ${center-both}
+bind {:ctrl;cmd ${center-horizontal}
+bind }:ctrl;cmd ${center-vertical}
+
+bind space:ctrl;cmd ${nice-center}
+bind return:ctrl;cmd ${fullscreen}
+
 bind pad7:ctrl;cmd corner top-left
 bind pad8:ctrl;cmd push   top center
 bind pad9:ctrl;cmd corner top-right
 bind pad4:ctrl;cmd push   left center
-bind pad5:ctrl;cmd move   screenOriginX+(screenSizeX-windowSizeX)/2;screenOriginY+(screenSizeY-windowSizeY)/2 windowSizeX;windowSizeY
+bind pad5:ctrl;cmd ${center-both}
 bind pad6:ctrl;cmd push   right center
 bind pad1:ctrl;cmd corner bottom-left
 bind pad2:ctrl;cmd push   bottom center
@@ -43,14 +89,10 @@ bind right:ctrl nudge +100  +0
 bind down:ctrl  nudge +0    +100
 
 # Expand in a direction with arrows
-bind left:ctrl;cmd  move screenOriginX;windowTopLeftY   windowSizeX+windowTopLeftX-screenOriginX;windowSizeY
-bind right:ctrl;cmd move windowTopLeftX;windowTopLeftY  screenSizeX-windowTopLeftX+screenOriginX;windowSizeY
-bind up:ctrl;cmd    move windowTopLeftX;screenOriginY   windowSizeX;windowSizeY+windowTopLeftY-screenOriginY
-bind down:ctrl;cmd  move windowTopLeftX;windowTopLeftY  windowSizeX;screenSizeY-windowTopLeftY+screenOriginY
+bind left:ctrl;cmd ${expand-left}
+bind right:ctrl;cmd ${expand-right}
+bind up:ctrl;cmd ${expand-up}
+bind down:ctrl;cmd ${expand-down}
 
-# Special application windows --------------------------v
-# Adium
-bind f:ctrl;cmd move  screenOriginX;screenOriginY               screenSizeX/3;screenSizeY/3    1
-bind v:ctrl;cmd move  screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3  1
-# Yammer
-bind g:ctrl;cmd move  screenOriginX+screenSizeX/3;screenOriginY screenSizeX/3;2*screenSizeY/3  1
+# Layouts
+bind 3:ctrl;cmd layout 3-screen
