@@ -3,17 +3,27 @@
 config defaultToCurrentScreen true
 
 #### Aliases ####
-alias top-left screenOriginX;screenOriginY
 alias screen-size screenSizeX;screenSizeY
+alias ox screenOriginX
+alias oy screenOriginY
+alias ssx screenSizeX
+alias ssy screenSizeY
+alias rightx ${ox}+${ssx}
+alias bottomy ${oy}+${ssy}
+alias halfx ${ssx}/2
+alias halfy ${ssy}/2
+alias middlex ${ox}+${halfx}
+alias middley ${oy}+${halfy}
+alias origin ${ox};${oy}
 
 alias left-screen 1
 alias middle-screen 0
 alias right-screen 2
 
-alias left-half push left bar-resize:screenSizeX/2
-alias right-half push right bar-resize:screenSizeX/2
-alias bottom-half push down bar-resize:screenSizeY/2
-alias top-half push up bar-resize:screenSizeY/2
+alias left-half move ${origin} ${halfx};${ssy}
+alias right-half move ${middlex};${oy} ${halfx};${ssy}
+alias bottom-half move ${ox};${middley} ${ssx};${halfy}
+alias top-half move ${origin} ${ssx};${halfy}
 
 alias move-with-truncate move screenOriginX;screenOriginY min({screenSizeX,windowSizeX});min({screenSizeY,windowSizeY})
 alias move-left-screen ${move-with-truncate} ${left-screen}
@@ -25,7 +35,7 @@ alias center-both move screenOriginX+(screenSizeX-windowSizeX)/2;screenOriginY+(
 alias center-horizontal move screenOriginX+(screenSizeX-windowSizeX)/2;windowTopLeftY ${current-dims}
 alias center-vertical move windowTopLeftX;screenOriginY+(screenSizeY-windowSizeY)/2 ${current-dims}
 
-alias fullscreen move ${top-left} ${screen-size}
+alias fullscreen move ${origin} ${screen-size}
 
 # Nice center and resize that works on all my screens/orientations: space
 alias nice-center move screenOriginX+(screenSizeX-max({1000,2*screenSizeX/3}))/2;screenOriginY+(screenSizeY-min({1000,2*screenSizeY/3}))/2 max({1000,2*screenSizeX/3});min({1000,2*screenSizeY/3})
@@ -37,7 +47,7 @@ alias expand-down move windowTopLeftX;windowTopLeftY windowSizeX;screenSizeY-win
 
 #### Application-specific default positions ####
 
-alias adium-pos-1 move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3 ${left-screen} | move ${top-left} screenSizeX/3;screenSizeY/3 ${left-screen}
+alias adium-pos-1 move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3 ${left-screen} | move ${origin} screenSizeX/3;screenSizeY/3 ${left-screen}
 alias yammer-pos-1 move screenOriginX+screenSizeX/3;screenOriginY screenSizeX/3;2*screenSizeY/3 ${left-screen}
 alias iterm-pos-1 ${bottom-half} ${right-screen}
 alias chrome-pos-1 ${top-half} ${right-screen}
@@ -47,7 +57,7 @@ alias macvim-pos-1 ${fullscreen} ${middle-screen}
 #### Layouts ####
 
 # 3-screen default
-layout 3-screen 'Adium':IGNORE_FAIL move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3 ${left-screen} | move ${top-left} screenSizeX/3;screenSizeY/3 ${left-screen}
+layout 3-screen 'Adium':IGNORE_FAIL move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3 ${left-screen} | move ${origin} screenSizeX/3;screenSizeY/3 ${left-screen}
 layout 3-screen 'Yammer' ${yammer-pos-1}
 layout 3-screen 'iTerm' ${iterm-pos-1}
 layout 3-screen 'Google Chrome' ${chrome-pos-1}
