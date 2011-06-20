@@ -1,6 +1,7 @@
 #### Config ####
 
 config defaultToCurrentScreen true
+config secondsBetweenRepeat 0.1
 
 #### Aliases ####
 alias screen-size screenSizeX;screenSizeY
