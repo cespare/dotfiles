@@ -1,0 +1,73 @@
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{cancel}
+\usepackage{pstricks}
+\usepackage{pst-node}
+\usepackage{times}
+\usepackage{makeidx}
+\usepackage{color}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{conj}[thm]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{ex}{Example}[section]
+\newtheorem{rem}{Remark}[section]
+\newtheorem{cond}{Condition}[section]
+
+% New condition environment
+%\newcounter{condcounter} \setcounter{condcounter}{1}
+%\newenvironment{cond}[1]{\medskip\noindent\arabic{\condcounter} #1\stepcounter{condcounter}\medskip}
+
+\newcommand{\reals}{\ensuremath \mathbb{R}}
+\newcommand{\R}{\ensuremath \mathbb{R}}
+\newcommand{\naturals}{\ensuremath \mathbb{N}}
+\newcommand{\N}{\ensuremath \mathbb{N}}
+\newcommand{\rationals}{\ensuremath \mathbb{Q}}
+\newcommand{\Q}{\ensuremath \mathbb{Q}}
+\newcommand{\integers}{\ensuremath \mathbb{Z}}
+\newcommand{\Z}{\ensuremath \mathbb{Z}}
+\newcommand{\lit}[1]{\ensuremath \text{\texttt{#1}}}
+\newcommand{\cont}{\ensuremath \subseteq}
+\newcommand{\vardefine}[2]{\emph{#2}\marginpar{\emph{#1}}\index{#1}}
+\newcommand{\define}[1]{\emph{#1}\marginpar{\emph{#1}}\index{#1}}
+\newcommand{\indexref}[1]{#1\index{#1}}
+\newcommand{\varimp}{\ensuremath \rightarrow}
+\newcommand{\variff}{\ensuremath \leftrightarrow}
+\newcommand{\mc}{\ensuremath \mathcal}
+\newcommand{\veps}{\ensuremath \varepsilon}
+
+% Convenient shortcuts for pstricks automata
+\newcommand{\nnode}[1]{\circlenode{#1}{#1}}
+\newcommand{\anode}[1]{\circlenode[doubleline=true]{#1}{#1}}
+\newcommand{\snode}{\rnode{start}{}}
+\newcommand{\loopdown}[1]{\nccurve[angleA=-120, angleB=-60, ncurv=4]{#1}{#1}}
+\newcommand{\loopup}[1]{\nccurve[angleA=60, angleB=120, ncurv=4]{#1}{#1}}
+\newcommand{\loopleft}[1]{\nccurve[angleA=150, angleB=-150, ncurv=4]{#1}{#1}}
+\newcommand{\loopright}[1]{\nccurve[angleA=-30, angleB=30, ncurv=4]{#1}{#1}}
+\newcommand{\autsettings}{\psset{arrows=->, labelsep=0.1cm}}
+
+% A nice red todo
+\newcommand{\todo}[1]{\textbf{\textcolor{red}{TODO: #1}}}
+% Similar
+\newcommand{\hinote}[1]{\textbf{\colorbox{yellow}{NOTE:}#1}}
+
+% Declare useful operators
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\index1}{ind}
+\newcommand{\ind}[1]{\ensuremath \index1#1}
+\newcommand{\indvar}[2]{\ensuremath \index1_{#1}#2}
+
+% Better spaced mod operator (like \pmod, but with less white space)
+\makeatletter
+\def\imod#1{\allowbreak\mkern10mu({\operator@font mod}\,\,#1)}
+\makeatother
