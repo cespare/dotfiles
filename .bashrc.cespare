@@ -62,7 +62,7 @@ PLAIN="\[\e[m\]"
 
 function prompt_command {
   git_ps1_colored
-  export PS1="$GREEN[\$(date +%H:%M)|\u|\h] $BLUE\w\[$git_ps1_color\]$git_ps1_string$BLUE ▶$PLAIN "
+  export PS1="$BLUE[\$(date +%H:%M)|\u|\h] $GREEN[\w] $BLUE[\$(rvm-prompt v g)]\[$git_ps1_color\]$git_ps1_string$BLUE\n▶$PLAIN "
 }
 PROMPT_COMMAND=prompt_command
 export PS1='$ '

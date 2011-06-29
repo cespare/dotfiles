@@ -37,6 +37,6 @@
 [merge]
   stat = 1
 [github]
-	user = cespare
+  user = cespare
 [fetch]
   recurseSubmodules = true

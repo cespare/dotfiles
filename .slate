@@ -2,6 +2,7 @@
 
 config defaultToCurrentScreen true
 config secondsBetweenRepeat 0.1
+config focusPreferSameApp false
 
 #### Aliases ####
 alias screen-size screenSizeX;screenSizeY
@@ -17,9 +18,9 @@ alias middlex ${ox}+${halfx}
 alias middley ${oy}+${halfy}
 alias origin ${ox};${oy}
 
-alias left-screen 1
-alias middle-screen 0
-alias right-screen 2
+alias left-screen 1680x1050
+alias middle-screen 2560x1600
+alias right-screen 1080x1920
 
 alias left-half move ${origin} ${halfx};${ssy}
 alias right-half move ${middlex};${oy} ${halfx};${ssy}
@@ -58,9 +59,9 @@ alias macvim-pos-1 ${fullscreen} ${middle-screen}
 #### Layouts ####
 
 # 3-screen default
-layout 3-screen 'Adium':IGNORE_FAIL move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3 ${left-screen} | move ${origin} screenSizeX/3;screenSizeY/3 ${left-screen}
+layout 3-screen 'Adium':IGNORE_FAIL,TITLE_ORDER=Contacts move ${origin} screenSizeX/3;screenSizeY/3 ${left-screen} | move screenOriginX;screenOriginY+screenSizeY/3 screenSizeX/3;2*screenSizeY/3 ${left-screen}
 layout 3-screen 'Yammer' ${yammer-pos-1}
-layout 3-screen 'iTerm' ${iterm-pos-1}
+layout 3-screen 'iTerm':SORT_TITLE ${iterm-pos-1}
 layout 3-screen 'Google Chrome' ${chrome-pos-1}
 layout 3-screen 'Safari' ${safari-pos-1}
 layout 3-screen 'MacVim':REPEAT ${macvim-pos-1}
@@ -105,5 +106,13 @@ bind right:ctrl;cmd ${expand-right}
 bind up:ctrl;cmd ${expand-up}
 bind down:ctrl;cmd ${expand-down}
 
+# Select windows positionally
+bind h:cmd focus left
+bind l:cmd focus right
+bind j:cmd focus down
+bind k:cmd focus up
+bind m:cmd focus behind
+
 # Layouts
 bind 3:ctrl;cmd layout 3-screen
+default 3-screen resolutions:${left-screen};${middle-screen};${right-screen}
