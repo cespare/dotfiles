@@ -16,6 +16,7 @@
   s = status --ignore-submodules=untracked
   c = commit
   a = add
+  f = filename
   sn = status --untracked=no
   co = checkout
   wc = whatchanged
