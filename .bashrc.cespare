@@ -22,6 +22,7 @@ export HISTCONTROL=ignoreboth
 set -o vi
 
 export PATH=$HOME/bin:$HOME/scripts:$PATH
+export PATH=$HOME/scripts/external/git-scripts:$PATH
 export MANPATH=$HOME/man:$MANPATH
 
 export EDITOR=vim
