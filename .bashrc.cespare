@@ -39,6 +39,9 @@ alias b='vim ~/.bashrc.cespare'
 alias g='git'
 complete -o bashdefault -o default -o nospace -F _git g
 
+# A nice shortcut because typing $h is easier than typing HEAD (for git)
+export h=HEAD
+
 # Same for vim
 alias v='vim'
 complete -o filenames -F _filedir_xspec v
