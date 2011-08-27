@@ -95,6 +95,9 @@ source $HOME/scripts/external/ruby-complete/ruby-complete.bash
 # Import more sweet bash stuff
 source ~/scripts/bash_extras.sh
 
+# NPM stuff -- make sure to install from $HOME
+export PATH=$HOME/node_modules/.bin:$PATH
+
 # t: https://github.com/sjl/t
 export TASKS=~/Dropbox/tasks/
 alias t='python ~/tools/t/t.py --task-dir $TASKS --list tasks'
