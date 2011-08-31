@@ -1,9 +1,7 @@
 require "rubygems"
-require 'irb/completion'
+require "irb/completion"
 require 'pp'
 require "ap"
-require "rr"
-include RR::Adapters::RRMethods
 
 # NOTE: If using RVM, your ruby may compile with libedit instead of readline. To get real readline, refer to
 # this: http://rvm.beginrescueend.com/packages/readline/
