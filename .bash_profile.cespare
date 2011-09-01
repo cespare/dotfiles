@@ -1,8 +1,8 @@
 # z: https://github.com/rupa/z
 source $HOME/scripts/external/z/z.sh
 
-[[ -s "/Users/caleb/.rvm/scripts/rvm" ]] && source "/Users/caleb/.rvm/scripts/rvm"
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+#[[ -s "/Users/caleb/.rvm/scripts/rvm" ]] && source "/Users/caleb/.rvm/scripts/rvm"
+#[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
 
 # rbenv >> RVM
@@ -11,4 +11,6 @@ source $HOME/scripts/external/z/z.sh
 #source "/Users/caleb/.rbenv/libexec/../completions/rbenv.bash"
 #rbenv rehash 2>/dev/null
 
-#export RUBY_HOME=$HOME/.rubies
+export RUBIES=$HOME/.rubies
+export PATH=$RUBIES/1.9.2-p290/bin:$PATH
+source ~/Projects/flip-the-tables/ft.sh
