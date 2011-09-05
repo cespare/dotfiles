@@ -12,5 +12,5 @@ source $HOME/scripts/external/z/z.sh
 #rbenv rehash 2>/dev/null
 
 export RUBIES=$HOME/.rubies
-export PATH=$RUBIES/1.9.2-p290/bin:$PATH
+export FT_DEFAULT_RUBY='1.9.2-p290'
 source ~/Projects/flip-the-tables/ft.sh

@@ -70,7 +70,7 @@ function prompt_command {
   #export PS1="$BLUE[\$(date +%H:%M)|\u|\h] $GREEN[\w] $BLUE[\$(rvm-prompt v g)]\[$git_ps1_color\]$git_ps1_string$PLAIN$BLUE\n▶ $PLAIN"
   export PS1="$BLUE[\$(date +%H:%M)|\u|\h] $GREEN[\w] $BLUE[\$(ft short-version)]\[$git_ps1_color\]$git_ps1_string$PLAIN$BLUE\n▶ $PLAIN"
 }
-PROMPT_COMMAND=prompt_command
+PROMPT_COMMAND='prompt_command;'"$PROMPT_COMMAND"
 export PS1='$ '
 
 # Screen stuff
