@@ -43,3 +43,5 @@ IRB.conf[:PROMPT][:CUSTOM] = {
   :RETURN => "%s"
 }
 IRB.conf[:PROMPT_MODE] = :CUSTOM
+
+IRB.conf[:SAVE_HISTORY] = 100
