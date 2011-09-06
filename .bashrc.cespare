@@ -100,14 +100,7 @@ source ~/scripts/bash_extras.sh
 # NPM stuff -- make sure to install from $HOME
 export PATH=$HOME/node_modules/.bin:$PATH
 
-# t: https://github.com/sjl/t
-export TASKS=~/Dropbox/tasks/
-alias t='python ~/tools/t/t.py --task-dir $TASKS --list tasks'
-alias te="vim $TASKS"
-function tl() {
-  if [ -z  "$1" ]; then
-    t | discoball '\+\S+'
-  else
-    t | discoball -a "${@/#/\+}" # Bash magical parameter expansion/string manipulation: `\+arg1 \+arg2 ...`
-  fi
-}
+export TLIST_FILE=~/Dropbox/tasks/tlist.txt
+alias t=tlist
+source ~/scripts/completion/tlist_completion.bash
+complete -F _tlist t
