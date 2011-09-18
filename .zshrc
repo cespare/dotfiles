@@ -3,6 +3,9 @@ source_if_exists() {
   [[ -f "$1" ]] && source "$1"
 }
 
+export ZSH=~/.zsh
+fpath=($ZSH/functions $ZSH/completions $fpath)
+
 ### Platform-specific configuration.
 
 uname=`uname`
@@ -67,6 +70,7 @@ setopt AUTO_PUSHD        # Push each directory onto the stack
 setopt PUSHD_IGNORE_DUPS # Don't push duplicate entries onto the stack
 setopt AUTO_CD           # If a command is invalid but is the name of a directory, cd to it
 
+
 # Misc
 setopt NOTIFY # Immediately report status of background jobs
 unsetopt BEEP # Don't beep on zle errors
@@ -88,8 +92,6 @@ export MANPATH=~/man/:$MANPATH # Manpages for locally installed programs
 export PATH=~/scripts/external/git-scripts/:$PATH # http://github.com/cespare/git-scripts
 
 
-export ZSH=~/.zsh
-fpath=($ZSH/functions $ZSH/completions $fpath)
 
 
 ### Aliases --------------------------------------------------------------------------------------------------
@@ -123,7 +125,29 @@ compinit -i
 
 ### Build my prompt ------------------------------------------------------------------------------------------
 
-# TODO
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' get-revision true
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '%F{yellow}S'
+zstyle ':vcs_info:*' unstagedstr '%F{green}U'
+zstyle ':vcs_info:*' formats '%F{gray}%r@%8.8i %c%u%F{gray} %b%m'
+zstyle ':vcs_info:*' formats '%F{gray}%r@%8.8i %c%u%F{gray} %b%m (%a)'
+setopt prompt_subst
+
+vi_mode_indicator=❯
+PROMPT='%F{blue}[%n@%m] %F{green}[%~] %F{blue}[] ${vcs_info_msg_0_}
+%F{blue}$vi_mode_indicator%f '
+PROMPT2="%F{blue}|%f "
+
+# Show the vim editing mode in the prompt
+function zle-keymap-select {
+  vi_mode_indicator="${${KEYMAP/vicmd/❖}/(main|viins)/❯}"
+  zle reset-prompt
+}
+
+
+zle -N zle-keymap-select
 
 ### Initialize various tools and scripts ---------------------------------------------------------------------
 
@@ -132,6 +156,7 @@ autoload -U spectrum
 # z: https://github.com/rupa/z
 source ~/scripts/external/z/z.sh
 precmd () {
+  vcs_info
   _z --add "$(pwd -P)"
 }
 
@@ -157,3 +182,6 @@ alias iscala='rlwrap scala -Xnojline'
 export TLIST_FILE=~/Dropbox/tasks/tlist.txt
 alias t='tlist'
 # TODO: completion
+
+# ZSH syntax highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
+source_if_exists $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

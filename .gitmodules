@@ -13,3 +13,6 @@
 [submodule "scripts/external/git-scripts"]
 	path = scripts/external/git-scripts
 	url = git@github.com:cespare/git-scripts.git
+[submodule ".zsh/zsh-syntax-highlighting"]
+	path = .zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
