@@ -1,5 +1,5 @@
 # A convenience function I'll be using a lot
-source_if_exists() {
+function source_if_exists() {
   [[ -f "$1" ]] && source "$1"
 }
 
@@ -84,15 +84,12 @@ export VISUAL=vim
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
-
 ### Set paths ------------------------------------------------------------------------------------------------
 
 export PATH=~/bin:~/scripts:$PATH # Add the usual dirs for my locally installed programs and scripts
 export MANPATH=~/man/:$MANPATH # Manpages for locally installed programs
 export PATH=~/scripts/external/git-scripts/:$PATH # http://github.com/cespare/git-scripts
-
-
-
+# TODO: zsh completion for my git scripts
 
 ### Aliases --------------------------------------------------------------------------------------------------
 
@@ -106,12 +103,12 @@ alias ...=../..
 ### Convenience functions ------------------------------------------------------------------------------------
 
 # Make a directory and cd to it
-mcd() {
+function mcd() {
   mkdir -p "$1" && cd "$1"
 }
 
 # Make screen sessions named for the program and resume to them easily with 's' and 'sr'
-s() {
+function s() {
   screen -S "$1" "$1"
 }
 # TODO: completion
@@ -125,27 +122,62 @@ compinit -i
 
 ### Build my prompt ------------------------------------------------------------------------------------------
 
+# Some vcs_info hooks for additional functionality I want.
+function +vi-git-untracked() {
+  if git status --porcelain | grep '??' > /dev/null 2>&1; then
+    hook_com[unstaged]+='%F{blue}T%F{gray}'
+  fi
+  true
+}
+function +vi-git-stashed() {
+  local num_stashes=$(echo $(git stash list | wc -l))
+  (( $num_stashes )) && hook_com[unstaged]+="%F{magenta}${num_stashes}%F{gray}"
+  true
+}
+# Quick hack to get a space between the staging/unstaged/etc markers and the branch info
+function +vi-git-dirty-spacing() {
+   local dirty="${hook_com[staged]}${hook_com[unstaged]}"
+   [[ -n $dirty ]] && hook_com[unstaged]="${hook_com[unstaged]} "
+   true
+}
+# This one is thanks to https://github.com/whiteinge/dotfiles/blob/master/.zsh_shouse_prompt
+function +vi-git-unpushed() {
+  local remote behind ahead remote_status_string
+  local -a remote_status
+  # Check if we're on a remote tracking branch
+  remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name --abbrev-ref \
+    2>/dev/null)}
+  if [[ -n "${remote}" ]]; then
+    ahead=$(echo $(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l ))
+    (( $ahead )) && remote_status+=( "%F{green}+${ahead}%F{gray}" )
+    behind=$(echo $(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l ))
+    (( $behind )) && remote_status+=( "%F{red}+${behind}%F{gray}" )
+    (( $ahead + $behind )) && remote_status_string=" ${(j:/:)remote_status}"
+    hook_com[branch]="${hook_com[branch]}%F{red}→{%F{gray}${remote}${remote_status_string}%F{red}}%F{gray}"
+  fi
+  true
+}
+
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr '%F{yellow}S'
-zstyle ':vcs_info:*' unstagedstr '%F{green}U'
-zstyle ':vcs_info:*' formats '%F{gray}%r@%8.8i %c%u%F{gray} %b%m'
-zstyle ':vcs_info:*' formats '%F{gray}%r@%8.8i %c%u%F{gray} %b%m (%a)'
+zstyle ':vcs_info:*' stagedstr '%F{yellow}S%F{gray}'
+zstyle ':vcs_info:*' unstagedstr '%F{green}U%F{gray}'
+zstyle ':vcs_info:*' formats '%r%F{red}@%F{gray}%6.6i %c%u%b'
+zstyle ':vcs_info:*' actionformats '%r%F{red}@%F{gray}%6.6i %c%u%b %F{red}(%F{gray}%a%F{red})%F{gray}'
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stashed git-dirty-spacing git-unpushed
 setopt prompt_subst
 
-vi_mode_indicator=❯
-PROMPT='%F{blue}[%n@%m] %F{green}[%~] %F{blue}[] ${vcs_info_msg_0_}
-%F{blue}$vi_mode_indicator%f '
-PROMPT2="%F{blue}|%f "
+PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ ... ${vcs_info_msg_0_}%F{red} ⟧
+%F{red}┗ $vi_mode_indicator%f '
+PROMPT2='%F{red}┗ $vi_mode_indicator%f '
 
 # Show the vim editing mode in the prompt
-function zle-keymap-select {
+function zle-keymap-select() {
   vi_mode_indicator="${${KEYMAP/vicmd/❖}/(main|viins)/❯}"
   zle reset-prompt
 }
-
 
 zle -N zle-keymap-select
 
@@ -155,14 +187,17 @@ autoload -U spectrum
 
 # z: https://github.com/rupa/z
 source ~/scripts/external/z/z.sh
-precmd () {
+function precmd () {
+  # `man zshmisc` and go to the bottom of the page to make sense of the following line
+  RPS1="%(?..%F{red}!%f)"
+  vi_mode_indicator=❯
   vcs_info
   _z --add "$(pwd -P)"
 }
 
 # Git configuration
 alias g='git'
-alias h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
+export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 # TODO: make sure i've got all the git completion
 
 # flip-the-tables configuration
@@ -182,6 +217,3 @@ alias iscala='rlwrap scala -Xnojline'
 export TLIST_FILE=~/Dropbox/tasks/tlist.txt
 alias t='tlist'
 # TODO: completion
-
-# ZSH syntax highlighting: https://github.com/zsh-users/zsh-syntax-highlighting
-source_if_exists $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
