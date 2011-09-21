@@ -124,13 +124,13 @@ compinit -i
 
 # Some vcs_info hooks for additional functionality I want.
 function +vi-git-untracked() {
-  if git status --porcelain | grep '??' > /dev/null 2>&1; then
+  if [[ -n $(git status --porcelain 2>/dev/null | grep '??') ]]; then
     hook_com[unstaged]+='%F{blue}T%F{gray}'
   fi
   true
 }
 function +vi-git-stashed() {
-  local num_stashes=$(echo $(git stash list | wc -l))
+  local num_stashes=$(echo $(git stash list 2> /dev/null | wc -l))
   (( $num_stashes )) && hook_com[unstaged]+="%F{magenta}${num_stashes}%F{gray}"
   true
 }
@@ -169,7 +169,7 @@ zstyle ':vcs_info:*' actionformats '%r%F{red}@%F{gray}%6.6i %c%u%b %F{red}(%F{gr
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stashed git-dirty-spacing git-unpushed
 setopt prompt_subst
 
-PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ ... ${vcs_info_msg_0_}%F{red} ⟧
+PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ %F{red}✦%F{gray} $(ft short-version) %F{red}✦%F{gray} ${vcs_info_msg_0_}%F{red} ⟧
 %F{red}┗ $vi_mode_indicator%f '
 PROMPT2='%F{red}┗ $vi_mode_indicator%f '
 
@@ -198,11 +198,12 @@ function precmd () {
 # Git configuration
 alias g='git'
 export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
-# TODO: make sure i've got all the git completion
 
 # flip-the-tables configuration
 # https://github.com/cespare/flip-the-tables
-# TODO
+export RUBIES=~/.rubies
+export FT_DEFAULT_RUBY='1.9.2-p290'
+source ~/scripts/external/flip-the-tables/ft.sh
 
 # Google Go
 export PATH=$PATH:$HOME/Apps/go/bin
