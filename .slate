@@ -2,6 +2,7 @@
 
 config defaultToCurrentScreen true
 config secondsBetweenRepeat 0.1
+config focusCheckWidthMax 1500
 config focusPreferSameApp false
 
 #### Aliases ####
@@ -107,11 +108,11 @@ bind up:ctrl;cmd ${expand-up}
 bind down:ctrl;cmd ${expand-down}
 
 # Select windows positionally
-bind h:cmd focus left
-bind l:cmd focus right
-bind j:cmd focus down
-bind k:cmd focus up
-bind m:cmd focus behind
+bind h:alt focus left
+bind l:alt focus right
+bind j:alt focus down
+bind k:alt focus up
+bind m:alt focus behind
 
 # Layouts
 bind 3:ctrl;cmd layout 3-screen

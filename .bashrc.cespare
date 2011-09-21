@@ -22,6 +22,7 @@ export HISTCONTROL=ignoreboth
 set -o vi
 
 export PATH=$HOME/bin:$HOME/scripts:$PATH
+export PATH=$HOME/scripts/external/git-scripts:$PATH
 export MANPATH=$HOME/man:$MANPATH
 
 export EDITOR=vim
@@ -37,6 +38,9 @@ alias b='vim ~/.bashrc.cespare'
 # Alias g=git and add bash completion
 alias g='git'
 complete -o bashdefault -o default -o nospace -F _git g
+
+# A nice shortcut because typing $h is easier than typing HEAD (for git)
+export h=HEAD
 
 # Same for vim
 alias v='vim'
@@ -55,16 +59,18 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 
 # Nice prompt
 RED="\[\033[0;31m\]"
-GREEN="\[\033[01;32m\]"
 YELLOW="\[\033[0;33m\]"
 BLUE="\[\033[01;34m\]"
+GREEN="\[\033[01;32m\]"
 PLAIN="\[\e[m\]"
 
 function prompt_command {
   git_ps1_colored
-  export PS1="$BLUE[\$(date +%H:%M)|\u|\h] $GREEN[\w] $BLUE[\$(rvm-prompt v g)]\[$git_ps1_color\]$git_ps1_string$BLUE\n▶$PLAIN "
+  #export PS1="$BLUE[\$(date +%H:%M)|\u|\h] $GREEN[\w] $BLUE[\$(rbenv version-name)]\[$git_ps1_color\]$git_ps1_string$PLAIN$BLUE\n▶ $PLAIN"
+  #export PS1="$BLUE[\$(date +%H:%M)|\u|\h] $GREEN[\w] $BLUE[\$(rvm-prompt v g)]\[$git_ps1_color\]$git_ps1_string$PLAIN$BLUE\n▶ $PLAIN"
+  export PS1="$BLUE[\$(date +%H:%M)|\u|\h] $GREEN[\w] $BLUE[\$(ft short-version)]\[$git_ps1_color\]$git_ps1_string$PLAIN$BLUE\n▶ $PLAIN"
 }
-PROMPT_COMMAND=prompt_command
+PROMPT_COMMAND='prompt_command;'"$PROMPT_COMMAND"
 export PS1='$ '
 
 # Screen stuff
@@ -91,14 +97,10 @@ source $HOME/scripts/external/ruby-complete/ruby-complete.bash
 # Import more sweet bash stuff
 source ~/scripts/bash_extras.sh
 
-# t: https://github.com/sjl/t
-export TASKS=~/Dropbox/tasks/
-alias t='python ~/tools/t/t.py --task-dir $TASKS --list tasks'
-alias te="vim $TASKS"
-function tl() {
-  if [ -z  "$1" ]; then
-    t | discoball '\+\S+'
-  else
-    t | discoball -a "${@/#/\+}" # Bash magical parameter expansion/string manipulation: `\+arg1 \+arg2 ...`
-  fi
-}
+# NPM stuff -- make sure to install from $HOME
+export PATH=$HOME/node_modules/.bin:$PATH
+
+export TLIST_FILE=~/Dropbox/tasks/tlist.txt
+alias t=tlist
+source ~/scripts/completion/tlist_completion.bash
+complete -F _tlist t

@@ -16,6 +16,7 @@
   s = status --ignore-submodules=untracked
   c = commit
   a = add
+  f = filename
   sn = status --untracked=no
   co = checkout
   wc = whatchanged
@@ -40,3 +41,19 @@
   user = cespare
 [fetch]
   recurseSubmodules = true
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan

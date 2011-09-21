@@ -10,3 +10,9 @@
 [submodule "scripts/external/z"]
 	path = scripts/external/z
 	url = https://github.com/rupa/z.git
+[submodule "scripts/external/git-scripts"]
+	path = scripts/external/git-scripts
+	url = git@github.com:cespare/git-scripts.git
+[submodule "scripts/external/flip-the-tables"]
+	path = scripts/external/flip-the-tables
+	url = git@github.com:cespare/flip-the-tables.git

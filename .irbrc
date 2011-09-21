@@ -1,9 +1,7 @@
 require "rubygems"
-require 'irb/completion'
+require "irb/completion"
 require 'pp'
 require "ap"
-require "rr"
-include RR::Adapters::RRMethods
 
 # NOTE: If using RVM, your ruby may compile with libedit instead of readline. To get real readline, refer to
 # this: http://rvm.beginrescueend.com/packages/readline/
@@ -28,5 +26,22 @@ IRB::Irb.class_eval do
   end
 end
 
-@hash = {:a => 1, :b => 2, :c => 3}
-@array = ["a", "b", "c"]
+def h
+  {:a => 1, :b => 2, :c => 3}
+end
+
+def a
+  ["a", "b", "c"]
+end
+
+PROMPT_RUBY_VERSION = "[#{RUBY_VERSION}]"
+IRB.conf[:PROMPT][:CUSTOM] = {
+  :PROMPT_N => "#{PROMPT_RUBY_VERSION} #{'|'} ",
+  :PROMPT_I => "#{PROMPT_RUBY_VERSION} #{'>'} ",
+  :PROMPT_S => nil,
+  :PROMPT_C => "#{PROMPT_RUBY_VERSION} #{'*'} ",
+  :RETURN => "%s"
+}
+IRB.conf[:PROMPT_MODE] = :CUSTOM
+
+IRB.conf[:SAVE_HISTORY] = 100
