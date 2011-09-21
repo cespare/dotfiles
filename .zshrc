@@ -29,12 +29,12 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias o='open'
   alias ls='gls -h -F --color=auto --tabsize=0 --group-directories-first'
   alias gvimdiff='mvim -U NONE -d'
+  alias sed='gsed'
 
   export GOOS=darwin # Google go
 
   [[ -f ~/.zshrc.work ]] && source ~/.zshrc.work # Work-specific stuff
 fi
-
 
 ### General configuration ------------------------------------------------------------------------------------
 
@@ -84,6 +84,31 @@ export VISUAL=vim
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
+### Completion -----------------------------------------------------------------------------------------------
+
+zstyle :compinstall filename '/Users/caleb/.zshrc'
+autoload -U compinit
+compinit -i
+
+unsetopt MENU_COMPLETE
+unsetopt FLOW_CONTROL
+setopt AUTO_MENU
+setopt COMPLETE_IN_WORD
+setopt ALWAYS_TO_END
+
+# Case-insensitive matching, partial word and then substring completion last
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# TODO: Colors for completions
+#zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
+# Color for 'kill'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+# Use a menu for selection
+zstyle ':completion:*:*:*:*:*' menu select
+# Caching for completion
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path ~/.zsh_cache/
+
 ### Set paths ------------------------------------------------------------------------------------------------
 
 export PATH=~/bin:~/scripts:$PATH # Add the usual dirs for my locally installed programs and scripts
@@ -113,12 +138,6 @@ function s() {
 }
 # TODO: completion
 alias sr='screen -r'
-
-### Completion -----------------------------------------------------------------------------------------------
-
-zstyle :compinstall filename '/Users/caleb/.zshrc'
-autoload -U compinit
-compinit -i
 
 ### Build my prompt ------------------------------------------------------------------------------------------
 
