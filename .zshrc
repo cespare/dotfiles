@@ -204,25 +204,26 @@ zle -N zle-keymap-select
 
 autoload -U spectrum
 
-# z: https://github.com/rupa/z
-source ~/scripts/external/z/z.sh
-function precmd () {
-  # `man zshmisc` and go to the bottom of the page to make sense of the following line
-  RPS1="%(?..%F{red}!%f)"
-  vi_mode_indicator=❯
-  vcs_info
-  _z --add "$(pwd -P)"
-}
-
-# Git configuration
-alias g='git'
-export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
-
 # flip-the-tables configuration
 # https://github.com/cespare/flip-the-tables
 export RUBIES=~/.rubies
 export FT_DEFAULT_RUBY='1.9.2-p290'
 source ~/scripts/external/flip-the-tables/ft.sh
+
+# z: https://github.com/rupa/z
+source ~/scripts/external/z/z.sh
+function precmd() {
+  # `man zshmisc` and go to the bottom of the page to make sense of the following line
+  RPS1="%(?..%F{red}!%f)"
+  vi_mode_indicator=❯
+  vcs_info
+  _z --add "$(pwd -P)"
+  _ft_prompt_command
+}
+
+# Git configuration
+alias g='git'
+export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
 # Google Go
 export PATH=$PATH:$HOME/Apps/go/bin
