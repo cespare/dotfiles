@@ -13,11 +13,11 @@
   branch = auto
 [alias]
   stat = status
-  s = status --ignore-submodules=untracked
+  s = status --short --branch --ignore-submodules=untracked
   c = commit
   a = add
   f = filename
-  sn = status --untracked=no
+  sn = status --short --branch --untracked=no
   co = checkout
   wc = whatchanged
   l = log
