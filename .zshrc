@@ -108,6 +108,19 @@ zstyle ':completion:*:*:*:*:*' menu select
 # Caching for completion
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path ~/.zsh_cache/
+# Avoid having to manually use `rehash`
+function _force_rehash() {
+  (( CURRENT == 1 )) && rehash
+  return 1
+}
+# Fuzzy matching for completions (allow 1 error in matching)
+zstyle ':completion:*' completer _oldlist _expand _force_rehash _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+# Ignore completion functions for non-existent commands
+zstyle ':completion:*:functions' ignored-patterns '_*'
+# Prevent cd from selecting the parent directory
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 ### Set paths ------------------------------------------------------------------------------------------------
 
