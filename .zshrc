@@ -17,10 +17,10 @@ if [[ "$uname" = "Linux" ]]; then
   alias o='xdg-open'
   alias open='xdg-open'
   alias e='gvim'
-  alias ack='ack-grep' # Ubuntu calls 'ack' ack-grep
   alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
-
   export GOOS=linux # Google Go
+
+  export _zsh_platform=linux
 
 elif [[ "$uname" = "Darwin" ]]; then
   # Homebrew
@@ -32,8 +32,9 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias ls='gls -h -F --color=auto --tabsize=0 --group-directories-first'
   alias gvimdiff='mvim -U NONE -d'
   alias sed='gsed'
-
   export GOOS=darwin # Google go
+
+  export _zsh_platform=mac
 
   [[ -f ~/.zshrc.work ]] && source ~/.zshrc.work # Work-specific stuff
 fi
@@ -115,6 +116,7 @@ function _force_rehash() {
   (( CURRENT == 1 )) && rehash
   return 1
 }
+# A convenience function I'll be using a lot
 # Fuzzy matching for completions (allow 1 error in matching)
 zstyle ':completion:*' completer _oldlist _expand _force_rehash _complete _match _approximate
 zstyle ':completion:*:match:*' original only
@@ -153,6 +155,13 @@ function s() {
 }
 # TODO: completion
 alias sr='screen -r'
+
+# Don't want to see "permission denied" or similar with ack
+[[ -z "$_zsh_ack" ]] && export _zsh_ack="$(which ack)"
+[[ -z "$_zsh_ack" ]] && export _zsh_ack="$(which ack-grep)"
+function ack() {
+  $_zsh_ack "$@" 2> /dev/null
+}
 
 ### Build my prompt ------------------------------------------------------------------------------------------
 
