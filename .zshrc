@@ -215,6 +215,9 @@ setopt prompt_subst
 PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ %F{red}✦%F{gray} $(ft short-version) %F{red}✦%F{gray} ${vcs_info_msg_0_}%F{red} ⟧
 %F{red}┗ $vi_mode_indicator%f '
 PROMPT2='%F{red}┗ $vi_mode_indicator%f '
+# The character that is printed out if the previous thing didn't end with a newline and zsh has to print a CR
+# itself.
+PROMPT_EOL_MARK="%F{red}↲%f"
 
 # Show the vim editing mode in the prompt
 function zle-keymap-select() {
