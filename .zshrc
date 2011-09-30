@@ -212,7 +212,7 @@ zstyle ':vcs_info:*' actionformats '%r%F{red}@%F{gray}%6.6i %c%u%b %F{red}(%F{gr
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stashed git-dirty-spacing git-unpushed
 setopt prompt_subst
 
-PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ %F{red}✦%F{gray} $(ft short-version) %F{red}✦%F{gray} ${vcs_info_msg_0_}%F{red} ⟧
+PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ %F{red}✦%F{gray} $(rbenv version-name) %F{red}✦%F{gray} ${vcs_info_msg_0_}%F{red} ⟧
 %F{red}┗ $vi_mode_indicator%f '
 PROMPT2='%F{red}┗ $vi_mode_indicator%f '
 # The character that is printed out if the previous thing didn't end with a newline and zsh has to print a CR
@@ -231,11 +231,9 @@ zle -N zle-keymap-select
 
 autoload -U spectrum
 
-# flip-the-tables configuration
-# https://github.com/cespare/flip-the-tables
-export RUBIES=~/.rubies
-export FT_DEFAULT_RUBY='1.9.2-p290'
-source ~/scripts/external/flip-the-tables/ft.sh
+# rbenv: https://github.com/sstephenson/rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # z: https://github.com/rupa/z
 source ~/scripts/external/z/z.sh
@@ -245,7 +243,6 @@ function precmd() {
   vi_mode_indicator=❯
   vcs_info
   _z --add "$(pwd -P)"
-  _ft_prompt_command
 }
 
 # Git configuration
