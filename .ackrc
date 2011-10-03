@@ -4,3 +4,5 @@ thrift=.thrift
 --type-set
 as=.mxml,.as
 
+--type-set
+coffee=.coffee
