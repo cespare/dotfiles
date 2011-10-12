@@ -141,6 +141,8 @@ alias la='ls -a'
 alias v=vim
 alias hdfs='hadoop fs'
 alias ...=../..
+alias be='bundle exec'
+alias pb='pbcopy'
 
 ### Convenience functions ------------------------------------------------------------------------------------
 

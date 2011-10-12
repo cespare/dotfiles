@@ -30,6 +30,7 @@
   ff = merge --ff-only
   ls = ls-files
   bi = bisect
+  h = rev-parse HEAD
 [branch]
   autosetuprebase = always
 [gc]
