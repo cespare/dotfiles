@@ -236,7 +236,7 @@ autoload -U spectrum
 # rbenv: https://github.com/sstephenson/rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)"
+[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-iconv-dir=$(brew --prefix libiconv)"
 
 # z: https://github.com/rupa/z
 source ~/scripts/external/z/z.sh
@@ -247,6 +247,10 @@ function precmd() {
   vcs_info
   _z --add "$(pwd -P)"
 }
+
+# vidir: https://github.com/trapd00r/vidir
+export PATH=$PATH:$HOME/scripts/external/vidir/bin
+export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
 # Git configuration
 alias g='git'
@@ -265,6 +269,7 @@ alias iscala='rlwrap scala -Xnojline'
 export TLIST_FILE=~/Dropbox/tasks/tlist.txt
 alias t='tlist'
 # TODO: completion
+export PATH=$PATH:$HOME/Project/tlist/bin
 
 ### Signal that zshrc has been loaded ------------------------------------------------------------------------
 
