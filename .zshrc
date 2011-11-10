@@ -1,3 +1,5 @@
+(( $_zshrc_loaded )) && return
+
 # A convenience function I'll be using a lot
 function source_if_exists() {
   [[ -f "$1" ]] && source "$1"
@@ -15,10 +17,10 @@ if [[ "$uname" = "Linux" ]]; then
   alias o='xdg-open'
   alias open='xdg-open'
   alias e='gvim'
-  alias ack='ack-grep' # Ubuntu calls 'ack' ack-grep
   alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
-
   export GOOS=linux # Google Go
+
+  export _zsh_platform=linux
 
 elif [[ "$uname" = "Darwin" ]]; then
   # Homebrew
@@ -30,10 +32,11 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias ls='gls -h -F --color=auto --tabsize=0 --group-directories-first'
   alias gvimdiff='mvim -U NONE -d'
   alias sed='gsed'
-
   export GOOS=darwin # Google go
 
-  [[ -f ~/.zshrc.work ]] && source ~/.zshrc.work # Work-specific stuff
+  export _zsh_platform=mac
+
+  source_if_exists ~/.zshrc.work # Work-specific stuff
 fi
 
 ### General configuration ------------------------------------------------------------------------------------
@@ -108,6 +111,20 @@ zstyle ':completion:*:*:*:*:*' menu select
 # Caching for completion
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path ~/.zsh_cache/
+# Avoid having to manually use `rehash`
+function _force_rehash() {
+  (( CURRENT == 1 )) && rehash
+  return 1
+}
+# A convenience function I'll be using a lot
+# Fuzzy matching for completions (allow 1 error in matching)
+zstyle ':completion:*' completer _oldlist _expand _force_rehash _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+# Ignore completion functions for non-existent commands
+zstyle ':completion:*:functions' ignored-patterns '_*'
+# Prevent cd from selecting the parent directory
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
 ### Set paths ------------------------------------------------------------------------------------------------
 
@@ -124,6 +141,8 @@ alias la='ls -a'
 alias v=vim
 alias hdfs='hadoop fs'
 alias ...=../..
+alias be='bundle exec'
+alias pb='pbcopy'
 
 ### Convenience functions ------------------------------------------------------------------------------------
 
@@ -138,6 +157,13 @@ function s() {
 }
 # TODO: completion
 alias sr='screen -r'
+
+# Don't want to see "permission denied" or similar with ack
+[[ -z "$_zsh_ack" ]] && export _zsh_ack="$(which ack)"
+[[ -z "$_zsh_ack" ]] && export _zsh_ack="$(which ack-grep)"
+function ack() {
+  $_zsh_ack "$@" 2> /dev/null
+}
 
 ### Build my prompt ------------------------------------------------------------------------------------------
 
@@ -188,9 +214,12 @@ zstyle ':vcs_info:*' actionformats '%r%F{red}@%F{gray}%6.6i %c%u%b %F{red}(%F{gr
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stashed git-dirty-spacing git-unpushed
 setopt prompt_subst
 
-PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ %F{red}✦%F{gray} $(ft short-version) %F{red}✦%F{gray} ${vcs_info_msg_0_}%F{red} ⟧
+PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ %F{red}✦%F{gray} $(rbenv version-name) %F{red}✦%F{gray} ${vcs_info_msg_0_}%F{red} ⟧
 %F{red}┗ $vi_mode_indicator%f '
 PROMPT2='%F{red}┗ $vi_mode_indicator%f '
+# The character that is printed out if the previous thing didn't end with a newline and zsh has to print a CR
+# itself.
+PROMPT_EOL_MARK="%F{red}↲%f"
 
 # Show the vim editing mode in the prompt
 function zle-keymap-select() {
@@ -204,11 +233,10 @@ zle -N zle-keymap-select
 
 autoload -U spectrum
 
-# flip-the-tables configuration
-# https://github.com/cespare/flip-the-tables
-export RUBIES=~/.rubies
-export FT_DEFAULT_RUBY='1.9.2-p290'
-source ~/scripts/external/flip-the-tables/ft.sh
+# rbenv: https://github.com/sstephenson/rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-iconv-dir=$(brew --prefix libiconv)"
 
 # z: https://github.com/rupa/z
 source ~/scripts/external/z/z.sh
@@ -218,8 +246,11 @@ function precmd() {
   vi_mode_indicator=❯
   vcs_info
   _z --add "$(pwd -P)"
-  _ft_prompt_command
 }
+
+# vidir: https://github.com/trapd00r/vidir
+export PATH=$PATH:$HOME/scripts/external/vidir/bin
+export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
 # Git configuration
 alias g='git'
@@ -238,3 +269,8 @@ alias iscala='rlwrap scala -Xnojline'
 export TLIST_FILE=~/Dropbox/tasks/tlist.txt
 alias t='tlist'
 # TODO: completion
+export PATH=$PATH:$HOME/Project/tlist/bin
+
+### Signal that zshrc has been loaded ------------------------------------------------------------------------
+
+export _zshrc_loaded=1 # This is so we don't load everything twice (compinit calls, at least, are expensive!)

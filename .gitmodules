@@ -16,3 +16,6 @@
 [submodule "scripts/external/flip-the-tables"]
 	path = scripts/external/flip-the-tables
 	url = git@github.com:cespare/flip-the-tables.git
+[submodule "scripts/external/vidir"]
+	path = scripts/external/vidir
+	url = https://github.com/trapd00r/vidir.git

@@ -1,5 +1,0 @@
-export rvm_path="$HOME/.rvm"
-export rvm_trust_rvmrcs_flag=1         # trust all .rvmrc files
-export rvm_project_rvmrc_default=1     # change back to the default ruby when not in a project with an .rvmrc
-rvm_make_flags="-j 3"
-rvm_archflags="-arch x86_64"

@@ -29,6 +29,10 @@
   su = !"cd `git root` && git sub update && cd -"
   ff = merge --ff-only
   ls = ls-files
+  bi = bisect
+  h = rev-parse HEAD
+  r = rebase
+  ri = rebase -i
 [branch]
   autosetuprebase = always
 [gc]
