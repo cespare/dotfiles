@@ -1,0 +1,11 @@
+I'd like to check in my weechat config, but unfortunately weechat tends to modify lots of stuff in this folder
+a lot. So I'll record the list of steps to set up weechat in the desired fashion.
+
+* sudo apt-get install weechat # This should install weechat-curses
+* get weeget:
+  $ cd ~/.weechat/python/autoload
+  $ wget http://www.weechat.org/files/scripts/weeget.py
+* start up weechat with weechat-curses
+* /python autoload
+* /weeget list # to show all packages
+* /weeget install buffers
