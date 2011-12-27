@@ -6,3 +6,6 @@ as=.mxml,.as
 
 --type-set
 coffee=.coffee
+
+--type-set
+sbt=.sbt
