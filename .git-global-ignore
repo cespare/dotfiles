@@ -4,3 +4,5 @@
 .d8_history
 .vim/.netrwhist
 tags
+dump.rdb
+.DS_Store
