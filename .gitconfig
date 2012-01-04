@@ -33,6 +33,7 @@
   h = rev-parse HEAD
   r = rebase
   ri = rebase -i
+  dc = diff --cached
 [branch]
   autosetuprebase = always
 [gc]
