@@ -1,7 +1,13 @@
-require "rubygems"
-require "irb/completion"
-require 'pp'
-require "ap"
+begin
+  require "rubygems"
+  require "irb/completion"
+  require 'pp'
+  require "ap"
+rescue LoadError => e
+  puts "Error: one or more gems in your ~/.irbrc are not installed."
+  puts e.message
+  exit 1
+end
 
 # NOTE: If using RVM, your ruby may compile with libedit instead of readline. To get real readline, refer to
 # this: http://rvm.beginrescueend.com/packages/readline/
