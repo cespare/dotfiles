@@ -36,8 +36,9 @@ elif [[ "$uname" = "Darwin" ]]; then
 
   export _zsh_platform=mac
 
-  source_if_exists ~/.zshrc.work # Work-specific stuff
 fi
+
+source_if_exists ~/.zshrc.work # Work-specific stuff
 
 ### General configuration ------------------------------------------------------------------------------------
 
