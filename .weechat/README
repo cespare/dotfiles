@@ -9,3 +9,10 @@ a lot. So I'll record the list of steps to set up weechat in the desired fashion
 * /python autoload
 * /weeget list # to show all packages
 * /weeget install buffers
+* /server add foobar irc.foobar.net/6667 (freenode already configured)
+* /set irc.server.freenode.nicks "nick1,nick2"
+* /set irc.server.freenode.username "uname"
+* /set irc.server.freenode.realname "John Doe"
+* /set irc.server.freenode.autoconnect on
+* /set irc.server.freenode.command "/msg nickserv identify xxxx"
+* /set irc.server.freenode.autojoin "#ruby,#vim"
