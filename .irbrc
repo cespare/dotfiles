@@ -1,12 +1,13 @@
+require "rubygems"
+require "irb/completion"
+require 'pp'
+
+awesome_print = true
 begin
-  require "rubygems"
-  require "irb/completion"
-  require 'pp'
   require "ap"
 rescue LoadError => e
-  puts "Error: one or more gems in your ~/.irbrc are not installed."
-  puts e.message
-  exit 1
+  puts "Warning: you don't have the awesome_print gem installed."
+  awesome_print = false
 end
 
 # NOTE: If using RVM, your ruby may compile with libedit instead of readline. To get real readline, refer to
@@ -26,9 +27,11 @@ def bench(repetitions = 100, &block)
 end
 
 # awesome_print as a default printer
-IRB::Irb.class_eval do
-  def output_value
-    ap @context.last_value
+if awesome_print
+  IRB::Irb.class_eval do
+    def output_value
+      ap @context.last_value
+    end
   end
 end
 
