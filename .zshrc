@@ -272,6 +272,12 @@ alias t='tlist'
 # TODO: completion
 export PATH=$PATH:$HOME/Project/tlist/bin
 
+if [[ $_zsh_platform == "linux" ]]; then
+  # Start up keychain
+  keychain id_dsa
+  source ~/.keychain/$HOST-sh
+fi
+
 ### Signal that zshrc has been loaded ------------------------------------------------------------------------
 
 export _zshrc_loaded=1 # This is so we don't load everything twice (compinit calls, at least, are expensive!)
