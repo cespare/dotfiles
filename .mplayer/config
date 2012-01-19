@@ -1,0 +1,9 @@
+# Write your default config options here!
+
+ao=alsa
+#ac=hwac3,hwdts
+double=yes
+autoq=100
+vf=pp=de,hqdn3d
+ontop=1
+stop-xscreensaver=yes
