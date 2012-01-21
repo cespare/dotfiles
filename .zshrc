@@ -41,6 +41,7 @@ elif [[ "$uname" = "Darwin" ]]; then
 fi
 
 source_if_exists ~/.zshrc.work # Work-specific stuff
+source_if_exists ~/.zshrc.private # Sensitive stuff (keys and whatnot) that aren't in git.
 
 ### General configuration ------------------------------------------------------------------------------------
 
@@ -277,6 +278,9 @@ if [[ $_zsh_platform == "linux" ]]; then
   keychain id_dsa
   source ~/.keychain/$HOST-sh
 fi
+
+# qs: https://github.com/cespare/qs
+export PATH=$PATH:$HOME/scripts/external/qs
 
 ### Signal that zshrc has been loaded ------------------------------------------------------------------------
 
