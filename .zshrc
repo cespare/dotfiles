@@ -265,6 +265,7 @@ export GOARCH=amd64
 export GOMAXPROCS=4
 
 # Scala
+export PATH=$PATH:$HOME/Apps/scala/current/bin
 alias iscala='rlwrap scala -Xnojline'
 
 # tlist: https://github.com/cespare/tlist
