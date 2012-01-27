@@ -147,6 +147,7 @@ alias hdfs='hadoop fs'
 alias ...=../..
 alias be='bundle exec'
 alias pb='pbcopy'
+alias gs='g s' # Stupid ghostscript
 
 ### Convenience functions ------------------------------------------------------------------------------------
 
