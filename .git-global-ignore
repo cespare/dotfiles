@@ -1,8 +1,8 @@
-# Vim stuff
-*.swp
 *~
 .d8_history
-.vim/.netrwhist
 tags
 dump.rdb
+# Mac OS stuff
 .DS_Store
+# Vim stuff
+*.swp
