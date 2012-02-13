@@ -130,6 +130,11 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 # Prevent cd from selecting the parent directory
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
+# Make git completion suck less
+__git_files () {
+  _wanted files expl 'local files' _files
+}
+
 ### Set paths ------------------------------------------------------------------------------------------------
 
 export PATH=~/bin:~/scripts:$PATH # Add the usual dirs for my locally installed programs and scripts
