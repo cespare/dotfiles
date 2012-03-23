@@ -34,6 +34,7 @@
   r = rebase
   ri = rebase -i
   dc = diff --cached
+  lol = log --oneline --graph --decorate
 [branch]
   autosetuprebase = always
 [gc]
