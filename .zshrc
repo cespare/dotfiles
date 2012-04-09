@@ -253,6 +253,7 @@ function precmd() {
 
 # vidir: https://github.com/trapd00r/vidir
 export PATH=$PATH:$HOME/scripts/external/vidir/bin
+export VIDIR_EDITOR='vim'
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
 # Git configuration
