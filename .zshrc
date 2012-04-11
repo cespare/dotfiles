@@ -18,7 +18,7 @@ if [[ "$uname" = "Linux" ]]; then
   alias open='xdg-open'
   alias e='gvim'
   alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
-  export _zsh_ack='ack-grep'
+  export _zsh_ack=`which ack-grep`
   export GOOS=linux # Google Go
 
   export _zsh_platform=linux
@@ -33,7 +33,7 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias ls='gls -h -F --color=auto --tabsize=0 --group-directories-first'
   alias gvimdiff='mvim -U NONE -d'
   alias sed='gsed'
-  export _zsh_ack='ack'
+  export _zsh_ack=`which ack`
   export GOOS=darwin # Google go
 
   export _zsh_platform=mac
