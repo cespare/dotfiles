@@ -7,3 +7,5 @@ autoq=100
 vf=pp=de,hqdn3d
 ontop=1
 stop-xscreensaver=yes
+framedrop="1"
+vo="vdpau"
