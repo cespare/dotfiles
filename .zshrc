@@ -93,8 +93,15 @@ export GREP_COLOR='1;32'
 
 ### Completion -----------------------------------------------------------------------------------------------
 
+# Taskwarrior completion
+if [[ $_zsh_platform == "linux" ]]; then
+  fpath=($fpath /usr/share/doc/task/scripts/zsh)
+else
+  fpath=($fpath /usr/local/share/doc/task/scripts/zsh)
+fi
+
 zstyle :compinstall filename '/Users/caleb/.zshrc'
-autoload -U compinit
+autoload -Uz compinit
 compinit -i
 
 unsetopt MENU_COMPLETE
@@ -103,6 +110,9 @@ setopt AUTO_MENU
 setopt COMPLETE_IN_WORD
 setopt ALWAYS_TO_END
 
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*' group-name ''
 # Case-insensitive matching, partial word and then substring completion last
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # TODO: Colors for completions
@@ -277,7 +287,8 @@ alias iscala='rlwrap scala -Xnojline'
 
 # tlist: https://github.com/cespare/tlist
 export TLIST_FILE=~/Dropbox/tasks/tlist.txt
-alias t='tlist'
+#alias t='tlist'
+alias t='task'
 # TODO: completion
 export PATH=$PATH:$HOME/Project/tlist/bin
 
