@@ -19,7 +19,6 @@ if [[ "$uname" = "Linux" ]]; then
   alias e='gvim'
   alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
   export _zsh_ack='ack-grep'
-
   export _zsh_platform=linux
 
 elif [[ "$uname" = "Darwin" ]]; then
@@ -33,7 +32,6 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias gvimdiff='mvim -U NONE -d'
   alias sed='gsed'
   export _zsh_ack='ack'
-
   export _zsh_platform=mac
 
 fi
