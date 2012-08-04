@@ -8,4 +8,10 @@ as=.mxml,.as
 coffee=.coffee
 
 --type-set
+scala=.scala
+
+--type-set
 sbt=.sbt
+
+--type-set
+css=.scss,.css

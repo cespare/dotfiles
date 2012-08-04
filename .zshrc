@@ -252,6 +252,11 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 [[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-iconv-dir=$(brew --prefix libiconv)"
 
+# virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export WORKON_HOME=~/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
 # z: https://github.com/rupa/z
 source ~/scripts/external/z/z.sh
 function precmd() {
