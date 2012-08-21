@@ -159,6 +159,7 @@ alias ...=../..
 alias be='bundle exec'
 alias pb='pbcopy'
 alias gs='g s' # Stupid ghostscript
+alias bf='bundle exec foreman'
 
 ### Convenience functions ------------------------------------------------------------------------------------
 
