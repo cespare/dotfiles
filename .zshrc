@@ -278,8 +278,8 @@ alias g='git'
 export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
 # Google Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$HOME/Apps/go/bin:$HOME/go/bin
+export GOPATH=$HOME/Projects/go
+export PATH=$PATH:$HOME/Apps/go/bin:$HOME/Projects/go/bin
 export GOMAXPROCS=4
 
 # Scala
