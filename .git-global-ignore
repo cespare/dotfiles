@@ -6,3 +6,5 @@ dump.rdb
 .DS_Store
 # Vim stuff
 *.swp
+# vim session file
+.session.vim
