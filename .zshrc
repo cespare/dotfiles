@@ -281,6 +281,12 @@ export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 export GOPATH=$HOME/Projects/go
 export PATH=$PATH:$HOME/Apps/go/bin:$HOME/Projects/go/bin
 export GOMAXPROCS=4
+# Crosscompiling
+source <(bash $HOME/scripts/external/golang-crosscompile/crosscompile.bash)
+# Automatically feed godoc output through a pager
+gdoc() {
+  command godoc "$@" | less -FX
+}
 
 # Scala
 export PATH=$PATH:$HOME/Apps/scala/current/bin
