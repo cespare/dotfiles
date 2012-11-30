@@ -283,6 +283,11 @@ export PATH=$PATH:$HOME/Apps/go/bin:$HOME/Projects/go/bin
 export GOMAXPROCS=4
 # Crosscompiling
 source <(bash $HOME/scripts/external/golang-crosscompile/crosscompile.bash)
+# go-localpath
+export PATH=$HOME/scripts/external/go-localpath:$PATH
+go() {
+  command glp "$@"
+}
 # Automatically feed godoc output through a pager
 gdoc() {
   command godoc "$@" | less -FX
