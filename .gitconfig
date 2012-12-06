@@ -47,7 +47,7 @@
 [github]
   user = cespare
 [fetch]
-  recurseSubmodules = true
+  recurseSubmodules = on-demand
 
 [color "branch"]
   current = yellow reverse
