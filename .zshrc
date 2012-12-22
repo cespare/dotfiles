@@ -31,7 +31,7 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias ls='gls -h -F --color=auto --tabsize=0 --group-directories-first'
   alias gvimdiff='mvim -U NONE -d'
   alias sed='gsed'
-  export _zsh_ack='ack'
+  export _zsh_ack=`which ack`
   export _zsh_platform=mac
 
 fi
