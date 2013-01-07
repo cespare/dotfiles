@@ -292,6 +292,11 @@ go() {
 gdoc() {
   command godoc "$@" | less -FX
 }
+# Go development
+export DEV_GOROOT=$HOME/Projects/golang
+godev() {
+  GOROOT=$DEV_GOROOT $DEV_GOROOT/bin/go "$@"
+}
 
 # Scala
 export PATH=$PATH:$HOME/Apps/scala/current/bin
