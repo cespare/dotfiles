@@ -1,15 +1,3 @@
-# Pull in platform-specific configurations.
-uname=`uname`
-if [[ "$uname" == "Linux" ]]; then
-  export PLATFORM=LINUX # for scripts
-  source $HOME/.bashrc.linux
-elif [[ "$uname" == "Darwin" ]]; then
-  export PLATFORM=MAC
-  source $HOME/.bashrc.mac
-  # Load work-specific stuff
-  [[ -s "$HOME/.bashrc.ooyala" ]] && source "$HOME/.bashrc.ooyala"
-fi
-
 export CLICOLOR=1
 export TERM="xterm-256color"
 
@@ -21,19 +9,10 @@ export HISTCONTROL=ignoreboth
 # #1 best bash config option of all time. Also, see .inputrc for more vi goodness in readline-enabled apps.
 set -o vi
 
-export PATH=$HOME/bin:$HOME/scripts:$PATH
-export PATH=$HOME/scripts/external/git-scripts:$PATH
-export MANPATH=$HOME/man:$MANPATH
-
 export EDITOR=vim
 
 # Aliases
 alias l='ls -l'
-alias hdfs='hadoop fs'
-alias src='source ~/.bash_profile; source ~/.bashrc'
-
-# Make it quicker to edit this file
-alias b='vim ~/.bashrc.cespare'
 
 # Alias g=git and add bash completion
 alias g='git'
@@ -46,54 +25,14 @@ export h=HEAD
 alias v='vim'
 complete -o filenames -F _filedir_xspec v
 
-# Handy server
-alias pserve='python -m SimpleHTTPServer'
-
-# Completion scripts:
-source ~/scripts/completion/git-completion.bash
-source ~/scripts/completion/completion-ruby/completion-ruby-all
-
-# Let's get a nice colorized prompt which knows about git
-source ~/scripts/bash_colorize.sh
-export GIT_PS1_SHOWDIRTYSTATE=1
-
-# Nice prompt
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-BLUE="\[\033[01;34m\]"
-GREEN="\[\033[01;32m\]"
-PLAIN="\[\e[m\]"
-
-export PS1='$ '
-
 # Screen stuff
 s() {
   screen -S $1 $1
 }
 alias sr='screen -r'
-# See the 'sr' ruby-complete script for auto-completion of sr
 complete -o filenames -F _command s
 
-# Google Go
-export PATH=$PATH:$HOME/Apps/go/bin
-export GOROOT=$HOME/Apps/go
-export GOARCH=amd64
-export GOMAXPROCS=4
+alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
 
-# Scala
-alias iscala='rlwrap scala -Xnojline'
-
-# Ruby-complete
-export RUBY_COMPLETE_DIR="$HOME/scripts/completion"
-source $HOME/scripts/external/ruby-complete/ruby-complete.bash
-
-# Import more sweet bash stuff
-source ~/scripts/bash_extras.sh
-
-# NPM stuff -- make sure to install from $HOME
-export PATH=$HOME/node_modules/.bin:$PATH
-
-export TLIST_FILE=~/Dropbox/tasks/tlist.txt
-alias t=tlist
-source ~/scripts/completion/tlist_completion.bash
-complete -F _tlist t
+# Ubuntu calls 'ack' ack-grep
+alias ack='ack-grep'
