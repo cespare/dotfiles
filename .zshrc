@@ -318,6 +318,20 @@ fi
 # qs: https://github.com/cespare/qs
 export PATH=$PATH:$HOME/scripts/external/qs
 
+# Docker setup
+alias d='docker'
+d_server() {
+  ID=$(docker run -d cespare/sshd /usr/sbin/sshd -De)
+  echo "Docker ID: $ID"
+  docker inspect $ID | grep IpAddress
+}
+d_ip() {
+  docker inspect $1 | grep IpAddress
+}
+d_bash() {
+  docker run -t -i $1 /bin/bash -l
+}
+
 ### Signal that zshrc has been loaded ------------------------------------------------------------------------
 
 export _zshrc_loaded=1 # This is so we don't load everything twice (compinit calls, at least, are expensive!)
