@@ -30,7 +30,6 @@ EOS
 
 # Returns a [stdout, stderr, statuscode] triple.
 def run(c)
-  puts "\033[01;34m>>>> c: #{c.inspect}\e[m"
   out, err, p = Open3.capture3(c)
   [out, err, p.exitstatus]
 end
