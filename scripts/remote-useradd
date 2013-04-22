@@ -62,7 +62,7 @@ _, err, status = run("#{SSH} #{USER}@#{HOST} pwd")
 if status != 0
   STDERR.puts err
   puts "Cannot log in as #{USER}; trying as root."
-  useradd = "useradd -d /home/#{USER} -s /bin/bash -U -m #{USER}"
+  useradd = "useradd -d /home/#{USER} -s /bin/bash -U -m #{USER} -G sudo"
   _, err, status = run(%Q[#{SSH} root@#{HOST} #{useradd}])
   if status != 0
     STDERR.puts err
