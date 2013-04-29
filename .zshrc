@@ -305,6 +305,9 @@ alias oct='octave -q'
 export PATH=$PATH:$HOME/Apps/scala/current/bin
 alias iscala='rlwrap scala -Xnojline'
 
+# Octave
+alias oct='octave -q'
+
 # tlist: https://github.com/cespare/tlist
 export TLIST_FILE=~/Dropbox/tasks/tlist.txt
 #alias t='tlist'
