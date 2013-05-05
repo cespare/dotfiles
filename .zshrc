@@ -298,6 +298,9 @@ godev() {
   GOROOT=$DEV_GOROOT $DEV_GOROOT/bin/go "$@"
 }
 
+# Octave
+alias oct='octave -q'
+
 # Scala
 export PATH=$PATH:$HOME/Apps/scala/current/bin
 alias iscala='rlwrap scala -Xnojline'
