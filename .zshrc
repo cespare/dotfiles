@@ -312,7 +312,7 @@ export PATH=$PATH:$HOME/Project/tlist/bin
 
 if [[ $_zsh_platform == "linux" ]]; then
   # Start up keychain
-  keychain id_dsa
+  keychain id_rsa
   source ~/.keychain/$HOST-sh
 fi
 
