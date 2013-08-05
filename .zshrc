@@ -251,7 +251,7 @@ autoload -U spectrum
 # rbenv: https://github.com/sstephenson/rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-iconv-dir=$(brew --prefix libiconv)"
+[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)"
 
 # virtualenv
 # export VIRTUAL_ENV_DISABLE_PROMPT=1
