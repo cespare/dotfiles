@@ -23,7 +23,7 @@ if [[ "$uname" = "Linux" ]]; then
 
 elif [[ "$uname" = "Darwin" ]]; then
   # Homebrew
-  PATH=/usr/local/bin:/usr/local/sbin/:/usr/local/share/python:$PATH
+  PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
   # Mac aliases
   alias e='mvim'
@@ -145,7 +145,7 @@ __git_files () {
 
 export PATH=~/bin:~/scripts:$PATH # Add the usual dirs for my locally installed programs and scripts
 export MANPATH=~/man/:$MANPATH # Manpages for locally installed programs
-export PATH=~/scripts/external/git-scripts/:$PATH # http://github.com/cespare/git-scripts
+export PATH=~/scripts/external/git-scripts:$PATH # http://github.com/cespare/git-scripts
 # TODO: zsh completion for my git scripts
 
 ### Aliases --------------------------------------------------------------------------------------------------
