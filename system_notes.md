@@ -15,3 +15,8 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * `make && make install` in libtorrent
 * `PKG_CONFIG_PATH=$HOME/lib/pkgconfig ./configure --prefix=$HOME` in rtorrent
 * `make && make install` in rtorrent
+
+## ruby
+
+* Linux prerequisite packages: build-essential zlib1g-dev libssl-dev openssl libreadline-dev sqlite3 libsqlite3-dev libxslt-dev libxml2-dev curl
+* Gems: `bundler`, `awesome_print`
