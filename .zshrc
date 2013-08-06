@@ -278,8 +278,8 @@ alias g='git'
 export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
 # Google Go
-export GOPATH=$HOME/Projects/go
-export PATH=$PATH:$HOME/Apps/go/bin:$HOME/Projects/go/bin
+export GOPATH=$HOME/projects/go
+export PATH=$PATH:$HOME/apps/go/bin:$HOME/projects/go/bin
 export GOMAXPROCS=4
 # Crosscompiling
 source <(bash $HOME/scripts/external/golang-crosscompile/crosscompile.bash)
@@ -288,7 +288,7 @@ gdoc() {
   command godoc "$@" | less -FX
 }
 # Go development
-export DEV_GOROOT=$HOME/Projects/golang
+export DEV_GOROOT=$HOME/projects/golang
 godev() {
   GOROOT=$DEV_GOROOT $DEV_GOROOT/bin/go "$@"
 }
@@ -297,7 +297,7 @@ godev() {
 alias oct='octave -q'
 
 # Scala
-export PATH=$PATH:$HOME/Apps/scala/current/bin
+export PATH=$PATH:$HOME/apps/scala/current/bin
 alias iscala='rlwrap scala -Xnojline'
 
 # Octave
