@@ -141,6 +141,9 @@ __git_files () {
   _wanted files expl 'local files' _files
 }
 
+# Make mosh use ssh completion. Not perfect, but good enough for now.
+compdef mosh=ssh
+
 ### Set paths ------------------------------------------------------------------------------------------------
 
 export PATH=~/bin:~/scripts:$PATH # Add the usual dirs for my locally installed programs and scripts
