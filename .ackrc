@@ -18,3 +18,6 @@ css=.scss,.css
 
 --type-set
 go=.go
+
+--type-set
+clj=.clj
