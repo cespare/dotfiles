@@ -306,13 +306,6 @@ alias iscala='rlwrap scala -Xnojline'
 # Octave
 alias oct='octave -q'
 
-# tlist: https://github.com/cespare/tlist
-export TLIST_FILE=~/Dropbox/tasks/tlist.txt
-#alias t='tlist'
-alias t='task'
-# TODO: completion
-export PATH=$PATH:$HOME/Project/tlist/bin
-
 if [[ $_zsh_platform == "linux" ]]; then
   # Start up keychain
   keychain id_rsa
