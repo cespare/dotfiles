@@ -18,7 +18,6 @@ if [[ "$uname" = "Linux" ]]; then
   alias open='xdg-open'
   alias e='gvim'
   alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
-  export _zsh_ack='ack-grep'
   export _zsh_platform=linux
 
 elif [[ "$uname" = "Darwin" ]]; then
@@ -31,7 +30,6 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias ls='gls -h -F --color=auto --tabsize=0 --group-directories-first'
   alias gvimdiff='mvim -U NONE -d'
   alias sed='gsed'
-  export _zsh_ack=`which ack`
   export _zsh_platform=mac
 
 fi
@@ -177,11 +175,6 @@ function s() {
 }
 # TODO: completion
 alias sr='screen -r'
-
-# Don't want to see "permission denied" or similar with ack
-function ack() {
-  $_zsh_ack "$@" 2> /dev/null
-}
 
 ### Build my prompt ------------------------------------------------------------------------------------------
 
