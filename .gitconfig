@@ -36,6 +36,7 @@
   dc = diff --cached
   lol = log --oneline --graph --decorate
   conf = config
+  cam = commit -a --amend
 [branch]
   autosetuprebase = always
 [gc]
