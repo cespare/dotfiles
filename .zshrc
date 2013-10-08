@@ -322,6 +322,14 @@ d_bash() {
   docker run -t -i $1 /bin/bash -l
 }
 
+# Ansible
+alias a='ansible'
+alias ap='ansible-playbook'
+
+# Nimrod
+export PATH=$HOME/apps/Nimrod/bin:$PATH
+alias n='nimrod'
+
 ### Signal that zshrc has been loaded ------------------------------------------------------------------------
 
 export _zshrc_loaded=1 # This is so we don't load everything twice (compinit calls, at least, are expensive!)
