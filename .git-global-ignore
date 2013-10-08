@@ -8,3 +8,6 @@ dump.rdb
 *.swp
 # vim session file
 .session.vim
+
+# Clojure stuff
+.nrepl-port
