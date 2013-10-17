@@ -2,7 +2,8 @@
 ! setxkbmap -layout us
 ! resets the keyboard layout completely (then you can run xmodmap again).
 
-! Swap caps lock and escape
+! Make escape caps lock and make caps lock another control. Then with xcape, I will make control act as escape
+! when pressed and immediately released.
 remove Lock = Caps_Lock
 keysym Escape = Caps_Lock
 keysym Caps_Lock = Control_L
