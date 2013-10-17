@@ -1,15 +1,5 @@
-! Hint:
-! setxkbmap -layout us
-! resets the keyboard layout completely (then you can run xmodmap again).
-
-! Make escape caps lock and make caps lock another control. Then with xcape, I will make control act as escape
-! when pressed and immediately released.
+! Swap caps lock and escape
 remove Lock = Caps_Lock
 keysym Escape = Caps_Lock
-keysym Caps_Lock = Control_L
-! xcape needs Escape to be assigned to something. Nothing on my keyboards sends keycode 255.
-keycode 255 = Escape
-! Disable left control for now to train myself not to use it. Maybe use it as a fancy extra modifier later.
-keycode 37 = NoSymbol
+keysym Caps_Lock = Escape
 add Lock = Caps_Lock
-add Control = Control_L
