@@ -276,7 +276,6 @@ export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 # Google Go
 export GOPATH=$HOME/projects/go
 export PATH=$GOPATH/bin:~/apps/go/bin:$PATH
-export GOMAXPROCS=4
 # Crosscompiling
 source <(bash $HOME/scripts/external/golang-crosscompile/crosscompile.bash)
 # Automatically feed godoc output through a pager
