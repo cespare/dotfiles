@@ -16,3 +16,6 @@
 [submodule "scripts/external/go-localpath"]
 	path = scripts/external/go-localpath
 	url = git@github.com:cespare/go-localpath.git
+[submodule "scripts/powerline"]
+	path = scripts/powerline
+	url = git://github.com/Lokaltog/powerline.git
