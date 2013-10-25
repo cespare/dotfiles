@@ -225,7 +225,7 @@ zstyle ':vcs_info:*' actionformats '%r%F{red}@%F{gray}%6.6i %c%u%b %F{red}(%F{gr
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stashed git-dirty-spacing git-unpushed
 setopt prompt_subst
 
-PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ %F{red}✦%F{gray} $(rbenv version-name) %F{red}✦%F{gray} ${vcs_info_msg_0_}%F{red} ⟧
+PROMPT='%F{red}┏ ⟦ %F{gray}%n%F{red}@%F{gray}%m%F{red}:%F{gray}%~ %F{red}✦%F{gray} ${vcs_info_msg_0_}%F{red} ⟧
 %F{red}┗ $vi_mode_indicator%f '
 PROMPT2='%F{red}┗ $vi_mode_indicator%f '
 # The character that is printed out if the previous thing didn't end with a newline and zsh has to print a CR
