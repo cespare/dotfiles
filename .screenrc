@@ -5,3 +5,6 @@ defutf8 on
 attrcolor b ".I"
 defbce "on"
 term screen-256color
+
+# Use ctrl-b. I use ctrl-a for tmux.
+escape ^Bb
