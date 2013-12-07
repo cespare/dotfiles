@@ -64,7 +64,10 @@ unsetopt CASE_GLOB   # Make globbing case-insensitive
 
 # Color is good
 export CLICOLOR=1
-export TERM="xterm-256color"
+# Don't override tmux's color
+if [[ -z "$TMUX" ]]; then
+  export TERM="xterm-256color"
+fi
 
 # Directory switching
 setopt AUTO_PUSHD        # Push each directory onto the stack
