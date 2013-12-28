@@ -39,11 +39,17 @@
 
 # Examples of commands:
 
-#"xbindkeys_show" 
+#"xbindkeys_show"
   #control+shift + q
 
 "playctrl playpause"
   control + alt + space
+
+"xdotool keyup h && xdotool key --clearmodifiers control+Prior"
+  shift + alt + h
+
+"xdotool keyup l && xdotool key --clearmodifiers control+Next"
+  shift + alt + l
 
 # set directly keycode (here control + f with my keyboard)
 #"xterm"
