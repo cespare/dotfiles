@@ -1,4 +1,24 @@
-# For the benefit of emacs users: -*- shell-script -*-
+# Launch common applications
+"xfce4-terminal -e 'tmux -f /home/caleb/.tmux.linux.conf -2'"
+  control + alt + t
+
+"google-chrome"
+  control + alt + b
+
+"leafpad"
+  control + mod4 + l
+
+# Playctrl
+"playctrl playpause"
+  control + alt + space
+
+# Handy shortcuts for previous/next tab
+"xdotool keyup h && xdotool key --clearmodifiers control+Prior"
+  shift + alt + h
+
+"xdotool keyup l && xdotool key --clearmodifiers control+Next"
+  shift + alt + l
+
 ###########################
 # xbindkeys configuration #
 ###########################
@@ -41,15 +61,6 @@
 
 #"xbindkeys_show"
   #control+shift + q
-
-"playctrl playpause"
-  control + alt + space
-
-"xdotool keyup h && xdotool key --clearmodifiers control+Prior"
-  shift + alt + h
-
-"xdotool keyup l && xdotool key --clearmodifiers control+Next"
-  shift + alt + l
 
 # set directly keycode (here control + f with my keyboard)
 #"xterm"
