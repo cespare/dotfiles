@@ -1,4 +1,50 @@
-# Launch common applications
+###
+### Carlisle shortcuts
+###
+
+# Right half
+"~/projects/carlisle/carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' h=sh"
+  mod4 + shift + comma
+
+# Left half
+"~/projects/carlisle/carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' h=sh"
+  mod4 + shift + period
+
+# Move 100px right, don't move off-screen
+"~/projects/carlisle/carlisle moveresize 'x=(min (+ x 100) (- sw w))'"
+  mod4 + l
+
+# Move 100px left, don't move off-screen
+"~/projects/carlisle/carlisle moveresize 'x=(max (- x 100) 0)'"
+  mod4 + h
+
+# Move 100px down
+"~/projects/carlisle/carlisle moveresize 'y=(+ y 100)'"
+  mod4 + j
+
+# Move 100px up; not above the top of the screen
+"~/projects/carlisle/carlisle moveresize 'y=(max (- y 100) 0)'"
+  mod4 + k
+
+# Expand 100px to the right
+"~/projects/carlisle/carlisle moveresize 'w=(min (+ w 100) (- sw x))'"
+  mod4 + shift + l
+
+# Contract 100px from right
+"~/projects/carlisle/carlisle moveresize 'w=(max (- w 100) 0)'"
+  mod4 + shift + h
+
+# Expand 100px down
+"~/projects/carlisle/carlisle moveresize 'h=(min (+ h 100) (- sh y))'"
+  mod4 + shift + j
+
+# Contract 100px up
+"~/projects/carlisle/carlisle moveresize 'h=(max (- h 100) 0)'"
+  mod4 + shift + k
+
+###
+### Launch common applications
+###
 "xfce4-terminal -e 'tmux -f /home/caleb/.tmux.linux.conf -2'"
   control + alt + t
 
@@ -6,13 +52,17 @@
   control + alt + b
 
 "leafpad"
-  control + mod4 + l
+  control + alt + l
 
-# Playctrl
+###
+### Playctrl
+###
 "playctrl playpause"
   control + alt + space
 
-# Handy shortcuts for previous/next tab
+###
+### Handy shortcuts for previous/next tab
+###
 "xdotool keyup h && xdotool key --clearmodifiers control+Prior"
   shift + alt + h
 
