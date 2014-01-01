@@ -16,7 +16,7 @@ A random assortment of configuration/compile settings that I'd like to not forge
   - ~/.weechat
 * `mkdir ~/.ssh-control`
 * Install: keychain, git, vim, vim-gtk, zsh, tmux, xbindkeys, xdotool, weechat-curses, screen,
-  ttf-mscorefonts-installer
+  ttf-mscorefonts-installer, openssh-server
 * Clone dotviles, vim-config and move into place
 * Log out and back in for xmodmap (or just run it manually)
 * Go into xfce keyboard shorcuts and delete most of them. Keep:
@@ -26,6 +26,7 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * In xfce keyboard settings: change key repeat and delay:
   - delay: 250
   - speed: 40
+* Configure ssh server not to accept passwords but only pub key
 * Add xbindkeys to startup applications
 * Copy in /etc/fstab from previous installation and make sure everything's peachy
 * Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
