@@ -2,11 +2,11 @@
 ### Carlisle shortcuts
 ###
 
-# Right half
+# Left half
 "~/projects/carlisle/carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' h=sh"
   mod4 + shift + comma
 
-# Left half
+# Right half
 "~/projects/carlisle/carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' h=sh"
   mod4 + shift + period
 
@@ -41,6 +41,30 @@
 # Contract 100px up
 "~/projects/carlisle/carlisle moveresize 'h=(max (- h 100) 0)'"
   mod4 + shift + k
+
+# Maximize vertically
+"~/projects/carlisle/carlisle moveresize y=0 h=sh"
+  control + shift + v
+
+# Maximize vertically
+"~/projects/carlisle/carlisle moveresize x=0 w=sw"
+  control + shift + apostrophe
+
+# Focus chrome
+"~/projects/carlisle/carlisle focus match=chrome"
+  mod4 + alt + b
+
+# Focus terminal
+"~/projects/carlisle/carlisle focus match=terminal"
+  mod4 + alt + t
+
+# Focus leafpad
+"~/projects/carlisle/carlisle focus match=leafpad"
+  mod4 + alt + l
+
+# Focus gvim
+"~/projects/carlisle/carlisle focus match=gvim"
+  mod4 + alt + g
 
 ###
 ### Launch common applications
