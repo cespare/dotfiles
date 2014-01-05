@@ -30,6 +30,8 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * Add xbindkeys to startup applications
 * Copy in /etc/fstab from previous installation and make sure everything's peachy
 * Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
+* Work around the cursor size bug using the solution here:
+  https://bugs.launchpad.net/ubuntu/+source/unity-greeter/+bug/1024482
 
 ## vim
 

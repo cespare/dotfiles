@@ -276,7 +276,7 @@ export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 alias g='git'
 export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
-# Google Go
+# Go
 export GOPATH=$HOME/projects/go
 export PATH=$GOPATH/bin:~/apps/go/bin:$PATH
 # Crosscompiling
