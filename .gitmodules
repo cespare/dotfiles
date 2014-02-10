@@ -13,9 +13,6 @@
 [submodule "scripts/external/golang-crosscompile"]
 	path = scripts/external/golang-crosscompile
 	url = git@github.com:cespare/golang-crosscompile.git
-[submodule "scripts/external/go-localpath"]
-	path = scripts/external/go-localpath
-	url = git@github.com:cespare/go-localpath.git
 [submodule "scripts/powerline"]
 	path = scripts/powerline
 	url = git://github.com/Lokaltog/powerline.git
