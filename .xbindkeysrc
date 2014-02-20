@@ -6,9 +6,23 @@
 "~/projects/carlisle/carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' h=sh"
   mod4 + shift + comma
 
+"~/projects/carlisle/carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' h=sh"
+  mod4 + shift + Left
+
 # Right half
 "~/projects/carlisle/carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' h=sh"
   mod4 + shift + period
+
+"~/projects/carlisle/carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' h=sh"
+  mod4 + shift + Right
+
+# Bottom half
+"~/projects/carlisle/carlisle moveresize x=0 'y=(* 0.5 sh)' w=sw 'h=(* 0.5 sh)'"
+  mod4 + shift + Down
+
+# Top half
+"~/projects/carlisle/carlisle moveresize x=0 y=0 w=sw 'h=(* 0.5 sh)'"
+  mod4 + shift + Up
 
 # Move 100px right, don't move off-screen
 "~/projects/carlisle/carlisle moveresize 'x=(min (+ x 100) (- sw w))'"
