@@ -37,6 +37,7 @@
   lol = log --oneline --graph --decorate
   conf = config
   cam = commit -a --amend
+  whoami = config --get user.email
 [branch]
   autosetuprebase = always
 [gc]
