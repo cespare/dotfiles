@@ -114,6 +114,16 @@
 "~/scripts/screenshot"
   shift + alt + 4 + release
 
+###
+### Volume controls
+###
+
+"amixer set Master playback 3dB+"
+  control + alt + equal
+
+"amixer set Master playback 3dB-"
+  control + alt + minus
+
 ###########################
 # xbindkeys configuration #
 ###########################
