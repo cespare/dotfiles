@@ -3,81 +3,97 @@
 ###
 
 # Left half
-"~/projects/carlisle/carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' h=sh"
+"carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' h=sh"
   mod4 + shift + comma
 
-"~/projects/carlisle/carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' h=sh"
+"carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' h=sh"
   mod4 + shift + Left
 
 # Right half
-"~/projects/carlisle/carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' h=sh"
+"carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' h=sh"
   mod4 + shift + period
 
-"~/projects/carlisle/carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' h=sh"
+"carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' h=sh"
   mod4 + shift + Right
 
 # Bottom half
-"~/projects/carlisle/carlisle moveresize x=0 'y=(* 0.5 sh)' w=sw 'h=(* 0.5 sh)'"
+"carlisle moveresize x=0 'y=(* 0.5 sh)' w=sw 'h=(* 0.5 sh)'"
   mod4 + shift + Down
 
 # Top half
-"~/projects/carlisle/carlisle moveresize x=0 y=0 w=sw 'h=(* 0.5 sh)'"
+"carlisle moveresize x=0 y=0 w=sw 'h=(* 0.5 sh)'"
   mod4 + shift + Up
 
 # Move 100px right, don't move off-screen
-"~/projects/carlisle/carlisle moveresize 'x=(min (+ x 100) (- sw w))'"
+"carlisle moveresize 'x=(min (+ x 100) (- sw w))'"
   mod4 + l
 
 # Move 100px left, don't move off-screen
-"~/projects/carlisle/carlisle moveresize 'x=(max (- x 100) 0)'"
+"carlisle moveresize 'x=(max (- x 100) 0)'"
   mod4 + h
 
 # Move 100px down
-"~/projects/carlisle/carlisle moveresize 'y=(+ y 100)'"
+"carlisle moveresize 'y=(+ y 100)'"
   mod4 + j
 
 # Move 100px up; not above the top of the screen
-"~/projects/carlisle/carlisle moveresize 'y=(max (- y 100) 0)'"
+"carlisle moveresize 'y=(max (- y 100) 0)'"
   mod4 + k
 
 # Expand 100px to the right
-"~/projects/carlisle/carlisle moveresize 'w=(min (+ w 100) (- sw x))'"
+"carlisle moveresize 'w=(min (+ w 100) (- sw x))'"
   mod4 + shift + l
 
 # Contract 100px from right
-"~/projects/carlisle/carlisle moveresize 'w=(max (- w 100) 0)'"
+"carlisle moveresize 'w=(max (- w 100) 0)'"
   mod4 + shift + h
 
 # Expand 100px down
-"~/projects/carlisle/carlisle moveresize 'h=(min (+ h 100) (- sh y))'"
+"carlisle moveresize 'h=(min (+ h 100) (- sh y))'"
   mod4 + shift + j
 
 # Contract 100px up
-"~/projects/carlisle/carlisle moveresize 'h=(max (- h 100) 0)'"
+"carlisle moveresize 'h=(max (- h 100) 0)'"
   mod4 + shift + k
 
 # Maximize vertically
-"~/projects/carlisle/carlisle moveresize y=0 h=sh"
+"carlisle moveresize y=0 h=sh"
   control + shift + v
 
 # Maximize vertically
-"~/projects/carlisle/carlisle moveresize x=0 w=sw"
+"carlisle moveresize x=0 w=sw"
   control + shift + apostrophe
 
+# Maximize
+"carlisle toggle maximized"
+  control + shift + m
+
+# Fullscreen
+"carlisle toggle fullscreen"
+  control + shift + Return
+
+# Move window to the next screen
+"carlisle switch dir=right"
+  alt + l
+
+# Move window to the previous screen
+"carlisle switch dir=left"
+  alt + h
+
 # Focus chrome
-"~/projects/carlisle/carlisle focus match=chrome"
+"carlisle focus match=chrome"
   mod4 + alt + b
 
 # Focus terminal
-"~/projects/carlisle/carlisle focus match=terminal"
+"carlisle focus match=terminal"
   mod4 + alt + t
 
 # Focus leafpad
-"~/projects/carlisle/carlisle focus match=leafpad"
+"carlisle focus match=leafpad"
   mod4 + alt + l
 
 # Focus gvim
-"~/projects/carlisle/carlisle focus match=gvim"
+"carlisle focus match=gvim"
   mod4 + alt + g
 
 ###
