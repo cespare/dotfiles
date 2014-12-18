@@ -51,3 +51,7 @@ A random assortment of configuration/compile settings that I'd like to not forge
 
 * Linux prerequisite packages: build-essential zlib1g-dev libssl-dev openssl libreadline-dev sqlite3 libsqlite3-dev libxslt-dev libxml2-dev curl
 * Gems: `bundler`, `awesome_print`
+
+## yubikey + gmail
+
+* Install udev rule here: http://forum.yubico.com/viewtopic.php?t=1545&p=5991

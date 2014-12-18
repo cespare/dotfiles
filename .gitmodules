@@ -1,18 +1,12 @@
 [submodule "scripts/external/z"]
 	path = scripts/external/z
 	url = https://github.com/rupa/z.git
-[submodule "scripts/external/git-scripts"]
-	path = scripts/external/git-scripts
-	url = git@github.com:cespare/git-scripts.git
 [submodule "scripts/external/vidir"]
 	path = scripts/external/vidir
 	url = https://github.com/trapd00r/vidir.git
 [submodule "scripts/external/qs"]
 	path = scripts/external/qs
 	url = git@github.com:cespare/qs.git
-[submodule "scripts/external/golang-crosscompile"]
-	path = scripts/external/golang-crosscompile
-	url = git@github.com:cespare/golang-crosscompile.git
 [submodule "scripts/powerline"]
 	path = scripts/powerline
 	url = git://github.com/Lokaltog/powerline.git

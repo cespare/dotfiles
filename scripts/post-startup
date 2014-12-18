@@ -3,7 +3,7 @@
 ~/scripts/fix-screens.sh
 
 # Start conky
-conky -c ~/.conky/conkyrc_grey_h
+#conky -c ~/.conky/conkyrc_grey_h
 
 # Start winwrangler
-nohup winwrangler -d > /dev/null &
+#nohup winwrangler -d > /dev/null &
