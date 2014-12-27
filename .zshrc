@@ -277,24 +277,15 @@ alias g='git'
 export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
 # Go
-export GOPATH=$HOME/projects/go
+export GOPATH=$HOME/p/go
 export PATH=$GOPATH/bin:~/apps/go/bin:$PATH
 # Automatically feed godoc output through a pager
 gdoc() {
   command godoc "$@" | less -FX
 }
-# Go development
-export DEV_GOROOT=$HOME/projects/golang
-godev() {
-  GOROOT=$DEV_GOROOT $DEV_GOROOT/bin/go "$@"
-}
 
 # Octave
 alias oct='octave -q'
-
-# Scala
-export PATH=$PATH:$HOME/apps/scala/current/bin
-alias iscala='rlwrap scala -Xnojline'
 
 # Octave
 alias oct='octave -q'
