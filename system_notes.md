@@ -76,3 +76,5 @@ Run `aloop` to route the loopback to the main output:
     $ alsaloop -c 2 -C hw:Loopback,1,0 -P default
 
 (Adjust based on what `/proc/asound/cards` shows.)
+
+In Renoise configuration, under Keys, uncheck "Override window manager shortcuts".
