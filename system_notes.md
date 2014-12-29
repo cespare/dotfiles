@@ -55,3 +55,24 @@ A random assortment of configuration/compile settings that I'd like to not forge
 ## yubikey + gmail
 
 * Install udev rule here: http://forum.yubico.com/viewtopic.php?t=1545&p=5991
+
+## Renoise / ALSA
+
+Renoise wants to use ALSA or Jack. But Ubuntu does Pulseaudio. If you let Renoise use the ALSA output device,
+PA output (basically everything that isn't Renoise) stops working.
+
+Solution: make an ALSA loopback device (basically a fake soundcard) and let renoise use that.
+
+    $ sudo modprobe snd-aloop
+
+Add to `/etc/modules` to load by default.
+
+    $ sudo cat /proc/asound/cards
+
+That should now show the loopback device. Start up Renoise and configure it to use the ALSA loopback device.
+
+Run `aloop` to route the loopback to the main output:
+
+    $ alsaloop -c 2 -C hw:Loopback,1,0 -P default
+
+(Adjust based on what `/proc/asound/cards` shows.)

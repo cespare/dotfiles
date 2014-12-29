@@ -32,6 +32,10 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias sed='gsed'
   export _zsh_platform=mac
 
+  # Docker
+  export DOCKER_CERT_PATH=/Users/caleb/.boot2docker/certs/boot2docker-vm
+  export DOCKER_TLS_VERIFY=1
+  export DOCKER_HOST=tcp://192.168.59.103:2376
 fi
 
 source_if_exists ~/.zshrc.work # Work-specific stuff
@@ -150,6 +154,10 @@ compdef mosh=ssh
 export PATH=~/bin:~/scripts:$PATH # Add the usual dirs for my locally installed programs and scripts
 export MANPATH=~/man/:$MANPATH # Manpages for locally installed programs
 export PATH=~/scripts/external/git-scripts:$PATH # http://github.com/cespare/git-scripts
+
+# CDPATH for convenience
+export CDPATH=~/w:~/p
+
 # TODO: zsh completion for my git scripts
 
 ### Aliases --------------------------------------------------------------------------------------------------
@@ -277,24 +285,16 @@ alias g='git'
 export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
 # Go
-export GOPATH=$HOME/projects/go
+export GOPATH=$HOME/p/go
+export CDPATH=$CDPATH:$GOPATH/src/github.com/cespare
 export PATH=$GOPATH/bin:~/apps/go/bin:$PATH
 # Automatically feed godoc output through a pager
 gdoc() {
   command godoc "$@" | less -FX
 }
-# Go development
-export DEV_GOROOT=$HOME/projects/golang
-godev() {
-  GOROOT=$DEV_GOROOT $DEV_GOROOT/bin/go "$@"
-}
 
 # Octave
 alias oct='octave -q'
-
-# Scala
-export PATH=$PATH:$HOME/apps/scala/current/bin
-alias iscala='rlwrap scala -Xnojline'
 
 # Octave
 alias oct='octave -q'

@@ -38,6 +38,15 @@
   conf = config
   cam = commit -a --amend
   whoami = config --get user.email
+
+  # For Go development
+	change = codereview change
+	gofmt = codereview gofmt
+	mail = codereview mail
+	pending = codereview pending
+	submit = codereview submit
+	sync = codereview sync
+
 [branch]
   autosetuprebase = always
 [gc]
