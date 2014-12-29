@@ -156,7 +156,7 @@ export MANPATH=~/man/:$MANPATH # Manpages for locally installed programs
 export PATH=~/scripts/external/git-scripts:$PATH # http://github.com/cespare/git-scripts
 
 # CDPATH for convenience
-export CDPATH=~/w:~/p
+export CDPATH=~/w:~/p:$CDPATH
 
 # TODO: zsh completion for my git scripts
 
