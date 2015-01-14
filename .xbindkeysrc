@@ -108,11 +108,8 @@
 "leafpad"
   control + alt + l
 
-###
-### Playctrl
-###
-"playctrl playpause"
-  control + alt + space
+"xfce4-appfinder --disable-server"
+  mod4 + space
 
 ###
 ### Handy shortcuts for previous/next tab
