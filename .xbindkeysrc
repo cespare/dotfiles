@@ -121,21 +121,29 @@
   shift + alt + l
 
 ###
+### Trigger media keys with regular keyboard shortcuts
+###
+"xdotool keyup space && xdotool key --clearmodifiers XF86AudioPlay"
+  control + alt + space
+
+"xdotool keyup Right && xdotool key --clearmodifiers XF86AudioNext"
+  control + alt + Right
+
+"xdotool keyup Left && xdotool key --clearmodifiers XF86AudioPrev"
+  control + alt + Left
+
+"xdotool keyup equal && xdotool key --clearmodifiers XF86AudioRaiseVolume"
+  control + alt + equal
+
+"xdotool keyup minus && xdotool key --clearmodifiers XF86AudioLowerVolume"
+  control + alt + minus
+
+###
 ### Take a screenshot
 ###
 
 "~/scripts/screenshot"
   shift + alt + 4 + release
-
-###
-### Volume controls
-###
-
-"amixer set Master playback 3dB+"
-  control + alt + equal
-
-"amixer set Master playback 3dB-"
-  control + alt + minus
 
 ###########################
 # xbindkeys configuration #
