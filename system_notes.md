@@ -78,3 +78,16 @@ Run `aloop` to route the loopback to the main output:
 (Adjust based on what `/proc/asound/cards` shows.)
 
 In Renoise configuration, under Keys, uncheck "Override window manager shortcuts".
+
+## KeepassX
+
+```
+sudo apt-get install cmake libgcrypt11-dev
+git clone https://github.com/keepassx/keepassx.git
+cd keepassx/
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+make 2>&1 | tee make.log
+sudo make install 2>&1 | tee make-install.log
+```
