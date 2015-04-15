@@ -300,11 +300,11 @@ alias oct='octave -q'
 # Octave
 alias oct='octave -q'
 
-if [[ $_zsh_platform == "linux" ]]; then
-  # Start up keychain
-  keychain id_rsa
-  source ~/.keychain/$HOST-sh
-fi
+#if [[ $_zsh_platform == "linux" ]]; then
+  ## Start up keychain
+  #keychain id_rsa
+  #source ~/.keychain/$HOST-sh
+#fi
 
 # qs: https://github.com/cespare/qs
 export PATH=$PATH:$HOME/scripts/external/qs
