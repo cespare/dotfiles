@@ -9,4 +9,4 @@
 	url = git@github.com:cespare/qs.git
 [submodule "scripts/powerline"]
 	path = scripts/powerline
-	url = git://github.com/Lokaltog/powerline.git
+	url = https://github.com/powerline/powerline
