@@ -1,4 +1,4 @@
-(( $_zshrc_loaded )) && return
+#(( $_zshrc_loaded )) && return
 
 # A convenience function I'll be using a lot
 function source_if_exists() {
@@ -333,4 +333,4 @@ alias n='nimrod'
 
 ### Signal that zshrc has been loaded ------------------------------------------------------------------------
 
-export _zshrc_loaded=1 # This is so we don't load everything twice (compinit calls, at least, are expensive!)
+#export _zshrc_loaded=1 # This is so we don't load everything twice (compinit calls, at least, are expensive!)
