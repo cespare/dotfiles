@@ -220,7 +220,7 @@ function +vi-git-unpushed() {
     behind=$(echo $(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l ))
     (( $behind )) && remote_status+=( "%F{red}+${behind}%F{gray}" )
     (( $ahead + $behind )) && remote_status_string=" ${(j:/:)remote_status}"
-    hook_com[branch]="${hook_com[branch]}%F{red}→{%F{gray}${remote}${remote_status_string}%F{red}}%F{gray}"
+    hook_com[branch]="${hook_com[branch]}%F{red} → %F{gray}${remote}${remote_status_string}%F{red}%F{gray}"
   fi
   true
 }
