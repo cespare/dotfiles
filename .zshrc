@@ -288,10 +288,9 @@ export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 export GOPATH=$HOME/p/go:$GOPATH
 cdpath+=($HOME/p/go/src/github.com/cespare)
 export PATH=$HOME/p/go/bin:~/apps/go/bin:$PATH
-export GOROOT_BOOTSTRAP=~/apps/go
-# Automatically feed godoc output through a pager
+export GOROOT_BOOTSTRAP=~/apps/gobootstrap
 gdoc() {
-  command godoc "$@" | less -FX
+  ~/apps/godev/bin/go doc "$@"
 }
 
 # Octave
