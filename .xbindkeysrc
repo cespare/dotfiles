@@ -111,6 +111,9 @@
 "xfce4-appfinder --disable-server"
   mod4 + space
 
+"thunar"
+  control + alt + f
+
 ###
 ### Handy shortcuts for previous/next tab
 ###
