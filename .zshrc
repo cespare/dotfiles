@@ -101,7 +101,6 @@ else
   fpath=($fpath /usr/local/share/doc/task/scripts/zsh)
 fi
 
-zstyle :compinstall filename '/Users/caleb/.zshrc'
 autoload -Uz compinit
 compinit -i
 
