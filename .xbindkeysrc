@@ -56,6 +56,10 @@
 "carlisle moveresize 'h=(max (- h 100) 0)'"
   mod4 + shift + k
 
+# Right 3/4
+"carlisle moveresize 'x=(* 0.25 sw)' y=0 'w=(* 0.75 sw)' h=sh"
+  mod4 + shift + 6
+
 # Maximize vertically
 "carlisle moveresize y=0 h=sh"
   control + shift + v

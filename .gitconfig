@@ -75,3 +75,6 @@
   added = yellow
   changed = green
   untracked = cyan
+
+[http]
+	cookiefile = /home/caleb/.gitcookies
