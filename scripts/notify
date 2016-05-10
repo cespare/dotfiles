@@ -1,9 +1,0 @@
-#!/bin/bash
-
-case "$PLATFORM" in
-  "LINUX")
-    EVAL_STRING="notify-send -u normal -t 5000 -i info \"Task completed\" \"$@\"" ;;
-  "MAC")
-    EVAL_STRING="growlnotify -m \"Task completed\" \"$@\"" ;;
-esac
-eval $@; eval $EVAL_STRING

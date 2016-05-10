@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -e
-
-name="screen_$(date +%Y%m%d%H%M%S).png"
-mkdir -p /tmp/screenshots
-scrot -s /tmp/screenshots/${name}
-xdg-open /tmp/screenshots
