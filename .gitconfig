@@ -26,6 +26,7 @@
   root = rev-parse --show-toplevel
   su = !"cd `git root` && git sub update && cd -"
   ff = merge --ff-only
+  fp = push --force-with-lease
   ls = ls-files
   bi = bisect
   h = rev-parse HEAD
