@@ -103,7 +103,7 @@
   mod4 + alt + b
 
 # Focus terminal
-"carlisle focus match=terminal"
+"carlisle focus match=tmux"
   mod4 + alt + t
 
 # Focus leafpad
@@ -113,6 +113,14 @@
 # Focus gvim
 "carlisle focus match=gvim"
   mod4 + alt + g
+
+# Focus Slack
+"carlisle focus match=slack"
+  mod4 + alt + s
+
+# Focus WeeChat
+"carlisle focus match=weechat"
+  mod4 + alt + w
 
 ###
 ### Launch common applications
