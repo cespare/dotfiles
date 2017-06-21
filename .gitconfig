@@ -1,16 +1,14 @@
 [user]
   name = Caleb Spare
   email = cespare@gmail.com
+
 [core]
   excludesfile = ~/.git-global-ignore
   editor = vim
+
 [diff]
   tool = vimdiff
-[color]
-  ui = auto
-  diff = auto
-  status = always
-  branch = auto
+
 [alias]
   stat = status
   s = status --short --branch --ignore-submodules=untracked
@@ -28,6 +26,7 @@
   root = rev-parse --show-toplevel
   su = !"cd `git root` && git sub update && cd -"
   ff = merge --ff-only
+  fp = push --force-with-lease
   ls = ls-files
   bi = bisect
   h = rev-parse HEAD
@@ -39,7 +38,7 @@
   cam = commit -a --amend
   whoami = config --get user.email
 
-  # For Go development
+  # For Go development.
 	change = codereview change
 	gofmt = codereview gofmt
 	mail = codereview mail
@@ -49,16 +48,14 @@
 
 [branch]
   autosetuprebase = always
-[gc]
-  auto = 0
+
 [push]
-  default = tracking
-[merge]
-  stat = 1
-[github]
-  user = cespare
-[fetch]
-  recurseSubmodules = on-demand
+  default = simple
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
 
 [color "branch"]
   current = yellow reverse
@@ -76,5 +73,9 @@
   changed = green
   untracked = cyan
 
+[github]
+  user = cespare
+
+# For Go Gerrit.
 [http]
 	cookiefile = /home/caleb/.gitcookies

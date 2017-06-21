@@ -3,8 +3,8 @@ a lot. So I'll record the list of steps to set up weechat in the desired fashion
 
 * sudo apt-get install weechat # This should install weechat-curses
 * /help script # help with the /script command
-* /script install buffers
-* /server add foobar irc.foobar.net/6667 (freenode already configured)
+* /script install buffers.pl
+* /server add freenode chat.freenode.net
 * /set irc.server.freenode.nicks "nick1,nick2"
 * /set irc.server.freenode.username "uname"
 * /set irc.server.freenode.realname "John Doe"

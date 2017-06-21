@@ -24,6 +24,20 @@
 "carlisle moveresize x=0 y=0 w=sw 'h=(* 0.5 sh)'"
   mod4 + shift + Up
 
+# Quarters
+
+"carlisle moveresize x=0 y=0 'w=(* 0.5 sw)' 'h=(* 0.5 sh)'"
+  mod4 + shift + KP_Home
+
+"carlisle moveresize 'x=(* 0.5 sw)' y=0 'w=(* 0.5 sw)' 'h=(* 0.5 sh)'"
+  mod4 + shift + KP_Page_Up
+
+"carlisle moveresize x=0 'y=(* 0.5 sh)' 'w=(* 0.5 sw)' 'h=(* 0.5 sh)'"
+  mod4 + shift + KP_End
+
+"carlisle moveresize 'x=(* 0.5 sw)' 'y=(* 0.5 sh)' 'w=(* 0.5 sw)' 'h=(* 0.5 sh)'"
+  mod4 + shift + KP_Page_Down
+
 # Move 100px right, don't move off-screen
 "carlisle moveresize 'x=(min (+ x 100) (- sw w))'"
   mod4 + l
@@ -89,7 +103,7 @@
   mod4 + alt + b
 
 # Focus terminal
-"carlisle focus match=terminal"
+"carlisle focus match=tmux"
   mod4 + alt + t
 
 # Focus leafpad
@@ -99,6 +113,14 @@
 # Focus gvim
 "carlisle focus match=gvim"
   mod4 + alt + g
+
+# Focus Slack
+"carlisle focus match=slack"
+  mod4 + alt + s
+
+# Focus WeeChat
+"carlisle focus match=weechat"
+  mod4 + alt + w
 
 ###
 ### Launch common applications
@@ -138,6 +160,8 @@
 
 "xdotool keyup Left && xdotool key --clearmodifiers XF86AudioPrev"
   control + alt + Left
+
+# These audio controls don't seem to work reliably, but I don't know why.
 
 "xdotool keyup equal && xdotool key --clearmodifiers XF86AudioRaiseVolume"
   control + alt + equal

@@ -89,8 +89,9 @@ export REPORTTIME=30 # Report CPU stats on operations taking more than 30 second
 
 export EDITOR=vim
 export VISUAL=vim
-export GREP_OPTIONS='--color=auto'
+
 export GREP_COLOR='1;32'
+alias grep='grep --color=auto'
 
 ### Completion -----------------------------------------------------------------------------------------------
 
@@ -165,12 +166,10 @@ alias src='source ~/.zshrc'
 alias l='ls -l'
 alias la='ls -a'
 alias v=vim
-alias hdfs='hadoop fs'
 alias ...=../..
 alias be='bundle exec'
 alias pb='pbcopy'
 alias gs='g s' # Stupid ghostscript
-alias bf='bundle exec foreman'
 
 ### Convenience functions ------------------------------------------------------------------------------------
 
@@ -292,6 +291,13 @@ export PATH=$HOME/p/go/bin:~/apps/go/bin:$PATH
 export GOROOT_BOOTSTRAP=~/apps/gobootstrap
 gdoc() {
   ~/apps/godev/bin/go doc "$@"
+}
+export BROWSER="google-chrome"
+
+# Old go versions (downloaded from binary tarballs).
+go1.6.3() {
+  local dir=$HOME/apps/go1.6.3
+  GOROOT=$dir $dir/bin/go "$@"
 }
 
 # Octave

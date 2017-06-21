@@ -6,17 +6,14 @@ A random assortment of configuration/compile settings that I'd like to not forge
 
 * Install xubuntu
 * Install Chrome
+* Install DropBox
+* Install keepassxc from source; see guide at https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
 * Copy in files from backup/previous installation:
   - ~/.ssh
-  - ~/projects
-  - ~/apps
-  - ~/bin
   - ~/.fonts
-  - ~/.rbenv
   - ~/.weechat
-* `mkdir ~/.ssh-control`
 * Install: keychain, git, vim, vim-gtk, zsh, tmux, xbindkeys, xdotool, weechat-curses, screen,
-  ttf-mscorefonts-installer, openssh-server
+  ttf-mscorefonts-installer, openssh-server, scrot
 * Clone dotviles, vim-config and move into place
 * Log out and back in for xmodmap (or just run it manually)
 * Go into xfce keyboard shorcuts and delete most of them. Keep:
@@ -26,8 +23,8 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * In xfce keyboard settings: change key repeat and delay:
   - delay: 250
   - speed: 40
+* In the window manager shortcuts, set "switch windows for the same application" to alt+`.
 * Configure ssh server not to accept passwords but only pub key
-* Add xbindkeys to startup applications
 * Copy in /etc/fstab from previous installation and make sure everything's peachy
 * Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
 * Work around the cursor size bug using the solution here:
@@ -38,6 +35,11 @@ A random assortment of configuration/compile settings that I'd like to not forge
     $ sudo apt-get build-dep vim
     $ ./configure --with-features=huge --enable-gui=gtk2 --enable-pythoninterp --enable-rubyinterp --prefix=$HOME --enable-perlinterp
 
+## ruby
+
+* Linux prerequisite packages: build-essential zlib1g-dev libssl-dev openssl libreadline-dev sqlite3 libsqlite3-dev libxslt-dev libxml2-dev curl
+* Gems: `bundler`, `awesome_print`
+
 ## rtorrent
 
 * Install libtorrent and rtorrent from my forks: github.com/cespare/(lib|r)torrent.
@@ -46,15 +48,6 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * `make && make install` in libtorrent
 * `PKG_CONFIG_PATH=$HOME/lib/pkgconfig ./configure --prefix=$HOME` in rtorrent
 * `make && make install` in rtorrent
-
-## ruby
-
-* Linux prerequisite packages: build-essential zlib1g-dev libssl-dev openssl libreadline-dev sqlite3 libsqlite3-dev libxslt-dev libxml2-dev curl
-* Gems: `bundler`, `awesome_print`
-
-## yubikey + gmail
-
-* Install udev rule here: http://forum.yubico.com/viewtopic.php?t=1545&p=5991
 
 ## Renoise / ALSA
 
@@ -79,15 +72,8 @@ Run `aloop` to route the loopback to the main output:
 
 In Renoise configuration, under Keys, uncheck "Override window manager shortcuts".
 
-## KeepassX
+# Obsolete?
 
-```
-sudo apt-get install cmake libgcrypt11-dev
-git clone https://github.com/keepassx/keepassx.git
-cd keepassx/
-mkdir build
-cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
-make 2>&1 | tee make.log
-sudo make install 2>&1 | tee make-install.log
-```
+## yubikey + gmail
+
+* Install udev rule here: http://forum.yubico.com/viewtopic.php?t=1545&p=5991
