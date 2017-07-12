@@ -76,6 +76,6 @@
 [github]
   user = cespare
 
-# For Go Gerrit.
-[http]
-	cookiefile = /home/caleb/.gitcookies
+# Put OS-specific stuff in .gitconfig.local.
+[include]
+  path = ~/.gitconfig.local
