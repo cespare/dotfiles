@@ -255,10 +255,10 @@ autoload -U spectrum
 
 # rbenv: https://github.com/sstephenson/rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - --no-rehash)" # --no-rehash for speed
+eval "$(rbenv init -)"
 #[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)"
 # The above line is very slow. Hardcode instead.
-[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="/usr/local/opt/readline"
+[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline"
 
 # virtualenv
 # export VIRTUAL_ENV_DISABLE_PROMPT=1
