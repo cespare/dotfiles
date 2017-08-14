@@ -29,6 +29,8 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
 * Work around the cursor size bug using the solution here:
   https://bugs.launchpad.net/ubuntu/+source/unity-greeter/+bug/1024482
+* Work around Dropbox icon indicator not working:
+  https://askubuntu.com/questions/795857/script-for-fixing-missing-dropbox-icon/795864#795864
 
 ## vim
 
