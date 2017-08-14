@@ -37,6 +37,7 @@
   conf = config
   cam = commit -a --amend
   whoami = config --get user.email
+  conflicts = diff --name-only --diff-filter=U
 
   # For Go development.
 	change = codereview change
