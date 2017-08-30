@@ -12,7 +12,7 @@ A random assortment of configuration/compile settings that I'd like to not forge
   - ~/.ssh
   - ~/.fonts
   - ~/.weechat
-* Install: keychain, git, vim, vim-gtk, zsh, tmux, xbindkeys, xdotool, weechat-curses, screen,
+* Install: keychain, git, vim, vim-gtk, zsh, xbindkeys, xdotool, weechat-curses, screen,
   ttf-mscorefonts-installer, openssh-server, scrot
 * Clone dotviles, vim-config and move into place
 * Log out and back in for xmodmap (or just run it manually)
@@ -34,8 +34,14 @@ A random assortment of configuration/compile settings that I'd like to not forge
 
 ## vim
 
-    $ sudo apt-get build-dep vim
+    $ sudo apt build-dep vim
     $ ./configure --with-features=huge --enable-gui=gtk2 --enable-pythoninterp --enable-rubyinterp --prefix=$HOME --enable-perlinterp
+
+## tmux
+
+    $ sudo apt build-dep tmux
+    $ ./configure --prefix=$HOME
+    $ make && make install
 
 ## ruby
 
