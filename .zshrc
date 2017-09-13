@@ -38,9 +38,6 @@ elif [[ "$uname" = "Darwin" ]]; then
   export DOCKER_HOST=tcp://192.168.59.103:2376
 fi
 
-source_if_exists ~/.zshrc.work # Work-specific stuff
-source_if_exists ~/.zshrc.private # Sensitive stuff (keys and whatnot) that aren't in git.
-
 ### General configuration ------------------------------------------------------------------------------------
 
 bindkey -v # vi mode
@@ -285,7 +282,7 @@ alias g='git'
 export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
 # Go
-export GOPATH=$HOME/p/go:$GOPATH
+export GOPATH=$HOME/p/go
 cdpath+=($HOME/p/go/src/github.com/cespare)
 export PATH=$HOME/p/go/bin:~/apps/go/bin:$PATH
 export GOROOT_BOOTSTRAP=~/apps/gobootstrap
@@ -337,6 +334,7 @@ alias ap='ansible-playbook'
 export PATH=$HOME/apps/Nimrod/bin:$PATH
 alias n='nimrod'
 
-### Signal that zshrc has been loaded ------------------------------------------------------------------------
+### Load further configs -------------------------------------------------------------------------------------
 
-#export _zshrc_loaded=1 # This is so we don't load everything twice (compinit calls, at least, are expensive!)
+source_if_exists ~/.zshrc.work # Work-specific stuff
+source_if_exists ~/.zshrc.private # Sensitive stuff (keys and whatnot) that aren't in git.
