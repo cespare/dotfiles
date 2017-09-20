@@ -31,6 +31,9 @@ A random assortment of configuration/compile settings that I'd like to not forge
   https://bugs.launchpad.net/ubuntu/+source/unity-greeter/+bug/1024482
 * Work around Dropbox icon indicator not working:
   https://askubuntu.com/questions/795857/script-for-fixing-missing-dropbox-icon/795864#795864
+* Make grub not use a splash screen:
+  - Edit /etc/default/grub and change "quiet splash" to "text"
+  - Run `update-grub2` to update it
 
 ## vim
 
