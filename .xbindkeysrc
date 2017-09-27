@@ -122,6 +122,10 @@
 "carlisle focus match=weechat"
   mod4 + alt + w
 
+# Focus todo.txt open in vim
+"carlisle focus match=todo.txt"
+  mod4 + alt + d
+
 ###
 ### Launch common applications
 ###
