@@ -291,12 +291,6 @@ gdoc() {
 }
 export BROWSER="google-chrome"
 
-# Old go versions (downloaded from binary tarballs).
-go1.6.3() {
-  local dir=$HOME/apps/go1.6.3
-  GOROOT=$dir $dir/bin/go "$@"
-}
-
 # Octave
 alias oct='octave -q'
 
