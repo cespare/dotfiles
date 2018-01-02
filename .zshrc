@@ -294,9 +294,6 @@ export BROWSER="google-chrome"
 # Octave
 alias oct='octave -q'
 
-# Octave
-alias oct='octave -q'
-
 #if [[ $_zsh_platform == "linux" ]]; then
   ## Start up keychain
   #keychain id_rsa
@@ -306,27 +303,18 @@ alias oct='octave -q'
 # qs: https://github.com/cespare/qs
 export PATH=$PATH:$HOME/scripts/external/qs
 
-# Docker setup
-alias d='docker'
-d_server() {
-  ID=$(docker run -d cespare/sshd /usr/sbin/sshd -De)
-  echo "Docker ID: $ID"
-  docker inspect $ID | grep IpAddress
-}
-d_ip() {
-  docker inspect $1 | grep IpAddress
-}
-d_bash() {
-  docker run -t -i $1 /bin/bash -l
-}
-
 # Ansible
 alias a='ansible'
 alias ap='ansible-playbook'
 
-# Nimrod
-export PATH=$HOME/apps/Nimrod/bin:$PATH
-alias n='nimrod'
+# fzf
+if [[ -e $GOPATH/src/github.com/junegunn/fzf/shell/completion.zsh ]]; then
+  source $GOPATH/src/github.com/junegunn/fzf/shell/completion.zsh
+  source $GOPATH/src/github.com/junegunn/fzf/shell/key-bindings.zsh
+fi
+export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
 ### Load further configs -------------------------------------------------------------------------------------
 

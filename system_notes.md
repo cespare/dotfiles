@@ -46,6 +46,19 @@ A random assortment of configuration/compile settings that I'd like to not forge
     $ ./configure --prefix=$HOME
     $ make && make install
 
+## ag
+
+    $ g clone https://github.com/ggreer/the_silver_searcher ag
+    $ cd ag
+    $ sudo apt build-dep silversearcher-ag
+    $ ./build.sh --prefix=$HOME
+    $ make install
+
+## fzf
+
+    $ go get -u github.com/junegunn/fzf
+    $ cp ~/p/go/src/github.com/junegunn/fzf/bin/* ~/bin
+
 ## ruby
 
 * Linux prerequisite packages: build-essential zlib1g-dev libssl-dev openssl libreadline-dev sqlite3 libsqlite3-dev libxslt-dev libxml2-dev curl
