@@ -23,6 +23,10 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * In xfce keyboard settings: change key repeat and delay:
   - delay: 250
   - speed: 40
+* In xfce appearance settings, set (this is with 4k monitors):
+  - Default font: Noto Sans 9
+  - Enable anti-aliasing (no hinting)
+  - Custom DPI of 128
 * In the window manager shortcuts, set "switch windows for the same application" to alt+`.
 * Configure ssh server not to accept passwords but only pub key
 * Copy in /etc/fstab from previous installation and make sure everything's peachy
