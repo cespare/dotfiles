@@ -238,6 +238,13 @@ PROMPT2='%F{red}┗ $vi_mode_indicator%f '
 # itself.
 PROMPT_EOL_MARK="%F{red}↲%f"
 
+function precmd() {
+  # `man zshmisc` and go to the bottom of the page to make sense of the following line
+  RPS1="%(?..%F{red}!%f)"
+  vi_mode_indicator=❯
+  vcs_info
+}
+
 # Show the vim editing mode in the prompt
 function zle-keymap-select() {
   vi_mode_indicator="${${KEYMAP/vicmd/❖}/(main|viins)/❯}"
@@ -256,21 +263,6 @@ eval "$(rbenv init -)"
 #[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)"
 # The above line is very slow. Hardcode instead.
 [[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline"
-
-# virtualenv
-# export VIRTUAL_ENV_DISABLE_PROMPT=1
-# export WORKON_HOME=~/.virtualenvs
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# z: https://github.com/rupa/z
-source ~/scripts/external/z/z.sh
-function precmd() {
-  # `man zshmisc` and go to the bottom of the page to make sense of the following line
-  RPS1="%(?..%F{red}!%f)"
-  vi_mode_indicator=❯
-  vcs_info
-  _z --add "$(pwd -P)"
-}
 
 # vidir: https://github.com/trapd00r/vidir
 export PATH=$PATH:$HOME/scripts/external/vidir/bin
