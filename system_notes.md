@@ -28,6 +28,10 @@ A random assortment of configuration/compile settings that I'd like to not forge
   - Enable anti-aliasing (no hinting)
   - Custom DPI of 128
 * In the window manager shortcuts, set "switch windows for the same application" to alt+`.
+* In xfce mouse & touchpad settings, set pointer speed to:
+  - acceleration: 1.0
+  - sensitivity: 4 px
+  (For 1600 DPI hardware setting)
 * Configure ssh server not to accept passwords but only pub key
 * Copy in /etc/fstab from previous installation and make sure everything's peachy
 * Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
