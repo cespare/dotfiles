@@ -4,5 +4,5 @@ set -e
 
 name="screen_$(date +%Y%m%d%H%M%S).png"
 mkdir -p /tmp/screenshots
-scrot -s /tmp/screenshots/${name}
+gnome-screenshot -a -f /tmp/screenshots/${name}
 xdg-open /tmp/screenshots

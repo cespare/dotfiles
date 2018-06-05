@@ -13,7 +13,7 @@ A random assortment of configuration/compile settings that I'd like to not forge
   - ~/.fonts
   - ~/.weechat
 * Install: keychain, git, vim, vim-gtk, zsh, xbindkeys, xdotool, weechat-curses, screen,
-  ttf-mscorefonts-installer, openssh-server, scrot
+  ttf-mscorefonts-installer, openssh-server, gnome-screenshot
 * Clone dotviles, vim-config and move into place
 * Log out and back in for xmodmap (or just run it manually)
 * Go into xfce keyboard shorcuts and delete most of them. Keep:
