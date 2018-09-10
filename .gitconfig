@@ -52,6 +52,7 @@
 
 [push]
   default = simple
+  followTags = true
 
 [color]
   diff = auto
