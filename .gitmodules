@@ -7,6 +7,3 @@
 [submodule "scripts/external/qs"]
 	path = scripts/external/qs
 	url = git@github.com:cespare/qs.git
-[submodule "scripts/powerline"]
-	path = scripts/powerline
-	url = https://github.com/powerline/powerline
