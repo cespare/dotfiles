@@ -75,10 +75,11 @@
   mod4 + shift + 6
 
 # Maximize vertically
-"carlisle moveresize y=0 h=sh"
-  control + shift + v
+# FIXME: come up with a new shortcut (this is paste without formatting).
+#"carlisle moveresize y=0 h=sh"
+#  control + shift + v
 
-# Maximize vertically
+# Maximize horizontally
 "carlisle moveresize x=0 w=sw"
   control + shift + apostrophe
 

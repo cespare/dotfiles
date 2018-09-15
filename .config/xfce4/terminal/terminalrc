@@ -24,6 +24,15 @@ ColorCursor=#dcdcdc
 ColorPalette=#58c658c658c6;#c8c833333333;#6262afaf1919;#c4c4a0a00000;#34346565a4a4;#757550507b7b;#060698989a9a;#d3d3d7d7cfcf;#739c739c739c;#cccc50505050;#8282c9c93d3d;#eeeee0e06e6e;#72729f9fcfcf;#adad7f7fa8a8;#5e5ed2d2d2d2;#eeeeeeeeecec
 FontAllowBold=FALSE
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
-BackgroundDarkness=0.910000
+BackgroundDarkness=0.960000
 TitleMode=TERMINAL_TITLE_REPLACE
+MiscBellUrgent=FALSE
+MiscMouseWheelZoom=TRUE
+MiscMiddleClickOpensUri=FALSE
+MiscCopyOnSelect=FALSE
+MiscShowRelaunchDialog=TRUE
+MiscRewrapOnResize=TRUE
+MiscUseShiftArrowsToScroll=FALSE
+MiscSlimTabs=FALSE
+MiscNewTabAdjacent=FALSE
 
