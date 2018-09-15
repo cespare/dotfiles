@@ -1,0 +1,10 @@
+# Use UTF-8 encoding
+defutf8 on
+
+# Please be aware that you have 256 colors available
+attrcolor b ".I"
+defbce "on"
+term screen-256color
+
+# Use ctrl-b. I use ctrl-a for tmux.
+escape ^Bb
