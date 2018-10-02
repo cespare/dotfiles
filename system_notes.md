@@ -42,6 +42,11 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * Make grub not use a splash screen:
   - Edit /etc/default/grub and change "quiet splash" to "text"
   - Run `update-grub2` to update it
+* Configure xfce4-terminal to open links with the correct browser: edit
+  ~/.config/mimeapps.list to have the following underneath `[Default Applications]`:
+
+        x-scheme-handler/http=exo-web-browser.desktop
+        x-scheme-handler/https=exo-web-browser.desktop
 
 ## vim
 
