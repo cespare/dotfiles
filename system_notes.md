@@ -7,7 +7,7 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * Install xubuntu
 * Install Chrome
 * Install DropBox
-* Install keepassxc from source; see guide at https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
+* Install keepassxc: `apt install keepassxc`
 * Copy in files from backup/previous installation:
   - ~/.ssh
   - ~/.fonts
