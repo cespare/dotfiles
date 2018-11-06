@@ -1,6 +1,3 @@
-[submodule "scripts/external/z"]
-	path = scripts/external/z
-	url = https://github.com/rupa/z.git
 [submodule "scripts/external/vidir"]
 	path = scripts/external/vidir
 	url = https://github.com/trapd00r/vidir.git

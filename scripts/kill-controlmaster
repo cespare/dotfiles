@@ -1,5 +1,0 @@
-#!/bin/bash
-
-set -eu -o pipefail
-
-ps -ef | grep '\.ssh-contro[l]' | awk '{print $2}' | xargs kill
