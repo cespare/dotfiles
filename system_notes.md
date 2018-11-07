@@ -7,13 +7,23 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * Install xubuntu
 * Install Chrome
 * Install DropBox
-* Install keepassxc: `apt install keepassxc`
 * Copy in files from backup/previous installation:
   - ~/.ssh
   - ~/.fonts
   - ~/.weechat
-* Install: keychain, git, vim, vim-gtk, zsh, xbindkeys, xdotool, weechat-curses, screen,
-  ttf-mscorefonts-installer, openssh-server, gnome-screenshot
+* Install:
+  - git
+  - vim
+  - vim-gtk
+  - zsh
+  - xbindkeys
+  - xdotool
+  - screen
+  - ttf-mscorefonts-installer
+  - openssh-server
+  - gnome-screenshot
+  - tmux
+  - keepassxc
 * Clone dotviles, vim-config and move into place
 * Log out and back in for xmodmap (or just run it manually)
 * Go into xfce keyboard shorcuts and delete most of them. Keep:
@@ -27,6 +37,7 @@ A random assortment of configuration/compile settings that I'd like to not forge
   - Default font: Noto Sans 9
   - Enable anti-aliasing (no hinting)
   - Custom DPI of 128
+* In window manager tweaks, change the key for moving windows from alt to super.
 * In the window manager shortcuts, set "switch windows for the same application" to alt+`.
 * In xfce mouse & touchpad settings, set pointer speed to:
   - acceleration: 1.0
@@ -35,18 +46,26 @@ A random assortment of configuration/compile settings that I'd like to not forge
 * Configure ssh server not to accept passwords but only pub key
 * Copy in /etc/fstab from previous installation and make sure everything's peachy
 * Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
-* Work around the cursor size bug using the solution here:
-  https://bugs.launchpad.net/ubuntu/+source/unity-greeter/+bug/1024482
-* Work around Dropbox icon indicator not working:
-  https://askubuntu.com/questions/795857/script-for-fixing-missing-dropbox-icon/795864#795864
 * Make grub not use a splash screen:
   - Edit /etc/default/grub and change "quiet splash" to "text"
   - Run `update-grub2` to update it
-* Configure xfce4-terminal to open links with the correct browser: edit
-  ~/.config/mimeapps.list to have the following underneath `[Default Applications]`:
+* Panel properties:
+  - Alpha: 100
+* Set up dual clocks:
+  - Right click > Panel > Add new items... > select Clock
+  - Custom format: `%d %b %H:%M %Z`
+  - Second clock has Timezone field set to UTC
+* Add CPU graph:
+  - Right click > Panel > Add new items... > select CPU Graph
+  - Change properties (Appearance):
+    - Color 1: #3087E1
+    - Background: #242424
+    - Bars color: #3087E1
+  - Change properties (Advanced):
+    - Update interval: 500ms
+    - Width: 120
+    - Deselect "Show border"
 
-        x-scheme-handler/http=exo-web-browser.desktop
-        x-scheme-handler/https=exo-web-browser.desktop
 
 ## vim
 
@@ -110,6 +129,23 @@ Run `aloop` to route the loopback to the main output:
 In Renoise configuration, under Keys, uncheck "Override window manager shortcuts".
 
 # Obsolete?
+
+## Packages
+
+* weechat-curses
+* keychain
+
+## System setup
+
+* Work around the cursor size bug using the solution here:
+  https://bugs.launchpad.net/ubuntu/+source/unity-greeter/+bug/1024482
+* Work around Dropbox icon indicator not working:
+  https://askubuntu.com/questions/795857/script-for-fixing-missing-dropbox-icon/795864#795864
+* Configure xfce4-terminal to open links with the correct browser: edit
+  ~/.config/mimeapps.list to have the following underneath `[Default Applications]`:
+
+        x-scheme-handler/http=exo-web-browser.desktop
+        x-scheme-handler/https=exo-web-browser.desktop
 
 ## yubikey + gmail
 
