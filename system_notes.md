@@ -24,6 +24,9 @@ A random assortment of configuration/compile settings that I'd like to not forge
   - gnome-screenshot
   - tmux
   - keepassxc
+  - keychain
+* Ensure keychain is set up (.zshrc.private etc will have
+  an invocation like `eval $(keychain --quiet --eval --agents ssh id_rsa)`
 * Clone dotviles, vim-config and move into place
 * Log out and back in for xmodmap (or just run it manually)
 * Go into xfce keyboard shorcuts and delete most of them. Keep:
@@ -65,7 +68,6 @@ A random assortment of configuration/compile settings that I'd like to not forge
     - Update interval: 500ms
     - Width: 120
     - Deselect "Show border"
-
 
 ## vim
 
@@ -133,7 +135,6 @@ In Renoise configuration, under Keys, uncheck "Override window manager shortcuts
 ## Packages
 
 * weechat-curses
-* keychain
 
 ## System setup
 
