@@ -29,6 +29,9 @@ A random assortment of configuration/compile settings that I'd like to not forge
   an invocation like `eval $(keychain --quiet --eval --agents ssh id_rsa)`
 * Clone dotviles, vim-config and move into place
 * Log out and back in for xmodmap (or just run it manually)
+* xbindkeys uses github.com/cespare/carlisle, so install that.
+  - Put the binary in $HOME/bin, so that the XDG autostart thing that runs
+    xbindkeys will be able to see it.
 * Go into xfce keyboard shorcuts and delete most of them. Keep:
   - xfce4-appfinder (bind to super-space)
   - screenshooter shortcuts
