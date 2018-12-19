@@ -38,6 +38,7 @@
   cam = commit -a --amend
   whoami = config --get user.email
   conflicts = diff --name-only --diff-filter=U
+  fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
 
   # For Go development.
 	change = codereview change
