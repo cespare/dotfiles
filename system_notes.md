@@ -2,62 +2,44 @@
 
 A random assortment of configuration/compile settings that I'd like to not forget.
 
+Things marked (LT) are laptop-specific directions (Dell XPS 13).
+
 ## New XFCE setup
 
 * Install xubuntu
-* Install Chrome
-* Install DropBox
-* Copy in files from backup/previous installation:
-  - ~/.ssh
-  - ~/.fonts
-  - ~/.weechat
-* Install:
-  - git
-  - vim
-  - vim-gtk
-  - zsh
-  - xbindkeys
-  - xdotool
-  - screen
-  - ttf-mscorefonts-installer
-  - openssh-server
-  - gnome-screenshot
-  - tmux
-  - keepassxc
-  - keychain
-* Ensure keychain is set up (.zshrc.private etc will have
-  an invocation like `eval $(keychain --quiet --eval --agents ssh id_rsa)`
-* Clone dotviles, vim-config and move into place
-* Log out and back in for xmodmap (or just run it manually)
-* Install Go
-* xbindkeys uses github.com/cespare/carlisle, so install that.
-  - Put the binary in $HOME/bin, so that the XDG autostart thing that runs
-    xbindkeys will be able to see it.
+* In xfce appearance settings, set (this is with 4k monitors):
+  - Default font: Noto Sans 9
+  - Enable anti-aliasing (no hinting)
+  - Custom DPI of 128 (LT: 192)
+* LT: Power manager settings:
+  - Enable "Handle display brightness keys"
+  - When laptop lid is closed -> suspend
+  - When sleep button is pressed -> suspend
+* In the window manager shortcuts, set "switch windows for the same application" to alt+`.
 * Go into xfce keyboard shorcuts and delete most of them. Keep:
   - xfce4-appfinder (bind to super-space)
   - screenshooter shortcuts
   - xflock
+  - xkill
 * In xfce keyboard settings: change key repeat and delay:
   - delay: 250
   - speed: 40
-* In xfce appearance settings, set (this is with 4k monitors):
-  - Default font: Noto Sans 9
-  - Enable anti-aliasing (no hinting)
-  - Custom DPI of 128
 * In window manager tweaks, change the key for moving windows from alt to super.
-* In the window manager shortcuts, set "switch windows for the same application" to alt+`.
 * In xfce mouse & touchpad settings, set pointer speed to:
-  - acceleration: 1.0
+  - acceleration: 1.0 (LT: 2.0)
   - sensitivity: 4 px
   (For 1600 DPI hardware setting)
-* Configure ssh server not to accept passwords but only pub key
-* Copy in /etc/fstab from previous installation and make sure everything's peachy
-* Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
-* Make grub not use a splash screen:
-  - Edit /etc/default/grub and change "quiet splash" to "text"
-  - Run `update-grub2` to update it
+* LT: In touchpad settings, select the correct touchpad, then the Touchpad tab:
+  - Disable touchpad while typing -> 1s
+  - Turn off tap touchpad to click
+  - Enable horizontal scrolling
+* LT: In mouse & touchpad settings > Theme > Cursor size: 48px
 * Panel properties:
+  - Unlock -> move to bottom -> lock
   - Alpha: 100
+  - LT: Row size: 36
+* LT: panel > items > Status Notifier Plugin > edit
+  - Maximum icon size: 36
 * Set up dual clocks:
   - Right click > Panel > Add new items... > select Clock
   - Custom format: `%d %b %H:%M %Z`
@@ -72,6 +54,40 @@ A random assortment of configuration/compile settings that I'd like to not forge
     - Update interval: 500ms
     - Width: 120
     - Deselect "Show border"
+* Install Chrome
+* Install DropBox
+* Copy in files from backup/previous installation:
+  - ~/.ssh
+  - ~/.fonts
+* Install:
+  - git
+  - vim
+  - vim-gtk
+  - zsh
+  - xbindkeys
+  - xdotool
+  - screen
+  - ttf-mscorefonts-installer
+  - openssh-server
+  - gnome-screenshot
+  - tmux
+  - keepassxc
+  - keychain
+  - build-essential
+* Ensure keychain is set up (.zshrc.private etc will have
+  an invocation like `eval $(keychain --quiet --eval --agents ssh id_rsa)`
+* Clone dotviles, vim-config and move into place
+* Log out and back in for xmodmap (or just run it manually)
+* Install Go
+* xbindkeys uses github.com/cespare/carlisle, so install that.
+  - Put the binary in $HOME/bin, so that the XDG autostart thing that runs
+    xbindkeys will be able to see it.
+* Configure ssh server not to accept passwords but only pub key
+* Copy in /etc/fstab from previous installation and make sure everything's peachy
+* Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
+* Make grub not use a splash screen:
+  - Edit /etc/default/grub and change "quiet splash" to "text"
+  - Run `update-grub2` to update it
 
 ## vim
 
