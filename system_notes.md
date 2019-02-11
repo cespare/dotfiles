@@ -88,6 +88,11 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 * Make grub not use a splash screen:
   - Edit /etc/default/grub and change "quiet splash" to "text"
   - Run `update-grub2` to update it
+* LT: Install Greybird from source here: https://github.com/shimmerproject/Greybird/tree/xfwm4-hidpi
+  - That branch has an experimental hidpi build
+  - Then switch the theme to greybird-hidpi
+* LT: Fix LightDM DPI by editing /etc/lightdm/lightdm-gtk-greeter.conf
+  - Need line: xft-dpi=192
 
 ## vim
 
