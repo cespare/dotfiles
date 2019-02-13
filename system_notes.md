@@ -74,6 +74,7 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - keepassxc
   - keychain
   - build-essential
+  - silversearcher-ag
 * Ensure keychain is set up (.zshrc.private etc will have
   an invocation like `eval $(keychain --quiet --eval --agents ssh id_rsa)`
 * Clone dotviles, vim-config and move into place
@@ -93,6 +94,11 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - Then switch the theme to greybird-hidpi
 * LT: Fix LightDM DPI by editing /etc/lightdm/lightdm-gtk-greeter.conf
   - Need line: xft-dpi=192
+* LT: Disable bluetooth on startup: `sudo systemctl disable bluetooth.service`
+* LT: Fix sleep bug (https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1808957):
+  - As root: `echo deep > /sys/power/mem_sleep`
+  - Edit /etc/default/grub: `GRUB_CMDLINE_LINUX_DEFAULT="text mem_sleep_default=deep"`
+  - `sudo update-grub2`
 
 ## vim
 
