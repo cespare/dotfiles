@@ -48,12 +48,12 @@
 	submit = codereview submit
 	sync = codereview sync
 
-[branch]
-  autosetuprebase = always
-
 [push]
   default = simple
   followTags = true
+
+[pull]
+  rebase = preserve
 
 [color]
   diff = auto
