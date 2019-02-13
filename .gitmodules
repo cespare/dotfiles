@@ -7,3 +7,6 @@
 [submodule "scripts/external/sshrc"]
 	path = scripts/external/sshrc
 	url = https://github.com/Russell91/sshrc
+[submodule "apps/aws-cli"]
+	path = apps/aws-cli
+	url = https://github.com/aws/aws-cli
