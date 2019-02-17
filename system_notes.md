@@ -75,6 +75,7 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - keychain
   - build-essential
   - silversearcher-ag
+  - xclip
 * Ensure keychain is set up (.zshrc.private etc will have
   an invocation like `eval $(keychain --quiet --eval --agents ssh id_rsa)`
 * Clone dotviles, vim-config and move into place
