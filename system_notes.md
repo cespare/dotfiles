@@ -25,14 +25,11 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - delay: 250
   - speed: 40
 * In window manager tweaks, change the key for moving windows from alt to super.
-* In xfce mouse & touchpad settings, set pointer speed to:
-  - acceleration: 1.0 (LT: 2.0)
+* (Not LT:) In xfce mouse & touchpad settings, set pointer speed to:
+  - acceleration: 1.0
   - sensitivity: 4 px
   (For 1600 DPI hardware setting)
-* LT: In touchpad settings, select the correct touchpad, then the Touchpad tab:
-  - Disable touchpad while typing -> 1s
-  - Turn off tap touchpad to click
-  - Enable horizontal scrolling
+* LT: Set up touchpad following the section at the bottom.
 * LT: In mouse & touchpad settings > Theme > Cursor size: 48px
 * Panel properties:
   - Unlock -> move to bottom -> lock
@@ -192,3 +189,66 @@ In Renoise configuration, under Keys, uncheck "Override window manager shortcuts
 4. Fix key repeat rate: open control panel > keyboard > repeat delay all the way to "short", repeat rate all the way to "fast"
 5. Download and install dropbox
 6. Download and install KeepassXC
+
+# Dell XPS 13 touchpad setup
+
+These were necessary to get libinput working properly with Ubuntu 18.04/XFCE.
+
+    sudo apt install --install-recommends linux-generic-hwe-18.04 xserver-xorg-hwe-18.04
+
+It seemed like having both libinput and synaptic running made the touchpad stop
+working sometimes. So, disable synaptic.
+
+Use `xinput list` to show devices. Create
+`/etc/X11/xorg.conf.d/51-synaptics-quirks.conf` with the following contents
+(these are customizations; you can look at /usr/share/X11/... to see the
+systemwide configuration).
+
+```
+# Disable generic Synaptics device, as we're using
+# "DELL08AF:00 06CB:76AF Touchpad"
+# Having multiple touchpad devices running confuses syndaemon.
+Section "InputClass"
+  Identifier "SynPS/2 Synaptics TouchPad"
+  MatchProduct "SynPS/2 Synaptics TouchPad"
+  MatchIsTouchpad "on"
+  MatchOS "Linux"
+  MatchDevicePath "/dev/input/event*"
+  Option "Ignore" "on"
+EndSection
+```
+
+After rebooting, there should be only a single touchpad driver (plus the touchscreen).
+
+Install up-to-date libinput:
+
+    sudo apt install xserver-xorg-input-libinput-hwe-18.04 libinput-tools
+
+It seems that the XFCE settings manager (xfce4-settings-manager) doesn't handle
+libinput configuration. Configure it by creating the file
+`/etc/X11/xorg.conf.d/40-libinput.conf`:
+
+```
+# Custom settings for Dell touchpad.
+# See 'man 4 libinput' for info about the options.
+Section "InputClass"
+  Identifier "libinput touchpad catchall"
+  MatchIsTouchpad "on"
+  MatchDevicePath "/dev/input/event*"
+  Option "Tapping" "True"
+  # Tap-to-drag requires a double-tap (or one-and-a-half).
+  Option "TappingDrag" "True"
+  Option "ScrollMethod" "twofinger"
+  Option "AccelSpeed" "1.0"
+  Option "HorizontalScrolling" "True"
+  Driver "libinput"
+EndSection
+```
+
+You can use `xinput list-props 12` (ID is given by `xinput list`) to show the
+available properties of the device.
+
+Changing the xorg conf file requires an X restart, so you can more easily play
+around with settings by using a command like
+
+    xinput set-prop 12 <option-number> <setting>
