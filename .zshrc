@@ -306,7 +306,6 @@ if [[ -e $GOPATH/src/github.com/junegunn/fzf/shell/completion.zsh ]]; then
 fi
 export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
 ### Load further configs -------------------------------------------------------------------------------------
 
