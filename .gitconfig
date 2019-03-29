@@ -39,14 +39,15 @@
   whoami = config --get user.email
   conflicts = diff --name-only --diff-filter=U
   fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
+  recent = branch --remote --sort=-committerdate
 
   # For Go development.
-	change = codereview change
-	gofmt = codereview gofmt
-	mail = codereview mail
-	pending = codereview pending
-	submit = codereview submit
-	sync = codereview sync
+  change = codereview change
+  gofmt = codereview gofmt
+  mail = codereview mail
+  pending = codereview pending
+  submit = codereview submit
+  sync = codereview sync
 
 [push]
   default = simple
