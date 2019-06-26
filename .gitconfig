@@ -4,7 +4,7 @@
 
 [core]
   excludesfile = ~/.git-global-ignore
-  editor = vim
+  editor = "vim -c'startinsert|norm! ggA'"
 
 [diff]
   tool = vimdiff
