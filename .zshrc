@@ -275,6 +275,7 @@ export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
 # Go
 export GOPATH=$HOME/p/go
+export GOBIN=$HOME/bin
 cdpath+=($HOME/p/go/src/github.com/cespare)
 export PATH=$HOME/p/go/bin:~/apps/go/bin:$PATH
 export GOROOT_BOOTSTRAP=~/apps/gobootstrap
