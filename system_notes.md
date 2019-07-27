@@ -252,3 +252,15 @@ Changing the xorg conf file requires an X restart, so you can more easily play
 around with settings by using a command like
 
     xinput set-prop 12 <option-number> <setting>
+
+Avahi tends to use a bunch of CPU. Disable it with:
+
+    sudo systemctl disable avahi-daemon.socket
+    sudo systemctl disable avahi-daemon.service
+    sudo systemctl stop avahi-daemon.socket
+    sudo systemctl stop avahi-daemon.service
+
+Comment out the "Wants" line in /lib/systemd/system/cups-browsed.service:
+
+    # Wants=avahi-daemon.service
+
