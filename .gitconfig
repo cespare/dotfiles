@@ -24,7 +24,7 @@
   pom = push origin master
   t = tag
   root = rev-parse --show-toplevel
-  su = !"cd `git root` && git sub update && cd -"
+  su = !"cd `git root` && git sub update --init --recursive && cd -"
   ff = merge --ff-only
   fp = push --force-with-lease
   ls = ls-files
