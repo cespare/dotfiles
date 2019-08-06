@@ -264,6 +264,11 @@ eval "$(rbenv init -)"
 # The above line is very slow. Hardcode instead.
 [[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline"
 
+# pyenv: https://github.com/pyenv/pyenv
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=${PYENV_ROOT}/bin:$PATH
+eval "$(pyenv init -)"
+
 # vidir: https://github.com/trapd00r/vidir
 export PATH=$PATH:$HOME/scripts/external/vidir/bin
 export VIDIR_EDITOR='vim'
