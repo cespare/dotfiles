@@ -289,6 +289,9 @@ gdoc() {
 }
 export BROWSER="google-chrome"
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # Octave
 alias oct='octave -q'
 

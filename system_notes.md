@@ -100,6 +100,8 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 
 ## vim
 
+Clone https://github.com/vim/vim.git.
+
     $ sudo apt build-dep vim
     $ ./configure --with-features=huge --enable-gui=gtk2 --enable-pythoninterp --enable-rubyinterp --prefix=$HOME --enable-perlinterp
 
