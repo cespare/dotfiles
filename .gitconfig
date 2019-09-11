@@ -56,6 +56,9 @@
 [pull]
   rebase = preserve
 
+[rebase]
+  autosquash = true
+
 [color]
   diff = auto
   status = auto
