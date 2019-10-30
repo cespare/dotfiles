@@ -308,6 +308,9 @@ export PATH=$PATH:$HOME/scripts/external/qs
 alias a='ansible'
 alias ap='ansible-playbook'
 
+# ripgrep
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep.conf
+
 # fzf
 if [[ -e $GOPATH/src/github.com/junegunn/fzf/shell/completion.zsh ]]; then
   source $GOPATH/src/github.com/junegunn/fzf/shell/completion.zsh

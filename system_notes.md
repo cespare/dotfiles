@@ -119,6 +119,12 @@ Clone https://github.com/vim/vim.git.
     $ ./build.sh --prefix=$HOME
     $ make install
 
+## Ripgrep
+
+* Download the latest release from https://github.com/BurntSushi/ripgrep/releases
+* Unpack
+* Copy `rg` to /usr/local/bin and `doc/rg.1` to /usr/local/man/man1
+
 ## fzf
 
     $ go get -u github.com/junegunn/fzf
