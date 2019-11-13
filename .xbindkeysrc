@@ -130,7 +130,7 @@
 ###
 ### Launch common applications
 ###
-"xfce4-terminal -e 'tmux -f /home/caleb/.tmux.linux.conf -2'"
+"alacritty -e tmux -f /home/caleb/.tmux.linux.conf"
   control + alt + t
 
 "google-chrome"

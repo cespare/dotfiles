@@ -98,6 +98,11 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - Edit /etc/default/grub: `GRUB_CMDLINE_LINUX_DEFAULT="text mem_sleep_default=deep"`
   - `sudo update-grub2`
 
+## alacritty
+
+    sudo add-apt-repository ppa:mmstick76/alacritty
+    sudo apt install alacritty
+
 ## vim
 
 Clone https://github.com/vim/vim.git.
