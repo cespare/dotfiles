@@ -81,9 +81,9 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 * xbindkeys uses github.com/cespare/carlisle, so install that.
   - Put the binary in $HOME/bin, so that the XDG autostart thing that runs
     xbindkeys will be able to see it.
+* Passwordless sudo by changing sudoers to have: `%sudo	ALL=(ALL:ALL) NOPASSWD: ALL`
 * Configure ssh server not to accept passwords but only pub key
 * Copy in /etc/fstab from previous installation and make sure everything's peachy
-* Copy in /etc/cron.daily/fstrim from previous installation (note future ubuntu versions should obviate this)
 * Make grub not use a splash screen:
   - Edit /etc/default/grub and change "quiet splash" to "text"
   - Run `update-grub2` to update it
