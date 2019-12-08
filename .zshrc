@@ -1,5 +1,3 @@
-#(( $_zshrc_loaded )) && return
-
 # A convenience function I'll be using a lot
 function source_if_exists() {
   [[ -f "$1" ]] && source "$1"
@@ -257,7 +255,7 @@ zle -N zle-keymap-select
 
 autoload -U spectrum
 
-# rbenv: https://github.com/sstephenson/rbenv
+# rbenv: https://github.com/rbenv/rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 #[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)"

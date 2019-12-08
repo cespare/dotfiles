@@ -30,7 +30,18 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - sensitivity: 4 px
   (For 1600 DPI hardware setting)
 * LT: Set up touchpad following the section at the bottom.
-* LT: In mouse & touchpad settings > Theme > Cursor size: 48px
+* Set cursor size settings.
+  - In mouse & touchpad settings > Theme
+    * Set theme to DMZ-White
+    * Set size to 48px (laptop) or 32px (desktop)
+  - There's also an issue where lightdm has the wrong cursor size and sometimes
+    it can remain set on the root window once logged in. Fix this by editing
+    `/etc/gtk-3.0/settings.ini` and adding two lines matching the options set in
+    xfce:
+
+        gtk-cursor-theme-name = DMZ-White
+        gtk-cursor-theme-size = 32
+
 * Panel properties:
   - Unlock -> move to bottom -> lock
   - Alpha: 100
@@ -87,16 +98,30 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 * Make grub not use a splash screen:
   - Edit /etc/default/grub and change "quiet splash" to "text"
   - Run `update-grub2` to update it
+* Fix LightDM DPI by editing /etc/lightdm/lightdm-gtk-greeter.conf
+  - Need line: xft-dpi=192 (or whatever DPI setting in xfce is)
 * LT: Install Greybird from source here: https://github.com/shimmerproject/Greybird/tree/xfwm4-hidpi
   - That branch has an experimental hidpi build
   - Then switch the theme to greybird-hidpi
-* LT: Fix LightDM DPI by editing /etc/lightdm/lightdm-gtk-greeter.conf
-  - Need line: xft-dpi=192
 * LT: Disable bluetooth on startup: `sudo systemctl disable bluetooth.service`
 * LT: Fix sleep bug (https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1808957):
   - As root: `echo deep > /sys/power/mem_sleep`
   - Edit /etc/default/grub: `GRUB_CMDLINE_LINUX_DEFAULT="text mem_sleep_default=deep"`
   - `sudo update-grub2`
+
+## Assorted fixes
+
+* If nvidia-settings isn't persisted, open up the xfce display settings, make
+  sure it's good, and hit 'apply' there too.
+* After setting up nvidia-settings, use it to save an xorg.conf file to the
+  usual location. Then edit that file to add
+
+      Section "Files"
+          ModulePath "/usr/lib/x86_64-linux-gnu/nvidia/xorg"
+          ModulePath "/usr/lib/xorg/modules"
+      EndSection
+
+  This fixes lightdm resolution ([source](https://bugs.launchpad.net/ubuntu/+source/light-locker/+bug/1760068)).
 
 ## alacritty
 
@@ -115,14 +140,6 @@ Clone https://github.com/vim/vim.git.
     $ sudo apt build-dep tmux
     $ ./configure --prefix=$HOME
     $ make && make install
-
-## ag
-
-    $ g clone https://github.com/ggreer/the_silver_searcher ag
-    $ cd ag
-    $ sudo apt build-dep silversearcher-ag
-    $ ./build.sh --prefix=$HOME
-    $ make install
 
 ## Ripgrep
 
@@ -193,6 +210,14 @@ In Renoise configuration, under Keys, uncheck "Override window manager shortcuts
 ## yubikey + gmail
 
 * Install udev rule here: http://forum.yubico.com/viewtopic.php?t=1545&p=5991\
+
+## ag
+
+    $ g clone https://github.com/ggreer/the_silver_searcher ag
+    $ cd ag
+    $ sudo apt build-dep silversearcher-ag
+    $ ./build.sh --prefix=$HOME
+    $ make install
 
 # Windows 10
 
