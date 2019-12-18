@@ -3,6 +3,12 @@ function source_if_exists() {
   [[ -f "$1" ]] && source "$1"
 }
 
+function pushpath() {
+  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$1${PATH:+":$PATH"}"
+  fi
+}
+
 export ZSH=~/.zsh
 fpath=($ZSH/functions $ZSH/completions $fpath)
 
@@ -20,7 +26,8 @@ if [[ "$uname" = "Linux" ]]; then
 
 elif [[ "$uname" = "Darwin" ]]; then
   # Homebrew
-  PATH=/usr/local/bin:/usr/local/sbin:$PATH
+  pushpath /usr/local/sbin
+  pushpath /usr/local/bin
 
   # Mac aliases
   alias e='mvim'
@@ -29,11 +36,6 @@ elif [[ "$uname" = "Darwin" ]]; then
   alias gvimdiff='mvim -U NONE -d'
   alias sed='gsed'
   export _zsh_platform=mac
-
-  # Docker
-  export DOCKER_CERT_PATH=/Users/caleb/.boot2docker/certs/boot2docker-vm
-  export DOCKER_TLS_VERIFY=1
-  export DOCKER_HOST=tcp://192.168.59.103:2376
 fi
 
 ### General configuration ------------------------------------------------------------------------------------
@@ -146,9 +148,12 @@ compdef mosh=ssh
 
 ### Set paths ------------------------------------------------------------------------------------------------
 
-export PATH=~/bin:~/scripts:$PATH # Add the usual dirs for my locally installed programs and scripts
-export MANPATH=~/man/:$MANPATH # Manpages for locally installed programs
-export PATH=~/scripts/external/git-scripts:$PATH # http://github.com/cespare/git-scripts
+# Add the usual dirs for my locally installed programs and scripts.
+pushpath ~/bin
+pushpath ~/scripts
+
+ # Manpages for locally installed programs.
+export MANPATH=~/man/:$MANPATH
 
 # CDPATH for convenience
 cdpath=(~/src ~/p "$cdpath[@]")
@@ -256,7 +261,7 @@ zle -N zle-keymap-select
 autoload -U spectrum
 
 # rbenv: https://github.com/rbenv/rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
+pushpath ~/.rbenv/bin
 eval "$(rbenv init -)"
 #[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)"
 # The above line is very slow. Hardcode instead.
@@ -264,11 +269,11 @@ eval "$(rbenv init -)"
 
 # pyenv: https://github.com/pyenv/pyenv
 export PYENV_ROOT=$HOME/.pyenv
-export PATH=${PYENV_ROOT}/bin:$PATH
+pushpath ${PYENV_ROOT}/bin
 eval "$(pyenv init -)"
 
 # vidir: https://github.com/trapd00r/vidir
-export PATH=$PATH:$HOME/scripts/external/vidir/bin
+pushpath ~/scripts/external/vidir/bin
 export VIDIR_EDITOR='vim'
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
@@ -280,7 +285,8 @@ export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 export GOPATH=$HOME/p/go
 export GOBIN=$HOME/bin
 cdpath+=($HOME/p/go/src/github.com/cespare)
-export PATH=$HOME/p/go/bin:~/apps/go/bin:$PATH
+pushpath ~/apps/go/bin
+pushpath ~/p/go/bin
 export GOROOT_BOOTSTRAP=~/apps/gobootstrap
 gdoc() {
   ~/apps/godev/bin/go doc "$@"
@@ -288,7 +294,7 @@ gdoc() {
 export BROWSER="google-chrome"
 
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
+pushpath ~/.cargo/bin
 
 # Octave
 alias oct='octave -q'
@@ -300,7 +306,7 @@ alias oct='octave -q'
 #fi
 
 # qs: https://github.com/cespare/qs
-export PATH=$PATH:$HOME/scripts/external/qs
+pushpath ~/scripts/external/qs
 
 # Ansible
 alias a='ansible'
