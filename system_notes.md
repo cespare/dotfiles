@@ -228,7 +228,9 @@ In Renoise configuration, under Keys, uncheck "Override window manager shortcuts
 5. Download and install dropbox
 6. Download and install KeepassXC
 
-# Dell XPS 13 touchpad setup
+# Dell XPS 13
+
+## Touchpad
 
 These were necessary to get libinput working properly with Ubuntu 18.04/XFCE.
 
@@ -291,6 +293,8 @@ around with settings by using a command like
 
     xinput set-prop 12 <option-number> <setting>
 
+## Avahi
+
 Avahi tends to use a bunch of CPU. Disable it with:
 
     sudo systemctl disable avahi-daemon.socket
@@ -302,3 +306,13 @@ Comment out the "Wants" line in /lib/systemd/system/cups-browsed.service:
 
     # Wants=avahi-daemon.service
 
+## Auto display backlight dimming
+
+The screen of this machine dims automatically depending on the content of the
+screen (brighter when the screen is mostly white, for example). This leads to
+incredibly annoying behavior when using white text on dark background (say vim
+in full-screen) where the backlight constantly changes its setting.
+
+Disable this in the BIOS:
+
+    Video > Dynamic Backlight Control > Disabled
