@@ -22,6 +22,7 @@
   b = branch
   sub = submodule
   pom = push origin master
+  pu = push -u origin HEAD
   t = tag
   root = rev-parse --show-toplevel
   su = !"cd `git root` && git sub update --init --recursive && cd -"
