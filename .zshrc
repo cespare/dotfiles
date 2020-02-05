@@ -279,7 +279,6 @@ export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
 # Git configuration
 alias g='git'
-export h=HEAD # A nice shortcut b/c $h is shorter than typing HEAD
 
 # Go
 export GOPATH=$HOME/p/go
