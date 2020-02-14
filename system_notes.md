@@ -108,6 +108,12 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - As root: `echo deep > /sys/power/mem_sleep`
   - Edit /etc/default/grub: `GRUB_CMDLINE_LINUX_DEFAULT="text mem_sleep_default=deep"`
   - `sudo update-grub2`
+* Raise file descriptor limits by editing /etc/security/limits.conf to have
+
+  ```
+  *                soft    nofile          50000
+  *                hard    nofile          50000
+  ```
 
 ## Assorted fixes
 
