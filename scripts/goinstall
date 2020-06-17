@@ -6,4 +6,4 @@ trap 'rm -rf $tmp' EXIT
 
 cd $tmp
 go mod init tmp
-GOPATH='' GO111MODULE=on GOBIN="${HOME}/bin" go get "$@"
+GOPATH='' GO111MODULE=on GOBIN="${HOME}/bin" go get -u "$@"
