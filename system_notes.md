@@ -128,6 +128,8 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
       EndSection
 
   This fixes lightdm resolution ([source](https://bugs.launchpad.net/ubuntu/+source/light-locker/+bug/1760068)).
+* If suspend is broken (kern.log has stuff like `ps: xfsm-shutdown-h[4863] general protection ip:7f359efcf9fd sp:7ffdf8d67670 error:0 in libc-2.27.so[7f359ef38000+1e7000]`)
+  it might be fixed by removing light-locker and using xscreensaver instead.
 
 ## alacritty
 
