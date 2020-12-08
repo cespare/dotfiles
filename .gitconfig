@@ -40,7 +40,8 @@
   whoami = config --get user.email
   conflicts = diff --name-only --diff-filter=U
   fza = "!git ls-files -m -o --exclude-standard | fzf --print0 -m | xargs -0 -t -o git add"
-  recent = branch --remote --sort=-committerdate
+  wip-remote = for-each-ref --sort='-committerdate:iso8601' --count 20 --format=' %(color:green)%(committerdate:relative)%09%(color:white)%(refname:short)' refs/remotes/origin
+  wip = for-each-ref --sort='-authordate:iso8601' --count 20 --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
 
   # For Go development.
   change = codereview change
