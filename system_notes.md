@@ -324,3 +324,17 @@ in full-screen) where the backlight constantly changes its setting.
 Disable this in the BIOS:
 
     Video > Dynamic Backlight Control > Disabled
+
+## "Failed to connect to lvmetad" boot error
+
+I randomly got an error on boot like
+
+    WARNING: Failed to connect to lvmetad. Falling back to device scanning.
+    ...
+    ALERT! /some/disk does not exist.
+    ...
+
+It looks like this was caused by a bad BIOS setting. (Not sure how it got
+reset.) The fix is:
+
+    System Configuration > SATA Operation > Change "RAID On" to "AHCI"
