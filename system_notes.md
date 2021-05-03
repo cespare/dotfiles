@@ -160,6 +160,15 @@ Clone https://github.com/vim/vim.git.
     $ go get -u github.com/junegunn/fzf
     $ cp ~/p/go/src/github.com/junegunn/fzf/bin/* ~/bin
 
+## Mount GCS bucket
+
+Install [gcsfuse](https://github.com/GoogleCloudPlatform/gcsfuse) and
+authenticate.
+
+Add fstab entry:
+
+    home.ctrl-c.us  /mnt/gcs gcsfuse rw,noauto,user
+
 ## ruby
 
 * Linux prerequisite packages: build-essential zlib1g-dev libssl-dev openssl libreadline-dev sqlite3 libsqlite3-dev libxslt-dev libxml2-dev curl
