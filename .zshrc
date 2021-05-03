@@ -272,6 +272,12 @@ export PYENV_ROOT=$HOME/.pyenv
 pushpath ${PYENV_ROOT}/bin
 eval "$(pyenv init -)"
 
+# nvm: https://github.com/nvm-sh/nvm
+# Commented out by default since this is slow and I usually don't need specific
+# node versions.
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # vidir: https://github.com/trapd00r/vidir
 pushpath ~/scripts/external/vidir/bin
 export VIDIR_EDITOR='vim'
