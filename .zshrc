@@ -270,6 +270,7 @@ eval "$(rbenv init -)"
 # pyenv: https://github.com/pyenv/pyenv
 export PYENV_ROOT=$HOME/.pyenv
 pushpath ${PYENV_ROOT}/bin
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 # nvm: https://github.com/nvm-sh/nvm
