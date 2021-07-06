@@ -33,6 +33,9 @@
   h = rev-parse HEAD
   r = rebase
   ri = rebase -i
+  # rebase from the merge base of the given branch and HEAD.
+  rif = "!git rebase -i $(git merge-base \"$1\" HEAD) #"
+  cp = cherry-pick
   dc = diff --cached
   lol = log --oneline --graph --decorate
   conf = config
