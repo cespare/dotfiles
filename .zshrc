@@ -230,7 +230,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '%F{yellow}S%F{gray}'
 zstyle ':vcs_info:*' unstagedstr '%F{green}U%F{gray}'
 zstyle ':vcs_info:*' formats ' %F{red}✦%F{gray} %r%F{red}@%F{gray}%6.6i %c%u%b'
-zstyle ':vcs_info:*' actionformats '%r%F{red}@%F{gray}%6.6i %c%u%b %F{red}(%F{gray}%a%F{red})%F{gray}'
+zstyle ':vcs_info:*' actionformats ' %F{red}✦%F{gray} %r%F{red}@%F{gray}%6.6i %c%u%b %F{red}(%F{gray}%a%F{red})%F{gray}'
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stashed git-dirty-spacing git-unpushed
 setopt prompt_subst
 
