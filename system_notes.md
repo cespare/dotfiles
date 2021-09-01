@@ -8,7 +8,7 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 
 * Install xubuntu
 * In xfce appearance settings, set (this is with 4k monitors):
-  - Default font: Noto Sans 9
+  - Default font: Roboto 9
   - Enable anti-aliasing (no hinting)
   - Custom DPI of 128 (LT: 192)
 * LT: Power manager settings:
@@ -76,6 +76,7 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - xdotool
   - screen
   - ttf-mscorefonts-installer
+  - fonts-roboto
   - openssh-server
   - gnome-screenshot
   - tmux
@@ -130,6 +131,8 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   This fixes lightdm resolution ([source](https://bugs.launchpad.net/ubuntu/+source/light-locker/+bug/1760068)).
 * If suspend is broken (kern.log has stuff like `ps: xfsm-shutdown-h[4863] general protection ip:7f359efcf9fd sp:7ffdf8d67670 error:0 in libc-2.27.so[7f359ef38000+1e7000]`)
   it might be fixed by removing light-locker and using xscreensaver instead.
+* If running govim causes vim to be slow to exit in directories with lots of Go
+  code underneath, raise the `fs.inotify.max_user_watches` setting in sysctl.
 
 ## alacritty
 
