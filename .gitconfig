@@ -64,6 +64,9 @@
 [rebase]
   autosquash = true
 
+[init]
+  defaultBranch = main
+
 [color]
   diff = auto
   status = auto
