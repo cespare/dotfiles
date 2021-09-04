@@ -143,8 +143,8 @@ __git_files () {
   _wanted files expl 'local files' _files
 }
 
-# Make mosh use ssh completion. Not perfect, but good enough for now.
-compdef mosh=ssh
+# Make sshrc use ssh completion.
+compdef sshrc=ssh
 
 ### Set paths ------------------------------------------------------------------------------------------------
 
