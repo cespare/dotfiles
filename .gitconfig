@@ -1,10 +1,10 @@
-[user]
-  name = Caleb Spare
-  email = cespare@gmail.com
-
 [core]
   excludesfile = ~/.git-global-ignore
   editor = "vim -c '1 | startinsert!'"
+
+[user]
+  name = Caleb Spare
+  email = cespare@gmail.com
 
 [diff]
   tool = vimdiff
@@ -54,15 +54,18 @@
   submit = codereview submit
   sync = codereview sync
 
+[branch]
+  autoSetupRebase = always
+
 [push]
   default = simple
   followTags = true
 
 [pull]
-  rebase = preserve
+  rebase = merges
 
 [rebase]
-  autosquash = true
+  autoSquash = true
 
 [init]
   defaultBranch = main
@@ -90,9 +93,6 @@
 
 [github]
   user = cespare
-
-[hub]
-  protocol = ssh
 
 # Put OS-specific stuff in .gitconfig.local.
 [include]
