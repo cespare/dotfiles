@@ -92,13 +92,6 @@ alias grep='grep --color=auto'
 
 ### Completion -----------------------------------------------------------------------------------------------
 
-# Taskwarrior completion
-if [[ $_zsh_platform == "linux" ]]; then
-  fpath=($fpath /usr/share/doc/task/scripts/zsh)
-else
-  fpath=($fpath /usr/local/share/doc/task/scripts/zsh)
-fi
-
 autoload -Uz compinit
 compinit -i
 
