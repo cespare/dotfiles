@@ -84,8 +84,8 @@ export REPORTTIME=30 # Report CPU stats on operations taking more than 30 second
 
 ### System configuration -------------------------------------------------------------------------------------
 
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 export GREP_COLOR='1;32'
 alias grep='grep --color=auto'
@@ -158,7 +158,7 @@ cdpath=(~/src ~/p "$cdpath[@]")
 alias src='source ~/.zshrc'
 alias l='ls -l'
 alias la='ls -a'
-alias v=vim
+alias v=nvim
 alias ...=../..
 alias be='bundle exec'
 alias pb='pbcopy'
@@ -274,7 +274,6 @@ eval "$(pyenv init -)"
 
 # vidir: https://github.com/trapd00r/vidir
 pushpath ~/scripts/external/vidir/bin
-export VIDIR_EDITOR='vim'
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
 # Git configuration

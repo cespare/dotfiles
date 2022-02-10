@@ -115,6 +115,8 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   *                soft    nofile          50000
   *                hard    nofile          50000
   ```
+* Install syncthing: https://apt.syncthing.net/
+  - Set up a systemd user service: https://docs.syncthing.net/users/autostart.html#using-systemd
 
 ## Assorted fixes
 
@@ -152,6 +154,12 @@ Clone https://github.com/vim/vim.git.
     $ ./configure --prefix=$HOME
     $ make && make install
 
+## Neovim
+
+Install from official PPA.
+
+Install the pynvim python package globally: `sudo pip install pynvim`.
+
 ## Ripgrep
 
 * Download the latest release from https://github.com/BurntSushi/ripgrep/releases
@@ -160,8 +168,7 @@ Clone https://github.com/vim/vim.git.
 
 ## fzf
 
-    $ go get -u github.com/junegunn/fzf
-    $ cp ~/p/go/src/github.com/junegunn/fzf/bin/* ~/bin
+    $ go install github.com/junegunn/fzf@latest
 
 ## Mount GCS bucket
 

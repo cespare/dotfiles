@@ -21,8 +21,8 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 0
-    lines: 0
+    columns: 200
+    lines: 60
 
   # Window position (changes require restart)
   #
@@ -90,7 +90,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: Inconsolata-dz for Powerline
+    family: Inconsolata
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -118,7 +118,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 9.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -157,7 +157,7 @@ colors:
   # Default colors
   primary:
     background: '0x111111'
-    foreground: '0xf3f3f3'
+    foreground: '0xfafafa'
 
     # Bright and dim foreground colors
     #
@@ -186,24 +186,24 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xe24848'
-    green:   '0x61c459'
-    yellow:  '0xdfda5e'
-    blue:    '0x396fd9'
-    magenta: '0xaa22aa'
-    cyan:    '0x1a92aa'
-    white:   '0xe2e2e2'
+    black:   '0x111111'
+    red:     '0xff5555'
+    green:   '0x55c055'
+    yellow:  '0xf0f055'
+    blue:    '0x0087ff'
+    magenta: '0xd75fff'
+    cyan:    '0x40f0f0'
+    white:   '0xdddddd'
 
   # Bright colors
   bright:
-    black:   '0x515151'
-    red:     '0xe59d9d'
-    green:   '0x98e998'
-    yellow:  '0xf0ec82'
-    blue:    '0x7d9fe2'
-    magenta: '0xcc58cc'
-    cyan:    '0x4ccce6'
+    black:   '0x555555'
+    red:     '0xff8080'
+    green:   '0x82d082'
+    yellow:  '0xf6f696'
+    blue:    '0x78a2d5'
+    magenta: '0xe7a0fe'
+    cyan:    '0xbaffff'
     white:   '0xffffff'
 
   # Dim colors

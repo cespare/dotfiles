@@ -1,6 +1,6 @@
 [core]
   excludesfile = ~/.git-global-ignore
-  editor = "vim -c '1 | startinsert!'"
+  editor = "nvim -c '1 | startinsert!'"
 
 [user]
   name = Caleb Spare

@@ -1,3 +1,4 @@
 #!/bin/bash
 
-gvim "$@" >/dev/null 2>&1 &
+#gvim "$@" >/dev/null 2>&1 &
+alacritty --title 'NVim' --working-directory . --command 'nvim' >/dev/null 2>&1 &
