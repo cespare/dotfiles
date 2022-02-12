@@ -111,8 +111,8 @@
 "carlisle focus match=leafpad"
   mod4 + alt + l
 
-# Focus gvim
-"carlisle focus match=gvim"
+# Focus gvim/nvim
+"carlisle focus match=vim"
   mod4 + alt + g
 
 # Focus Slack
