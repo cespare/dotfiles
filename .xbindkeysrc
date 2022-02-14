@@ -100,32 +100,20 @@
   alt + h
 
 # Focus chrome
-"carlisle focus match=chrome"
+"carlisle focus 'match=Google Chrome$'"
   mod4 + alt + b
 
 # Focus terminal
-"carlisle focus match=tmux"
+"carlisle focus 'match=^tmux \| '"
   mod4 + alt + t
 
-# Focus leafpad
-"carlisle focus match=leafpad"
-  mod4 + alt + l
-
-# Focus gvim/nvim
-"carlisle focus match=vim"
+# Focus NVim
+"carlisle focus 'match=^NVim$'"
   mod4 + alt + g
 
 # Focus Slack
-"carlisle focus match=slack"
+"carlisle focus 'match=^Slack \| '"
   mod4 + alt + s
-
-# Focus WeeChat
-"carlisle focus match=weechat"
-  mod4 + alt + w
-
-# Focus todo.txt open in vim
-"carlisle focus match=todo.txt"
-  mod4 + alt + d
 
 ###
 ### Launch common applications
