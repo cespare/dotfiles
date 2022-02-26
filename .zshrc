@@ -312,6 +312,7 @@ alias ap='ansible-playbook'
 
 # ripgrep
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep.conf
+alias rgt="rg -g '!*_test.go'"
 
 # fzf
 if [[ -e $GOPATH/src/github.com/junegunn/fzf/shell/completion.zsh ]]; then
