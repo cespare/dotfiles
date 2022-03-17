@@ -324,7 +324,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export ESCDELAY=10
 
 # 2fa
-export TWOFA='/keybase/private/cespare/2fa.txt'
+export TWOFA="${HOME}/n/2fa.txt"
 
 ### Load further configs -------------------------------------------------------------------------------------
 
