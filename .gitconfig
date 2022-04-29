@@ -58,6 +58,9 @@
 [branch]
   autoSetupRebase = always
 
+[merge]
+  conflictstyle = zdiff3
+
 [push]
   default = simple
   followTags = true
