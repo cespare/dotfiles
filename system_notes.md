@@ -8,33 +8,27 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 
 * Install xubuntu
 * In xfce appearance settings, set (this is with 4k monitors):
-  - Default font: Roboto 9
   - Enable anti-aliasing (no hinting)
   - Custom DPI of 128 (LT: 192)
+* Right click > Desktop settings > Icons > Uncheck all
 * LT: Power manager settings:
   - Enable "Handle display brightness keys"
   - When laptop lid is closed -> suspend
   - When sleep button is pressed -> suspend
 * In the window manager shortcuts, set "switch windows for the same application" to alt+`.
-* Go into xfce keyboard shorcuts and delete most of them. Keep:
-  - xfce4-appfinder (bind to super-space)
-  - screenshooter shortcuts
-  - xflock
-  - xkill
+* Go into xfce keyboard shorcuts and change the shortcut for xfce4-appfinder to
+  super-space.
 * In xfce keyboard settings: change key repeat and delay:
   - delay: 250
   - speed: 40
 * In window manager tweaks, change the key for moving windows from alt to super.
-* (Not LT:) In xfce mouse & touchpad settings, set pointer speed to:
-  - acceleration: 1.0
-  - sensitivity: 4 px
-  (For 1600 DPI hardware setting)
 * LT: Set up touchpad following the section at the bottom.
 * Set cursor size settings.
   - In mouse & touchpad settings > Theme
     * Set theme to DMZ-White
     * Set size to 48px (laptop) or 32px (desktop)
-  - There's also an issue where lightdm has the wrong cursor size and sometimes
+  - (FIXME: does this still happen?)
+    There's also an issue where lightdm has the wrong cursor size and sometimes
     it can remain set on the root window once logged in. Fix this by editing
     `/etc/gtk-3.0/settings.ini` and adding two lines matching the options set in
     xfce:
@@ -44,8 +38,7 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 
 * Panel properties:
   - Unlock -> move to bottom -> lock
-  - Alpha: 100
-  - LT: Row size: 36
+  - Row size: 30 (LT: 36)
 * LT: panel > items > Status Notifier Plugin > edit
   - Maximum icon size: 36
 * Set up dual clocks:
@@ -63,14 +56,14 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
     - Width: 120
     - Deselect "Show border"
 * Install Chrome
-* Install DropBox
+  - Sign into Google
+  - Sign into 1Password
 * Copy in files from backup/previous installation:
   - ~/.ssh
   - ~/.fonts
 * Install:
   - git
   - vim
-  - vim-gtk
   - zsh
   - xbindkeys
   - xdotool
@@ -80,14 +73,14 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - openssh-server
   - gnome-screenshot
   - tmux
-  - keepassxc
   - keychain
   - build-essential
   - silversearcher-ag
   - xclip
+* In xfce appearance settings, set default font to Roboto Regular 9.
+* Clone dotiles, vim-config and move into place
 * Ensure keychain is set up (.zshrc.private etc will have
   an invocation like `eval $(keychain --quiet --eval --agents ssh id_rsa)`
-* Clone dotviles, vim-config and move into place
 * Log out and back in for xmodmap (or just run it manually)
 * Install Go
 * xbindkeys uses github.com/cespare/carlisle, so install that.
