@@ -16,8 +16,9 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - When laptop lid is closed -> suspend
   - When sleep button is pressed -> suspend
 * In the window manager shortcuts, set "switch windows for the same application" to alt+`.
-* Go into xfce keyboard shorcuts and change the shortcut for xfce4-appfinder to
-  super-space.
+* Go into xfce keyboard shorcuts and delete most of them. Keep:
+  - screenshooter shortcuts
+  - xfkill
 * In xfce keyboard settings: change key repeat and delay:
   - delay: 250
   - speed: 40
@@ -61,6 +62,10 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 * Copy in files from backup/previous installation:
   - ~/.ssh
   - ~/.fonts
+* Install the git PPA:
+
+      sudo add-apt-repository ppa:git-core/ppa
+      sudo apt update
 * Install:
   - git
   - vim
@@ -131,8 +136,20 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 
 ## alacritty
 
-    sudo add-apt-repository ppa:mmstick76/alacritty
-    sudo apt install alacritty
+    git clone https://github.com/alacritty/alacritty.git
+    cd alacritty
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    rustup override set stable
+    rustup update stable
+    sudo apt install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+    cargo build --release
+    cp target/release/alacritty ~/bin/
+    sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+    sudo desktop-file-install extra/linux/Alacritty.desktop
+    sudo update-desktop-database
+    sudo mkdir -p /usr/local/share/man/man1
+    gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+    gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
 
 ## vim
 
