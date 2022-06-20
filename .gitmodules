@@ -1,9 +1,9 @@
 [submodule "scripts/external/vidir"]
 	path = scripts/external/vidir
 	url = https://github.com/trapd00r/vidir.git
-[submodule "scripts/external/sshrc"]
-	path = scripts/external/sshrc
-	url = https://github.com/Russell91/sshrc
 [submodule "apps/aws-cli"]
 	path = apps/aws-cli
 	url = https://github.com/aws/aws-cli
+[submodule "scripts/external/sshrc"]
+	path = scripts/external/sshrc
+	url = https://github.com/cdown/sshrc
