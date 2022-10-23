@@ -39,6 +39,7 @@
   cp = cherry-pick
   dc = diff --cached
   lol = log --oneline --graph --decorate
+  oneline = log --format='%C(auto) %h %s'
   conf = config
   cam = commit -a --amend
   whoami = config --get user.email
