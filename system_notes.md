@@ -260,10 +260,8 @@ In Renoise configuration, under Keys, uncheck "Override window manager shortcuts
 
 1. Unpin everything from the task bar and start bar (right click -> unpin works on most things)
 2. Install Chrome; set as default browser
-3. Install SharpKeys; swap caps lock and escape: https://github.com/randyrants/sharpkeys
+3. Install Powertoys: https://learn.microsoft.com/en-us/windows/powertoys/
 4. Fix key repeat rate: open control panel > keyboard > repeat delay all the way to "short", repeat rate all the way to "fast"
-5. Download and install dropbox
-6. Download and install KeepassXC
 
 # Dell XPS 13
 
