@@ -112,7 +112,7 @@
   mod4 + alt + g
 
 # Focus Slack
-"carlisle focus 'match=^Slack \| '"
+"carlisle focus 'match= - Slack$'"
   mod4 + alt + s
 
 ###
