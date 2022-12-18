@@ -10,15 +10,35 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 * In xfce appearance settings, set (this is with 4k monitors):
   - Enable anti-aliasing (no hinting)
   - Custom DPI of 128 (LT: 192)
+* Make grub not use a splash screen:
+  - Edit /etc/default/grub and change "quiet splash" to "text"
+  - Run `update-grub2` to update it
+* LT: Window Manager > Style > Theme > Select "Default-xhdpi"
+* LT: Increase the TTY text size by following the directions in the laptop setup
+  section below.
 * Right click > Desktop settings > Icons > Uncheck all
+* LT: Configure suspend/hibernation following the directions below.
 * LT: Power manager settings:
-  - Enable "Handle display brightness keys"
-  - When laptop lid is closed -> suspend
-  - When sleep button is pressed -> suspend
-* In the window manager shortcuts, set "switch windows for the same application" to alt+`.
+  - General:
+    * Enable "Handle display brightness keys"
+    * Brightness step count -> 20 (leave "exponential" unchecked)
+  - System (On battery and plugged in both):
+    * Suspend when inactive for (never). (Prefer to only suspend when lid closed.)
+    * When laptop lid is closed > Lock screen
+    * Check "Lock screen when system is going to sleep"
+  - Display (On battery and Plugged In both)
+    * Display power management checked
+    * Blank after > never (Note that blank/sleep/off are essentally the same for a modern display.)
+    * Put to sleep after > never
+    * Switch off after > 3 minutes (10 minutes for Plugged in)
+    * On inactivity reduce to > 5%
+    * Reduce after > 60 seconds
+* In the window manager shortcuts, set "switch windows for the same application" to alt+\`.
 * Go into xfce keyboard shorcuts and delete most of them. Keep:
-  - screenshooter shortcuts
-  - xfkill
+  - xfce4-popup-whiskermenu
+  - xfce4-screenshooter
+  - xflock4
+  - xkill
 * In xfce keyboard settings: change key repeat and delay:
   - delay: 250
   - speed: 40
@@ -28,20 +48,11 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - In mouse & touchpad settings > Theme
     * Set theme to DMZ-White
     * Set size to 48px (laptop) or 32px (desktop)
-  - (FIXME: does this still happen?)
-    There's also an issue where lightdm has the wrong cursor size and sometimes
-    it can remain set on the root window once logged in. Fix this by editing
-    `/etc/gtk-3.0/settings.ini` and adding two lines matching the options set in
-    xfce:
-
-        gtk-cursor-theme-name = DMZ-White
-        gtk-cursor-theme-size = 32
-
 * Panel properties:
   - Unlock -> move to bottom -> lock
   - Row size: 30 (LT: 36)
-* LT: panel > items > Status Notifier Plugin > edit
-  - Maximum icon size: 36
+* LT: panel > items > Status Tray Plugin > edit
+  - Icons -> Turn on "Adjust size automatically"
 * Set up dual clocks:
   - Right click > Panel > Add new items... > select Clock
   - Custom format: `%d %b %H:%M %Z`
@@ -65,10 +76,9 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 * Install the git PPA:
 
       sudo add-apt-repository ppa:git-core/ppa
-      sudo apt update
+
 * Install:
   - git
-  - vim
   - zsh
   - xbindkeys
   - xdotool
@@ -80,10 +90,13 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   - tmux
   - keychain
   - build-essential
-  - silversearcher-ag
+  - ripgrep
+  - htop
   - xclip
+  - python3-pip
 * In xfce appearance settings, set default font to Roboto Regular 9.
-* Clone dotiles, vim-config and move into place
+* Install neovim (directions below)
+* Clone dotiles, nvim-config and move into place
 * Ensure keychain is set up (.zshrc.private etc will have
   an invocation like `eval $(keychain --quiet --eval --agents ssh id_rsa)`
 * Log out and back in for xmodmap (or just run it manually)
@@ -94,19 +107,9 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 * Passwordless sudo by changing sudoers to have: `%sudo	ALL=(ALL:ALL) NOPASSWD: ALL`
 * Configure ssh server not to accept passwords but only pub key
 * Copy in /etc/fstab from previous installation and make sure everything's peachy
-* Make grub not use a splash screen:
-  - Edit /etc/default/grub and change "quiet splash" to "text"
-  - Run `update-grub2` to update it
 * Fix LightDM DPI by editing /etc/lightdm/lightdm-gtk-greeter.conf
   - Need line: xft-dpi=192 (or whatever DPI setting in xfce is)
-* LT: Install Greybird from source here: https://github.com/shimmerproject/Greybird/tree/xfwm4-hidpi
-  - That branch has an experimental hidpi build
-  - Then switch the theme to greybird-hidpi
 * LT: Disable bluetooth on startup: `sudo systemctl disable bluetooth.service`
-* LT: Fix sleep bug (https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1808957):
-  - As root: `echo deep > /sys/power/mem_sleep`
-  - Edit /etc/default/grub: `GRUB_CMDLINE_LINUX_DEFAULT="text mem_sleep_default=deep"`
-  - `sudo update-grub2`
 * Raise file descriptor limits by editing /etc/security/limits.conf to have
 
   ```
@@ -168,7 +171,8 @@ Clone https://github.com/vim/vim.git.
 
 Install from official PPA.
 
-Install the pynvim python package globally: `sudo pip install pynvim`.
+Install the pynvim python package globally: `sudo pip install pynvim`. TODO: not
+needed?
 
 ## Ripgrep
 
@@ -226,11 +230,131 @@ Run `aloop` to route the loopback to the main output:
 
 In Renoise configuration, under Keys, uncheck "Override window manager shortcuts".
 
+# Windows 10
+
+1. Unpin everything from the task bar and start bar (right click -> unpin works on most things)
+2. Install Chrome; set as default browser
+3. Install Powertoys: https://learn.microsoft.com/en-us/windows/powertoys/
+4. Fix key repeat rate: open control panel > keyboard > repeat delay all the way to "short", repeat rate all the way to "fast"
+
+# Dell XPS 13
+
+## Make the TTY text readable
+
+At full 4k resolution the TTY text is extremely small.
+
+Two fixes are required, one for grub and one for the kernel framebuffer.
+
+* For grub, we will simply run it at a lower resolution, edit `/etc/default/grub` and add
+
+      GRUB_GFXMODE=1920x1080
+
+  and then run `update-grub2`.
+* For Linux, we will run at full resolution but select a larger font. Run
+
+      sudo dpkg-reconfigure console-setup
+
+  and navigate the menu. Select all default options initially. When choosing a
+  font, select Terminus and then 16x32.
+
+## Configure suspend and hibernate
+
+The default suspend state is s2idle which still has quite a lot of battery
+drain. We want to use deep suspend which disables all the hardware except for
+memory refreshes. Additionally, we want to use hibernation (suspending to disk)
+for longer-term suspension because that is the lowest drain rate possible. In
+particular, I use the `suspend-then-hibernate` feature which suspends
+immediately and then, after a configurable amount of time, hibernates and shuts
+down.
+
+To test all this out, run
+
+    sudo systemctl suspend
+
+or
+
+    sudo systemctl suspend-then-hibernate
+
+After waking up, check syslog to verify which suspend level was used.
+
+First, change the suspend mode from `s2idle` to `deep`:
+
+* `echo deep | tee /sys/power/mem_sleep` to change it temporarily.
+* To lock it in, edit `/etc/default/grub` to have
+
+      GRUB_CMDLINE_LINUX_DEFAULT="text mem_sleep_default=deep"
+
+  (This assumes the only existing directive was `text`.)
+
+Next, check that hibernate works. (Maybe need to install `pm-utils`?)
+
+The default suspend-to-hibernate delay is reasonable (2h). However, we can test
+that it's working by editing `/etc/systemd/sleep.conf` and adding
+
+    HibernateDelaySec=45s
+
+Then invoke suspend-then-hibernate and make sure that it hibernates after 45s.
+Debug issues by examining logind logs:
+
+    sudo journalctl -u systemd-logind.service
+
+Finally, we want systemctl/login to manage suspend rather than
+xfce4-power-manager. Open Settings Editor and inside the xfce4-power-manager
+section check `logind-handle-lid-switch`. Now logind should handle lid
+open/close events rather than xfce. Test that it works and again look at the
+logind logs for debugging.
+
+Note that there is an unsolved bug where the lock screen doesn't render
+correctly after waking from suspend: https://gitlab.xfce.org/apps/xfce4-screensaver/-/issues/1
+When this happend, the desktop is displayed but is not interactive. Blindly type
+the password to unlock.
+
+Links:
+
+* https://luisartola.com/solving-the-framework-laptop-battery-drain/
+* https://askubuntu.com/questions/12383/how-to-go-automatically-from-suspend-into-hibernate
+* https://askubuntu.com/questions/1072504/lid-closed-suspend-then-hibernate
+* https://docs.xfce.org/xfce/xfce4-power-manager/faq
+
+## Avahi
+
+Avahi tends to use a bunch of CPU. Disable it with:
+
+    sudo systemctl disable avahi-daemon.socket
+    sudo systemctl disable avahi-daemon.service
+    sudo systemctl stop avahi-daemon.socket
+    sudo systemctl stop avahi-daemon.service
+
+Comment out the "Wants" line in /lib/systemd/system/cups-browsed.service:
+
+    # Wants=avahi-daemon.service
+
+## Auto display backlight dimming
+
+The screen of this machine dims automatically depending on the content of the
+screen (brighter when the screen is mostly white, for example). This leads to
+incredibly annoying behavior when using white text on dark background (say vim
+in full-screen) where the backlight constantly changes its setting.
+
+Disable this in the BIOS:
+
+    Video > Dynamic Backlight Control > Disabled
+
+## "Failed to connect to lvmetad" boot error
+
+I randomly got an error on boot like
+
+    WARNING: Failed to connect to lvmetad. Falling back to device scanning.
+    ...
+    ALERT! /some/disk does not exist.
+    ...
+
+It looks like this was caused by a bad BIOS setting. (Not sure how it got
+reset.) The fix is:
+
+    System Configuration > SATA Operation > Change "RAID On" to "AHCI"
+
 # Obsolete?
-
-## Packages
-
-* weechat-curses
 
 ## System setup
 
@@ -256,16 +380,23 @@ In Renoise configuration, under Keys, uncheck "Override window manager shortcuts
     $ ./build.sh --prefix=$HOME
     $ make install
 
-# Windows 10
+## Xubuntu/lightdm cursor size issue
 
-1. Unpin everything from the task bar and start bar (right click -> unpin works on most things)
-2. Install Chrome; set as default browser
-3. Install Powertoys: https://learn.microsoft.com/en-us/windows/powertoys/
-4. Fix key repeat rate: open control panel > keyboard > repeat delay all the way to "short", repeat rate all the way to "fast"
+(This no longer seems to be an issue as of Ubuntu 22.04.)
 
-# Dell XPS 13
+Sometimes lightdm has the wrong cursor size and it can remain set on the root
+window once logged in. Fix this by editing `/etc/gtk-3.0/settings.ini` and
+adding two lines matching the options set in xfce:
 
-## Touchpad
+    gtk-cursor-theme-name = DMZ-White
+    gtk-cursor-theme-size = 32
+
+
+## Dell XPS 13 Touchpad stuff
+
+(As of 22.04 none of this seems to be necessary: synaptic isn't installed by
+default; scrolling is configurable through the XFCE touchpad settings menu,
+etc.)
 
 These were necessary to get libinput working properly with Ubuntu 18.04/XFCE.
 
@@ -328,40 +459,3 @@ around with settings by using a command like
 
     xinput set-prop 12 <option-number> <setting>
 
-## Avahi
-
-Avahi tends to use a bunch of CPU. Disable it with:
-
-    sudo systemctl disable avahi-daemon.socket
-    sudo systemctl disable avahi-daemon.service
-    sudo systemctl stop avahi-daemon.socket
-    sudo systemctl stop avahi-daemon.service
-
-Comment out the "Wants" line in /lib/systemd/system/cups-browsed.service:
-
-    # Wants=avahi-daemon.service
-
-## Auto display backlight dimming
-
-The screen of this machine dims automatically depending on the content of the
-screen (brighter when the screen is mostly white, for example). This leads to
-incredibly annoying behavior when using white text on dark background (say vim
-in full-screen) where the backlight constantly changes its setting.
-
-Disable this in the BIOS:
-
-    Video > Dynamic Backlight Control > Disabled
-
-## "Failed to connect to lvmetad" boot error
-
-I randomly got an error on boot like
-
-    WARNING: Failed to connect to lvmetad. Falling back to device scanning.
-    ...
-    ALERT! /some/disk does not exist.
-    ...
-
-It looks like this was caused by a bad BIOS setting. (Not sure how it got
-reset.) The fix is:
-
-    System Configuration > SATA Operation > Change "RAID On" to "AHCI"
