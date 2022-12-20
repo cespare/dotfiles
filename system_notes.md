@@ -67,6 +67,14 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
     - Update interval: 500ms
     - Width: 120
     - Deselect "Show border"
+* If desired, add CPU temp status:
+  - `sudo apt install xfce4-sensors-plugin`
+  - Right click > Panel > Add new items... > select Sensors
+  - Configure: select CPU temp
+    * For laptop it's coretemp-0 > "Package id 0"
+    * Set the color to #FFFFFF
+  - In View, uncheck "Show title" and "Show labels"
+    * Now it should just be a single temp shown
 * Install Chrome
   - Sign into Google
   - Sign into 1Password
