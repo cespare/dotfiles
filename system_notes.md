@@ -86,22 +86,24 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
       sudo add-apt-repository ppa:git-core/ppa
 
 * Install:
-  - git
-  - zsh
-  - xbindkeys
-  - xdotool
-  - screen
-  - ttf-mscorefonts-installer
-  - fonts-roboto
-  - openssh-server
-  - gnome-screenshot
-  - tmux
-  - keychain
   - build-essential
-  - ripgrep
+  - curl
+  - fonts-roboto
+  - gh
+  - git
+  - gnome-screenshot
   - htop
-  - xclip
+  - keychain
+  - openssh-server
   - python3-pip
+  - ripgrep
+  - screen
+  - tmux
+  - ttf-mscorefonts-installer
+  - xbindkeys
+  - xclip
+  - xdotool
+  - zsh
 * In xfce appearance settings, set default font to Roboto Regular 9.
 * Install neovim (directions below)
 * Clone dotiles, nvim-config and move into place
@@ -112,9 +114,10 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
 * xbindkeys uses github.com/cespare/carlisle, so install that.
   - Put the binary in $HOME/bin, so that the XDG autostart thing that runs
     xbindkeys will be able to see it.
+* Install alacritty (see below). Now launching normal terminal via xbindkeys
+  should work.
 * Passwordless sudo by changing sudoers to have: `%sudo	ALL=(ALL:ALL) NOPASSWD: ALL`
-* Configure ssh server not to accept passwords but only pub key
-* Copy in /etc/fstab from previous installation and make sure everything's peachy
+* Configure ssh server not to accept passwords (`PasswordAuthentication no`)
 * Fix LightDM DPI by editing /etc/lightdm/lightdm-gtk-greeter.conf
   - Need line: xft-dpi=192 (or whatever DPI setting in xfce is)
 * LT: Disable bluetooth on startup: `sudo systemctl disable bluetooth.service`
@@ -124,8 +127,7 @@ Things marked (LT) are laptop-specific directions (Dell XPS 13).
   *                soft    nofile          50000
   *                hard    nofile          50000
   ```
-* Install syncthing: https://apt.syncthing.net/
-  - Set up a systemd user service: https://docs.syncthing.net/users/autostart.html#using-systemd
+* Install and configure syncthing (see details in home repo).
 
 ## Assorted fixes
 
@@ -178,9 +180,6 @@ Clone https://github.com/vim/vim.git.
 ## Neovim
 
 Install from official PPA.
-
-Install the pynvim python package globally: `sudo pip install pynvim`. TODO: not
-needed?
 
 ## Ripgrep
 

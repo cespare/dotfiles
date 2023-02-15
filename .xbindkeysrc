@@ -127,7 +127,7 @@
 "leafpad"
   control + alt + l
 
-"xfce4-appfinder --disable-server"
+"xfce4-popup-whiskermenu"
   mod4 + space
 
 "thunar"
