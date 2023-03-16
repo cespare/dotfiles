@@ -1,0 +1,204 @@
+set {
+  # Use the windows key as the main modifier.
+  $mod mod4
+
+  $swayctrl ~/bin/swayctrl
+
+  $left h
+  $down j
+  $up k
+  $right l
+
+  $term alacritty
+
+  $display-left DP-2
+  $display-right DP-3
+}
+
+# Machine-specific settings.
+# TODO: Load conditionally.
+output * scale 1.25
+output $display-left position 0,0
+output $display-right position 3072,0
+
+exec $swayctrl daemon
+
+# TODO: Decide whether to check these into git.
+output * bg ~/.local/share/backgrounds/1045118.jpg fill
+
+#gaps inner 4
+#gaps outer 2
+default_border pixel 4
+
+font pango:monospace 0
+titlebar_border_thickness 0
+titlebar_padding 0
+
+for_window {
+  [title=".*"] floating enable
+  [app_id="google-chrome"] floating disable
+  [app_id="Alacritty"] floating disable
+  [app_id="Slack"] floating disable
+}
+
+set $lock swaylock -f -c 000000
+exec swayidle -w \
+  timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  timeout 190 '$lock' \
+  before-sleep '$lock'
+
+exec mako
+
+input "type:keyboard" {
+  xkb_options caps:swapescape
+  repeat_delay 250
+  repeat_rate 40
+}
+
+# Key bindings
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Start application launcher
+bindsym $mod+space exec wofi --show drun | xargs swaymsg exec
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+shift+c reload
+
+focus_follows_mouse no
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move the focused window with the same, but add shift
+bindsym $mod+shift+$left move left
+bindsym $mod+shift+$down move down
+bindsym $mod+shift+$up move up
+bindsym $mod+shift+$right move right
+
+# Workspaces
+
+workspace 1 output $display-left
+workspace 2 output $display-right
+workspace 3 output $display-right
+workspace 4 output $display-right
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+
+# Move focused container to workspace
+bindsym $mod+shift+1 [con_id=__focused__] move container to workspace number 1, focus
+bindsym $mod+shift+2 [con_id=__focused__] move container to workspace number 2, focus
+bindsym $mod+shift+3 [con_id=__focused__] move container to workspace number 3, focus
+bindsym $mod+shift+4 [con_id=__focused__] move container to workspace number 4, focus
+
+bindsym $mod+shift+period [con_id=__focused__] move container to output right, focus
+bindsym $mod+shift+comma [con_id=__focused__] move container to output right, focus
+
+# Layout stuff:
+#
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+#bindsym $mod+shift+space floating toggle
+bindsym --whole-window $mod+BTN_MIDDLE floating toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+#
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+# Shortcuts
+
+# Switch to next/previous tab
+bindsym shift+alt+l exec wtype -M ctrl -P next
+bindsym shift+alt+h exec wtype -M ctrl -P prior
+
+# Swap to the most recently used non-focused window
+bindsym alt+tab exec $swayctrl prev
+
+# Swap between instances of the same application
+bindsym alt+grave exec $swayctrl appnext
+
+# Take a screenshot
+bindsym shift+alt+4 exec ~/scripts/screenshot
+
+# Application setup
+
+assign [app_id=google-chrome] 2
+bindsym shift+alt+b exec $swayctrl focus -appid google-chrome -launch google-chrome
+
+assign [title="^tmux \| "] 1
+bindsym shift+alt+t exec $swayctrl focus -name '^tmux \| ' -launch $term
+
+assign [title="^nvim$"] 2
+bindsym shift+alt+g exec $swayctrl focus -name '^nvim$'
+
+assign [app_id=Slack] 1
+bindsym shift+alt+s exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
+
+bindsym shift+alt+e exec $swayctrl focus -appid l3afpad -launch l3afpad
+bindsym shift+alt+f exec $swayctrl focus -appid org.gnome.Nautilus -launch nautilus
+
+mouse_warping none
+
+exec_always gsettings set org.gnome.desktop.interface {
+  cursor-theme 'DMZ-White'
+  cursor-size 32
+  font-name 'Roboto Regular 11'
+  document-font-name 'Roboto Regular 11'
+  monospace-font-name 'Inconsolata Medium 12'
+  gtk-theme 'Yaru-blue'
+  gtk-color-theme 'Yaru-blue'
+  icon-theme 'Yaru-blue'
+  text-scaling-factor 1.0
+}
+
+seat seat0 xcursor_theme DMZ-White 32
+
+bar swaybar_command ./bin/waybar
+
+include /etc/sway/config.d/*
+
+# For xdg-desktop-portal-wlr
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

@@ -1,0 +1,125 @@
+# Ubuntu+Sway setup
+
+* Install Ubuntu Desktop normally
+* Install packages
+  - build-essential
+  - curl
+  - fonts-font-awesome
+  - fonts-inconsolata
+  - fonts-roboto
+  - gh
+  - gnome-tweaks
+  - grimshot
+  - htop
+  - l3afpad
+  - mako-notifier
+  - openssh-server
+  - pavucontrol
+  - python-is-python3
+  - python3-pip
+  - ripgrep
+  - screen
+  - sway
+  - swayidle
+  - swaylock
+  - tmux
+  - ttf-mscorefonts-installer
+  - wofi
+  - wtype
+  - zsh
+* Install a few packages from PPAs:
+  - Alacritty: sudo add-apt-repository ppa:aslatter/ppa
+  - Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
+  - Git: sudo add-apt-repository ppa:git-core/ppa
+* Install waybar following directions below
+* Copy in files from backup/previous installation:
+  - ~/.ssh
+* Clone dotfiles:
+  git init .
+  git remote add origin git@github.com:cespare/dotfiles.git
+  git pull origin main
+  git su
+* Clone neovim config:
+  git clone git@github.com:cespare/nvim-config.git .config/nvim
+  git su
+* sudo update-alternatives --config editor
+  - choose nvim
+* Fix mako according to directions below
+* Log out of Gnome desktop and log into Sway
+* Launch alacritty terminal (should use zsh)
+* Install Chrome from deb
+  - chrome://flags > Preferred Ozone platform "Auto" > Relaunch
+  - Sign into Google
+  - Sign into 1Password
+* Install Go
+  - https://go.dev/doc/install and download latest release
+  - mkdir $GOROOT_BOOTSTRAP && cd $GOROOT_BOOTSTRAP
+  - tar -xzf ~/Downloads/go.xyz.tgz && mv go/* ./ && rmdir go
+  - cd ~/apps
+  - git clone https://go.googlesource.com/go go
+  - cp -r go godev
+  - cd go/src && git checkout <tag> && ./all.bash
+* Install fzf:
+  - go install github.com/junegunn/fzf@latest
+* Activate the ssh-agent systemd unit:
+  - systemctl --user enable --now ssh-agent
+* Passwordless sudo:
+  - sudo visudo
+  - Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
+* Configure ssh server not to accept passwords (`PasswordAuthentication no`)
+* Raise file descriptor limits by editing /etc/security/limits.conf to have
+
+  ```
+  *                soft    nofile          50000
+  *                hard    nofile          50000
+  ```
+* Install and configure syncthing (see details in home repo).
+
+
+
+# Waybar
+
+sudo apt install \
+  clang-tidy \
+  gobject-introspection \
+  libdbusmenu-gtk3-dev \
+  libevdev-dev \
+  libfmt-dev \
+  libgirepository1.0-dev \
+  libgtk-3-dev \
+  libgtkmm-3.0-dev \
+  libinput-dev \
+  libjsoncpp-dev \
+  libmpdclient-dev \
+  libnl-3-dev \
+  libnl-genl-3-dev \
+  libpulse-dev \
+  libsigc++-2.0-dev \
+  libspdlog-dev \
+  libwayland-dev \
+  libxkbregistry-dev \
+  meson \
+  scdoc \
+  upower
+mkdir -p ~/3p/waybar && cd ~/3p/waybar
+git clone https://github.com/Alexays/Waybar .
+meson build
+ninja -C build
+cp ./build/waybar ~/bin
+
+# Mako
+
+On Ubuntu 22.04, there's a permission issue and it doesn't launch by default.
+https://github.com/emersion/mako/issues/257
+Fix with:
+sudo apt install apparmor-utils
+sudo aa-disable /etc/apparmor.d/fr.emersion.Mako
+
+# GIMP
+
+The 2.xx versions in Ubuntu don't have Wayland (gtk 3) support.
+One way to install a newer version is with flatpak:
+
+sudo apt install flatpak
+flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
+Run with: flatpak run org.gimp.GIMP//beta

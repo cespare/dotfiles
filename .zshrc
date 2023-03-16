@@ -17,10 +17,6 @@ fpath=($ZSH/functions $ZSH/completions $fpath)
 uname=`uname`
 if [[ "$uname" = "Linux" ]]; then
   source_if_exists ~/.zshrc.linux
-  # I think this is an Ubuntu thing.
-  alias o='xdg-open'
-  alias open='xdg-open'
-  alias e='gvim'
   alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
   export _zsh_platform=linux
 

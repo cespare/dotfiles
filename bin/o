@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eu -o pipefail
+
+# xdg-open is supposed to detach itself, but it seems not to in Sway when
+# launching a file manager for some reason.
+nohup xdg-open "$@" >/dev/null 2>&1 &

@@ -4,5 +4,6 @@ set -e
 
 name="screen_$(date +%Y%m%d%H%M%S).png"
 mkdir -p /tmp/screenshots
-xfce4-screenshooter -r -s /tmp/screenshots/${name}
+grimshot save area "/tmp/screenshots/${name}"
+# xfce4-screenshooter -r -s /tmp/screenshots/${name}
 xdg-open /tmp/screenshots
