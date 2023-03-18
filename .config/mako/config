@@ -1,2 +1,13 @@
-font=Roboto 11
-default-timeout=5000
+default-timeout=8000
+font=Roboto 14
+#background-color=#333333dd
+#text-color=#ffffff
+background-color=#e0e0e0dd
+text-color=#111111
+width=500
+height=200
+margin=30
+padding=12
+border-size=0
+#border-color=#aaaaaadd
+border-radius=8
