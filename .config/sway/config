@@ -17,9 +17,10 @@ set {
 
 # Machine-specific settings.
 # TODO: Load conditionally.
-output * scale 1.25
+output * scale 1
 output $display-left position 0,0
-output $display-right position 3072,0
+# output $display-right position 3072,0
+output $display-right position 3840,0
 
 exec $swayctrl daemon
 
@@ -185,9 +186,9 @@ mouse_warping none
 exec_always gsettings set org.gnome.desktop.interface {
   cursor-theme 'DMZ-White'
   cursor-size 32
-  font-name 'Roboto Regular 11'
-  document-font-name 'Roboto Regular 11'
-  monospace-font-name 'Inconsolata Medium 12'
+  font-name 'Roboto Regular 12'
+  document-font-name 'Roboto Regular 12'
+  monospace-font-name 'Inconsolata Medium 15'
   gtk-theme 'Yaru-blue'
   gtk-color-theme 'Yaru-blue'
   icon-theme 'Yaru-blue'
