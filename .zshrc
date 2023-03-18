@@ -259,7 +259,6 @@ eval "$(rbenv init -)"
 # pyenv: https://github.com/pyenv/pyenv
 export PYENV_ROOT=$HOME/.pyenv
 pushpath ${PYENV_ROOT}/bin
-eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
 # nvm: https://github.com/nvm-sh/nvm
@@ -324,5 +323,4 @@ export TWOFA="${HOME}/n/2fa.txt"
 
 ### Load further configs -------------------------------------------------------------------------------------
 
-source_if_exists ~/.zshrc.work # Work-specific stuff
-source_if_exists ~/.zshrc.private # Sensitive stuff (keys and whatnot) that aren't in git.
+source_if_exists ~/private/zshrc.work
