@@ -79,6 +79,9 @@
 
 # Waybar
 
+As of March 2023 the version of waybar in the Ubuntu 22.04 repos is old and has
+some bugs that break the clock display. Install from source:
+
 sudo apt install \
   clang-tidy \
   gobject-introspection \
