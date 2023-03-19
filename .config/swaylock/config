@@ -1,0 +1,47 @@
+ignore-empty-password
+
+image=~/.local/share/backgrounds/1045118.jpg
+scaling=fill
+
+font=Roboto
+font-size=32
+
+indicator-radius=200
+indicator-thickness=40
+
+separator-color=#00000000
+key-hl-color=#ffffff66
+bs-hl-color=#33333366
+caps-lock-key-hl-color=#ffffff66
+caps-lock-bs-hl-color=#33333366
+
+# Turn off lines.
+line-color=#00000000
+line-clear-color=#00000000
+line-ver-color=#00000000
+line-wrong-color=#00000000
+line-caps-lock-color=#00000000
+
+# Turn off text (except for caps lock, because the inside caps color doesn't
+# seem to work).
+text-color=#00000000
+text-clear-color=#00000000
+text-ver-color=#00000000
+text-wrong-color=#00000000
+text-caps-lock-color=#333333
+
+inside-color=#00000000
+ring-color=#ffffff33
+
+inside-clear-color=#ffffff66
+ring-clear-color=#00000000
+
+inside-ver-color=#ffffff66
+ring-ver-color=#00000000
+
+inside-wrong-color=#ffbbbb66
+ring-wrong-color=#00000000
+
+# This color doesn't seem to have an effect.
+inside-caps-lock-color=#ffbbbb66
+ring-caps-lock-color=#ffffff33

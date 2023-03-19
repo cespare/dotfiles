@@ -13,6 +13,8 @@ set {
 
   $display-left DP-2
   $display-right DP-3
+
+  $background ~/.local/share/backgrounds/1045118.jpg
 }
 
 # Machine-specific settings.
@@ -25,15 +27,22 @@ output $display-right position 3840,0
 exec $swayctrl daemon
 
 # TODO: Decide whether to check these into git.
-output * bg ~/.local/share/backgrounds/1045118.jpg fill
+output * bg $background fill
 
 #gaps inner 4
 #gaps outer 2
 default_border pixel 4
 
+# Hack to completely hide titlebar borders.
+# As an aded bonus, tabbed containers have no top border so Chrome tabs extend
+# the top of the output and so clicking/scrolling doesn't require precise mouse
+# movement.
 font pango:monospace 0
 titlebar_border_thickness 0
 titlebar_padding 0
+
+# TODO: This doesn't seem to have an effect.
+# for_window [title=".*"] urgent deny
 
 for_window {
   [title=".*"] floating enable
@@ -42,11 +51,10 @@ for_window {
   [app_id="Slack"] floating disable
 }
 
-set $lock swaylock -f -c 000000
 exec swayidle -w \
   timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-  timeout 190 '$lock' \
-  before-sleep '$lock'
+  timeout 190 swaylock \
+  before-sleep swaylock
 
 exec mako
 
@@ -57,6 +65,9 @@ input "type:keyboard" {
 }
 
 # Key bindings
+
+# Screen lock
+bindsym ctrl+alt+l exec swaylock
 
 # Start a terminal
 bindsym $mod+Return exec $term
