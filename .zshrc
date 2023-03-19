@@ -310,9 +310,10 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep.conf
 alias rgt="rg -g '!*_test.go'"
 
 # fzf
-if [[ -e $GOPATH/src/github.com/junegunn/fzf/shell/completion.zsh ]]; then
-  source $GOPATH/src/github.com/junegunn/fzf/shell/completion.zsh
-  source $GOPATH/src/github.com/junegunn/fzf/shell/key-bindings.zsh
+fzf_repo=~/3p/fzf
+if [[ -d "${fzf_repo}" ]]; then
+  source "${fzf_repo}/shell/completion.zsh"
+  source "${fzf_repo}/shell/key-bindings.zsh"
 fi
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
