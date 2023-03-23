@@ -26,6 +26,7 @@
   - ttf-mscorefonts-installer
   - wofi
   - wtype
+  - xdg-desktop-portal-wlr
   - zsh
 * Install a few packages from PPAs:
   - Alacritty: sudo add-apt-repository ppa:aslatter/ppa
@@ -126,3 +127,13 @@ One way to install a newer version is with flatpak:
 sudo apt install flatpak
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
 Run with: flatpak run org.gimp.GIMP//beta
+
+# Slack
+
+Slack on Wayland needs special treatment. First, install their .deb as normal.
+
+cp /usr/share/applications/slack.desktop ~/.local/share/applications/
+Edit ~/.local/share/applications/slack.desktop to add flags:
+--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer
+
+In preferences > Accessibility, set Zoom to 125%.

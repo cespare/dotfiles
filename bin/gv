@@ -1,11 +1,12 @@
 #!/bin/bash
+set -eu -o pipefail
 
 # FIXME: The sleep hack is because of some issue I haven't tracked down in the
 # interaction of Sway, Alacritty, and Neovim where the initial window dimensions
 # aren't set correctly and nvim rendering is messed up until the window is
 # manually resized.
 
-nohup alacritty \
+swayctrl launch alacritty \
   --config-file ~/.config/alacritty/nvim.yml \
   --title 'nvim' \
   --working-directory . \

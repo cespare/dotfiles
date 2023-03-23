@@ -53,7 +53,7 @@ for_window {
 
 exec swayidle -w \
   timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-  timeout 190 swaylock \
+  timeout 200 swaylock \
   before-sleep swaylock
 
 exec mako
@@ -181,10 +181,10 @@ assign [app_id=google-chrome] 2
 bindsym shift+alt+b exec $swayctrl focus -appid google-chrome -launch google-chrome
 
 assign [title="^tmux \| "] 1
-bindsym shift+alt+t exec $swayctrl focus -name '^tmux \| ' -launch $term
+bindsym shift+alt+t exec $swayctrl focus -title '^tmux \| ' -launch $term
 
 assign [title="^nvim$"] 2
-bindsym shift+alt+g exec $swayctrl focus -name '^nvim$'
+bindsym shift+alt+g exec $swayctrl focus -title '^nvim$'
 
 assign [app_id=Slack] 1
 bindsym shift+alt+s exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
@@ -203,7 +203,7 @@ exec_always gsettings set org.gnome.desktop.interface {
   gtk-theme 'Yaru-blue'
   gtk-color-theme 'Yaru-blue'
   icon-theme 'Yaru-blue'
-  text-scaling-factor 1.0
+  text-scaling-factor 1.25
 }
 
 seat seat0 xcursor_theme DMZ-White 32
