@@ -14,7 +14,7 @@ set {
   $display-left DP-2
   $display-right DP-3
 
-  $background ~/.local/share/backgrounds/1045118.jpg
+  $background ~/private/backgrounds/1045118.jpg
 }
 
 # Machine-specific settings.

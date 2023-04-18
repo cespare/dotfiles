@@ -1,4 +1,4 @@
-# Ubuntu+Sway setup
+# Ubuntu initial setup
 
 * Install Ubuntu Desktop normally
 * Install packages
@@ -33,51 +33,149 @@
   - Alacritty: sudo add-apt-repository ppa:aslatter/ppa
   - Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
   - Git: sudo add-apt-repository ppa:git-core/ppa
-* Install waybar following directions below
-* Copy in files from backup/previous installation:
-  - ~/.ssh
-* Clone dotfiles:
+
+# Arch initial setup
+
+Followed the normal install guide at https://wiki.archlinux.org/title/Installation_guide
+For disk setup, use LVM on LUKS: https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS
+  Also followed https://gist.github.com/huntrar/e42aee630bee3295b2c671d098c81268 (slightly outdated)
+  Separate swap, root, home, /data
+  ESP is mounted at /boot
+Essential packages install:
+  pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 neovim iwd
+    TODO
+For fstab, change relatime to noatime
+mkinitcpio.conf required adding "encrypt lvm2"
+Grub
+  pacman -S grub
+  (Didn't customize /etc/default/grub)
+  grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
+  grub-mkconfig -o /boot/grub/grub.cfg
+Reboot to new system
+Networking with systemd-networkd (see http://www.lukylx.org/installation/essentials-installation.html)
+  /etc/systemd/network/25-wireless.network
+    [Match]
+    Name=w*
+    [Network]
+    DHCP=yes
+    IgnoreCarrierLoss=3s
+  systemctl enable --now systemd-networkd
+  systemctl enable --now systemd-resolved
+  ln -sf /usr/lib/systemd/resolv.conf /etc/resolv.conf
+  systemctl enable --now iwd
+  iwctl -> connect
+Install zsh, sudo
+User creation: useradd -m -G adm,log,sys,wheel -s /bin/zsh caleb
+  EDITOR=vim visudo and give wheel sudo access
+  Then I can log in as my user
+Install many packages
+  alacritty
+  base-devel
+  git
+  github-cli
+  gnome-tweaks
+  htop
+  l3afpad
+  mako
+  man-db
+  nautilus
+  openssh
+  pavucontrol
+  polkit
+  ripgrep
+  screen
+  sway
+  swaybg
+  swayidle
+  swaylock
+  tmux
+  ttf-font-awesome
+  ttf-inconsolata
+  ttf-roboto
+  waybar
+  wl-clipboard
+  wofi
+  wtype
+  xcursor-vanilla-dmz
+  xdg-desktop-portal-wlr
+  xorg-xwayland
+  Choose droid as ttf-font
+
+# Common Ubuntu/Arch Sway setup
+
+[U] = Ubuntu, [A] = Arch
+
+Copy in SSH keys from backup/previous installation
+Clone dotfiles:
   git init .
   git remote add origin git@github.com:cespare/dotfiles.git
   git pull origin main
   git su
-* Clone neovim config:
+Clone neovim config:
   git clone git@github.com:cespare/nvim-config.git .config/nvim
   git su
-* sudo update-alternatives --config editor
+Clone private repo and symlink ~/.ssh/config
+[U] sudo update-alternatives --config editor
   - choose nvim
-* Fix mako according to directions below
-* Log out of Gnome desktop and log into Sway
-* Launch alacritty terminal (should use zsh)
-* Install Chrome from deb
-  - chrome://flags > Preferred Ozone platform "Auto" > Relaunch
-  - Sign into Google
-  - Sign into 1Password
-  - Settings > Appearance > Page zoom 125%
-* Install Go
-  - https://go.dev/doc/install and download latest release
-  - mkdir $GOROOT_BOOTSTRAP && cd $GOROOT_BOOTSTRAP
-  - tar -xzf ~/Downloads/go.xyz.tgz && mv go/* ./ && rmdir go
-  - cd ~/apps
-  - git clone https://go.googlesource.com/go go
-  - cp -r go godev
-  - cd go/src && git checkout <tag> && ./all.bash
-* Install fzf:
-  - go install github.com/junegunn/fzf@latest
-* Activate the ssh-agent systemd unit:
-  - systemctl --user enable --now ssh-agent
-* Passwordless sudo:
-  - sudo visudo
-  - Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
-* Configure ssh server not to accept passwords (`PasswordAuthentication no`)
-* Raise file descriptor limits by editing /etc/security/limits.conf to have
-
-  ```
+[U] Install waybar following directions below
+[U] Fix mako according to directions below
+Install Go
+  https://go.dev/doc/install and download latest release
+  mkdir $GOROOT_BOOTSTRAP && cd $GOROOT_BOOTSTRAP
+  tar -xzf ~/Downloads/go.xyz.tgz && mv go/* ./ && rmdir go
+  cd ~/apps
+  git clone https://go.googlesource.com/go go
+  cp -r go godev
+  cd go/src && git checkout <tag> && ./all.bash
+Install swayctrl
+Start Sway
+Launch alacritty terminal (should use zsh)
+[U] Install Chrome from deb
+  chrome://flags > Preferred Ozone platform "Auto" > Relaunch
+  Sign into Google
+  Sign into 1Password
+  Settings > Appearance > Page zoom 125% (desktop only)
+  Settings > Appearance > Use system title bar and borders
+[A] Install Chrome (flesh out instructions)
+  cd apps && git clone https://aur.archlinux.org/yay.git
+  cd yay && makepkg -si
+  yay -S google-chrome (at a cleanBuild prompt select "[N]one")
+[A] Set up suspend and hibernation. Suspend should work out of the box but
+  hibernation takes some tweaks. But it should still be easy using LVM on LUKS.
+  Add "resume" to /etc/mkinitcpio.conf: ...lvm2 filesystems resume fsck
+  Regenerate initramfs with 'sudo mkinitcpio -p linux'
+  Edit /etc/default/grub to append to GRUB_CMDLINE_LINUX_DEFAULT "resume=UUID=<uuid of swap partition>"
+  Regnerate grub with 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
+  Now hibernation should work (can test with 'systemctl hibernate')
+  Edit /etc/systemd/logind.conf to add a few non-default opts:
+    HandleSuspendKey=suspend-then-hibernate
+    HandleLidSwitch=suspend-then-hibernate
+    HandleLidSwitchExternalPower=suspend-then-hibernate
+    (We'll handle idle suspend with sway)
+  Edit /etc/systemd/sleep.conf to change one option:
+    HibernateDelaySec=3h
+[A] Install grimshot with yay -S grimshot
+Install fzf: go install github.com/junegunn/fzf@latest
+Activate the ssh-agent systemd unit:
+  systemctl --user enable --now ssh-agent
+Passwordless sudo:
+  sudo visudo
+  Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
+Configure ssh server not to accept passwords (`PasswordAuthentication no`)
+Raise file descriptor limits by editing /etc/security/limits.conf to have
   *                soft    nofile          50000
   *                hard    nofile          50000
-  ```
-* Install and configure syncthing (see details in home repo).
+Install and configure syncthing (see details in home repo).
 
+
+
+
+Sway TODO:
+
+Figure out weird movement (bad binding?)
+Ideas: https://github.com/Crandel/home/blob/master/.config/sway/config
+Figure out how to make media play/pause shortcut work
+Add swayctrl to install instructions
 
 
 # Waybar
