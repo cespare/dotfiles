@@ -52,6 +52,7 @@
   - chrome://flags > Preferred Ozone platform "Auto" > Relaunch
   - Sign into Google
   - Sign into 1Password
+  - Settings > Appearance > Page zoom 125%
 * Install Go
   - https://go.dev/doc/install and download latest release
   - mkdir $GOROOT_BOOTSTRAP && cd $GOROOT_BOOTSTRAP
