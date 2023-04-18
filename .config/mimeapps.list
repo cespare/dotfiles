@@ -6,3 +6,7 @@ x-scheme-handler/about=google-chrome.desktop
 x-scheme-handler/unknown=google-chrome.desktop
 x-scheme-handler/webcal=google-chrome.desktop
 inode/directory=org.gnome.Nautilus
+x-scheme-handler/mailto=google-chrome.desktop
+
+[Added Associations]
+image/png=org.gimp.GIMP.desktop;
