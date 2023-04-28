@@ -1,0 +1,13 @@
+font=Roboto 14
+edge=top
+output=DP-3
+details-border-size=0
+border-bottom-size=0
+button-border-size=0
+message-padding=5
+button-padding=5
+background=333333
+button-background=666666
+text=ffffff
+button-text=ffffff
+[power]
