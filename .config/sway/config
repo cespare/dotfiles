@@ -167,17 +167,17 @@ bindsym shift+alt+f exec $swayctrl focus -appid org.gnome.Nautilus -launch nauti
 mouse_warping none
 
 exec_always gsettings set org.gnome.desktop.interface {
-  cursor-theme 'DMZ-White'
+  cursor-theme $cursor-theme
   cursor-size $cursor-size
   font-name 'Roboto Regular 12'
   document-font-name 'Roboto Regular 12'
-  monospace-font-name 'Inconsolata Medium 15'
+  monospace-font-name 'Inconsolata Medium 14'
   gtk-theme 'Yaru-blue'
   gtk-color-theme 'Yaru-blue'
   icon-theme 'Yaru-blue'
 }
 
-seat seat0 xcursor_theme DMZ-White $cursor-size
+seat seat0 xcursor_theme $cursor-theme $cursor-size
 
 include ~/.config/sway/config.d/*
 
