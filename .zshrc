@@ -83,7 +83,7 @@ export REPORTTIME=30 # Report CPU stats on operations taking more than 30 second
 export EDITOR=nvim
 export VISUAL=nvim
 
-export GREP_COLOR='1;32'
+export GREP_COLORS='mt=1;32'
 alias grep='grep --color=auto'
 
 ### Completion -----------------------------------------------------------------------------------------------
@@ -159,6 +159,10 @@ alias ...=../..
 alias be='bundle exec'
 alias pb='pbcopy'
 alias gs='g s' # Stupid ghostscript
+
+# This is a hack to make 'sudo <alias>' (typically 'sudo v') work. If the first
+# part of a command is an alias, zsh keeps expanding the next term.
+alias sudo='sudo '
 
 ### Convenience functions ------------------------------------------------------------------------------------
 
