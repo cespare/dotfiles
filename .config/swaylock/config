@@ -1,7 +1,7 @@
 daemonize
 ignore-empty-password
 
-image=~/.local/share/backgrounds/1045118.jpg
+image=~/private/backgrounds/1045118.jpg
 scaling=fill
 
 font=Roboto
