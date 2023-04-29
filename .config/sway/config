@@ -1,3 +1,8 @@
+# Load notebook.conf or desktop.conf.
+include "~/.config/sway/$(sudo dmidecode --string chassis-type | tr A-Z a-z).conf"
+# Load ubuntu.conf or arch.conf.
+include "~/.config/sway/$(cat /etc/os-release | sed -n 's/^ID=\(.*\)$/\1/p').conf"
+
 set {
   # Use the windows key as the main modifier.
   $mod mod4
@@ -11,27 +16,12 @@ set {
 
   $term alacritty
 
-  $display-left DP-2
-  $display-right DP-3
-
   $background ~/private/backgrounds/1045118.jpg
 }
 
-# Machine-specific settings.
-# TODO: Load conditionally.
-output * scale 1
-output $display-left position 0,0
-# output $display-right position 3072,0
-output $display-right position 3840,0
-
 exec $swayctrl daemon
 
-# TODO: Decide whether to check these into git.
 output * bg $background fill
-
-#gaps inner 4
-#gaps outer 2
-default_border pixel 4
 
 # Hack to completely hide titlebar borders.
 # As an aded bonus, tabbed containers have no top border so Chrome tabs extend
@@ -50,11 +40,6 @@ for_window {
   [app_id="Alacritty"] floating disable
   [app_id="Slack"] floating disable
 }
-
-exec swayidle -w \
-  timeout 180 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-  timeout 200 swaylock \
-  before-sleep swaylock
 
 exec mako
 
@@ -103,11 +88,6 @@ bindsym $mod+shift+$up move up
 bindsym $mod+shift+$right move right
 
 # Workspaces
-
-workspace 1 output $display-left
-workspace 2 output $display-right
-workspace 3 output $display-right
-workspace 4 output $display-right
 
 # Switch to workspace
 bindsym $mod+1 workspace number 1
@@ -179,18 +159,10 @@ bindsym shift+alt+4 exec ~/scripts/screenshot
 
 # Application setup
 
-assign [app_id=google-chrome] 2
-bindsym shift+alt+b exec $swayctrl focus -appid google-chrome -launch google-chrome
-
-assign [title="^tmux \| "] 1
+bindsym shift+alt+b exec $swayctrl focus -appid google-chrome -launch $chrome-cmd
 bindsym shift+alt+t exec $swayctrl focus -title '^tmux \| ' -launch $term
-
-assign [title="^nvim$"] 2
 bindsym shift+alt+g exec $swayctrl focus -title '^nvim$'
-
-assign [app_id=Slack] 1
 bindsym shift+alt+s exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
-
 bindsym shift+alt+e exec $swayctrl focus -appid l3afpad -launch l3afpad
 bindsym shift+alt+f exec $swayctrl focus -appid org.gnome.Nautilus -launch nautilus
 
@@ -198,21 +170,18 @@ mouse_warping none
 
 exec_always gsettings set org.gnome.desktop.interface {
   cursor-theme 'DMZ-White'
-  cursor-size 32
+  cursor-size $cursor-size
   font-name 'Roboto Regular 12'
   document-font-name 'Roboto Regular 12'
   monospace-font-name 'Inconsolata Medium 15'
   gtk-theme 'Yaru-blue'
   gtk-color-theme 'Yaru-blue'
   icon-theme 'Yaru-blue'
-  text-scaling-factor 1.25
 }
 
-seat seat0 xcursor_theme DMZ-White 32
+seat seat0 xcursor_theme DMZ-White $cursor-size
 
-bar swaybar_command ./bin/waybar
-
-include /etc/sway/config.d/*
+include ~/.config/sway/config.d/*
 
 # For xdg-desktop-portal-wlr
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
