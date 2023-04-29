@@ -71,6 +71,7 @@ User creation: useradd -m -G adm,log,sys,wheel -s /bin/zsh caleb
 Install many packages
   alacritty
   base-devel
+  brightnessctl
   git
   github-cli
   gnome-tweaks

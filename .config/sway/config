@@ -155,6 +155,10 @@ bindsym alt+grave exec $swayctrl appnext
 # Take a screenshot
 bindsym shift+alt+4 exec ~/scripts/screenshot
 
+# Screen brightness buttons
+bindsym XF86MonBrightnessUp exec brightnessctl -e s 8%+
+bindsym XF86MonBrightnessDown exec brightnessctl -n500 -e s 8%-
+
 # Application setup
 
 bindsym shift+alt+b exec $swayctrl focus -appid google-chrome -launch $chrome-cmd
