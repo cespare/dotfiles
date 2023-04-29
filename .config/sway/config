@@ -14,8 +14,6 @@ set {
   $up k
   $right l
 
-  $term alacritty
-
   $background ~/private/backgrounds/1045118.jpg
 }
 
@@ -160,7 +158,7 @@ bindsym shift+alt+4 exec ~/scripts/screenshot
 # Application setup
 
 bindsym shift+alt+b exec $swayctrl focus -appid google-chrome -launch $chrome-cmd
-bindsym shift+alt+t exec $swayctrl focus -title '^tmux \| ' -launch $term
+bindsym shift+alt+t exec $swayctrl focus -title '^tmux \| ' -launch '$term'
 bindsym shift+alt+g exec $swayctrl focus -title '^nvim$'
 bindsym shift+alt+s exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
 bindsym shift+alt+e exec $swayctrl focus -appid l3afpad -launch l3afpad
