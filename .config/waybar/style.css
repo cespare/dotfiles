@@ -1,7 +1,8 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: Roboto, FontAwesome, Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 14px;
 }
 
 window#waybar {
