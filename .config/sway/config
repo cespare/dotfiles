@@ -59,7 +59,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # Start application launcher
-bindsym $mod+space exec wofi --show drun | xargs swaymsg exec
+bindsym $mod+space exec fuzzel
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -154,6 +154,10 @@ bindsym alt+grave exec $swayctrl appnext
 
 # Take a screenshot
 bindsym shift+alt+4 exec ~/scripts/screenshot
+
+# Open up a suspend/lock/reboot/etc menu.
+bindsym XF86Sleep exec scripts/powermenu
+bindsym $mod+shift+p exec scripts/powermenu
 
 # Screen brightness buttons
 bindsym XF86MonBrightnessUp exec brightnessctl -e s 8%+

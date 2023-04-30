@@ -25,7 +25,6 @@
   - tmux
   - ttf-mscorefonts-installer
   - wl-clipboard
-  - wofi
   - wtype
   - xdg-desktop-portal-wlr
   - zsh
@@ -33,6 +32,7 @@
   - Alacritty: sudo add-apt-repository ppa:aslatter/ppa
   - Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
   - Git: sudo add-apt-repository ppa:git-core/ppa
+* TODO: Install fuzzel (and document)
 
 # Arch initial setup
 
@@ -72,6 +72,7 @@ Install many packages
   alacritty
   base-devel
   brightnessctl
+  fuzzel
   git
   github-cli
   gnome-tweaks
@@ -95,7 +96,6 @@ Install many packages
   ttf-roboto
   waybar
   wl-clipboard
-  wofi
   wtype
   xcursor-vanilla-dmz
   xdg-desktop-portal-wlr
@@ -149,7 +149,8 @@ Launch alacritty terminal (should use zsh)
   Regnerate grub with 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
   Now hibernation should work (can test with 'systemctl hibernate')
   Edit /etc/systemd/logind.conf to add a few non-default opts:
-    HandleSuspendKey=suspend-then-hibernate
+    HandleSuspendKey=ignore
+    HandleSuspendKeyLongPress=ignore
     HandleLidSwitch=suspend-then-hibernate
     HandleLidSwitchExternalPower=suspend-then-hibernate
     (We'll handle idle suspend with sway)

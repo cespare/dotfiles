@@ -1,0 +1,47 @@
+#!/bin/bash
+set -eu -o pipefail
+
+function prompt() {
+  echo -e ' Lock\n Suspend\n Exit Sway\n Reboot\n Power off' |
+    fuzzel \
+      --dmenu \
+      --index \
+      --lines 5 \
+      --width 15
+}
+
+function confirm() {
+  echo -e ' No\n Yes' |
+    fuzzel \
+      --dmenu \
+      --index \
+      --prompt 'Are you sure? ' \
+      --lines 2 \
+      --width 15
+}
+
+function with_prompt() {
+  if [[ "$(confirm)" == 1 ]]; then
+    exec "$@"
+  else
+    exit 0
+  fi
+}
+
+case "$(prompt)" in
+  0)
+    exec swaylock
+    ;;
+  1)
+    with_prompt systemctl suspend-then-hibernate
+    ;;
+  2)
+    with_prompt swaymsg exit
+    ;;
+  3)
+    with_prompt systemctl reboot
+    ;;
+  4)
+    with_prompt systemctl poweroff
+    ;;
+esac
