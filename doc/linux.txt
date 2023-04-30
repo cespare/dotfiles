@@ -101,6 +101,13 @@ Install many packages
   xdg-desktop-portal-wlr
   xorg-xwayland
   Choose droid as ttf-font
+Install yay
+  cd apps && git clone https://aur.archlinux.org/yay.git
+  cd yay && makepkg -si
+Install some yay packages
+  grimshot
+  yaru-gtk-theme
+  yaru-icon-theme
 
 # Common Ubuntu/Arch Sway setup
 
@@ -131,16 +138,12 @@ Install Go
 Install swayctrl
 Start Sway
 Launch alacritty terminal (should use zsh)
-[U] Install Chrome from deb
+Install Chrome ([U] Use deb; [A] yay -S google-chrome)
   chrome://flags > Preferred Ozone platform "Auto" > Relaunch
   Sign into Google
   Sign into 1Password
   Settings > Appearance > Page zoom 125% (desktop only)
   Settings > Appearance > Use system title bar and borders
-[A] Install Chrome (flesh out instructions)
-  cd apps && git clone https://aur.archlinux.org/yay.git
-  cd yay && makepkg -si
-  yay -S google-chrome (at a cleanBuild prompt select "[N]one")
 [A] Set up suspend and hibernation. Suspend should work out of the box but
   hibernation takes some tweaks. But it should still be easy using LVM on LUKS.
   Add "resume" to /etc/mkinitcpio.conf: ...lvm2 filesystems resume fsck
@@ -156,7 +159,6 @@ Launch alacritty terminal (should use zsh)
     (We'll handle idle suspend with sway)
   Edit /etc/systemd/sleep.conf to change one option:
     HibernateDelaySec=3h
-[A] Install grimshot with yay -S grimshot
 Install fzf: go install github.com/junegunn/fzf@latest
 Activate the ssh-agent systemd unit:
   systemctl --user enable --now ssh-agent
@@ -177,7 +179,6 @@ Sway TODO:
 Figure out weird movement (bad binding?)
 Ideas: https://github.com/Crandel/home/blob/master/.config/sway/config
 Figure out how to make media play/pause shortcut work
-Add swayctrl to install instructions
 
 
 # Waybar
