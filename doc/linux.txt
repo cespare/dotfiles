@@ -91,7 +91,7 @@ Install many packages
   swayidle
   swaylock
   tmux
-  ttf-font-awesome
+  otf-font-awesome
   ttf-inconsolata
   ttf-roboto
   waybar
