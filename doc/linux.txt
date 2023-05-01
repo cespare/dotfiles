@@ -32,7 +32,9 @@
   - Alacritty: sudo add-apt-repository ppa:aslatter/ppa
   - Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
   - Git: sudo add-apt-repository ppa:git-core/ppa
-* TODO: Install fuzzel (and document)
+* TODO: Install (and document)
+  fuzzel
+  pamixer
 
 # Arch initial setup
 
@@ -82,6 +84,7 @@ Install many packages
   man-db
   nautilus
   openssh
+  pamixer
   pavucontrol
   polkit
   ripgrep

@@ -167,6 +167,11 @@ bindsym alt+grave exec $swayctrl appnext
 # Take a screenshot
 bindsym shift+alt+4 exec ~/scripts/screenshot
 
+# Volume/mute buttons
+bindsym XF86AudioMute exec pamixer --toggle-mute
+bindsym XF86AudioLowerVolume exec pamixer -d 5
+bindsym XF86AudioRaiseVolume exec pamixer -i 5
+
 # Open up a suspend/lock/reboot/etc menu.
 bindsym XF86Sleep exec scripts/powermenu
 bindsym $mod+shift+p exec scripts/powermenu
