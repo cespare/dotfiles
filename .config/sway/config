@@ -47,6 +47,18 @@ input "type:keyboard" {
   repeat_rate 40
 }
 
+# I don't use the laptop touchscreen.
+input "type:touch" {
+  events disabled
+}
+
+input "type:touchpad" {
+  scroll_method two_finger
+  scroll_factor 1
+  tap enabled
+  tap_button_map lrm
+}
+
 # Key bindings
 
 # Screen lock
