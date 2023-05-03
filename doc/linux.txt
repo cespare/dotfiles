@@ -31,8 +31,6 @@
   - Alacritty: sudo add-apt-repository ppa:aslatter/ppa
   - Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
   - Git: sudo add-apt-repository ppa:git-core/ppa
-* TODO: Install (and document)
-  pamixer
 
 # Arch initial setup
 
@@ -252,6 +250,19 @@ meson \
   ../..
 ninja
 sudo ninja install
+
+# pamixer
+
+Pamixer is not in the Ubuntu 22.04 repos. Build from source:
+
+sudo apt install \
+  libpulse-dev \
+  libcxxopts-dev
+mkdir -p ~/apps/pamixer && cd ~/apps/pamixer
+git clone https://github.com/cdemoulins/pamixer.git .
+meson setup build
+meson compile -C build
+sudo meson install -C build
 
 # GIMP
 
