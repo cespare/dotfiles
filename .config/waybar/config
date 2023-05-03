@@ -68,7 +68,6 @@
   "network": {
     "format-wifi": "",
     "tooltip-format-wifi": "{ifname} • {ipaddr}\nSSID: {essid} ({signalStrength}%)\nGateway: {gwaddr}",
-    // FIXME: hide?
     "format-ethernet": "",
     "tooltip-format-ethernet": "{ifname} • {ipaddr}\ngateway: {gwaddr}",
     "format-linked": "{ifname} (No IP) ",

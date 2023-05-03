@@ -4,7 +4,6 @@
 * Install packages
   - build-essential
   - curl
-  - fonts-font-awesome
   - fonts-inconsolata
   - fonts-roboto
   - gh
@@ -33,7 +32,6 @@
   - Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
   - Git: sudo add-apt-repository ppa:git-core/ppa
 * TODO: Install (and document)
-  fuzzel
   pamixer
 
 # Arch initial setup
@@ -94,7 +92,6 @@ Install many packages
   swayidle
   swaylock
   tmux
-  otf-font-awesome
   ttf-inconsolata
   ttf-roboto
   waybar
@@ -130,6 +127,7 @@ Clone private repo and symlink ~/.ssh/config
   - choose nvim
 [U] Install waybar following directions below
 [U] Fix mako according to directions below
+[U] Install fuzzel according to directions below
 Install Go
   https://go.dev/doc/install and download latest release
   mkdir $GOROOT_BOOTSTRAP && cd $GOROOT_BOOTSTRAP
@@ -213,7 +211,7 @@ sudo apt install \
   meson \
   scdoc \
   upower
-mkdir -p ~/3p/waybar && cd ~/3p/waybar
+mkdir -p ~/apps/waybar && cd ~/apps/waybar
 git clone https://github.com/Alexays/Waybar .
 meson build
 ninja -C build
@@ -226,6 +224,34 @@ https://github.com/emersion/mako/issues/257
 Fix with:
 sudo apt install apparmor-utils
 sudo aa-disable /etc/apparmor.d/fr.emersion.Mako
+
+# Fuzzel
+
+Fuzzel is not in the Ubuntu 22.04 repos. It looks like it will be in 23.04 and
+beyond. For now, build from source:
+
+sudo apt install \
+  libpixman-1-dev \
+  libwayland-dev \
+  libxkbcommon-dev \
+  libcairo2-dev \
+  libpng-dev \
+  librsvg2-dev \
+  meson \
+  ninja-build \
+  scdoc
+mkdir -p ~/apps/fuzzel && cd ~/apps/fuzzel
+git clone https://codeberg.org/dnkl/fuzzel.git .
+mkdir -p bld/release && cd bld/release
+meson \
+  --buildtype=release \
+  -Denable-cairo=enabled \
+  -Dpng-backend=libpng \
+  -Dsvg-backend=librsvg \
+  --prefix=/usr \
+  ../..
+ninja
+sudo ninja install
 
 # GIMP
 
