@@ -138,7 +138,9 @@ Install Go
   git clone https://go.googlesource.com/go go
   cp -r go godev
   cd go/src && git checkout <tag> && ./all.bash
-Install swayctrl
+Install my own tools
+  swayctrl
+  cputemp
 Start Sway
 Launch alacritty terminal (should use zsh)
 Install Chrome ([U] Use deb; [A] yay -S google-chrome)
