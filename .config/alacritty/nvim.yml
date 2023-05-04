@@ -1,8 +1,0 @@
-# A slightly tweaked config for dedicated (neo)vim terminals.
-
-import:
-  - ~/.config/alacritty/alacritty.yml
-
-colors:
-  primary:
-    background: '#131313'

@@ -1,0 +1,3 @@
+import:
+  - ~/.config/alacritty/notebook.yml
+  - ~/.config/alacritty/partial/nvim.yml

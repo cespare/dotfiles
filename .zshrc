@@ -19,6 +19,8 @@ if [[ "$uname" = "Linux" ]]; then
   source_if_exists ~/.zshrc.linux
   alias ls='ls -h -F --color=auto --tabsize=0 --group-directories-first'
   export _zsh_platform=linux
+  # FORM_FACTOR is "desktop" or "notebook".
+  export FORM_FACTOR="$(sudo dmidecode --string chassis-type | tr A-Z a-z)"
 
 elif [[ "$uname" = "Darwin" ]]; then
   # Homebrew

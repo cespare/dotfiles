@@ -1,5 +1,3 @@
 import:
   - ~/.config/alacritty/alacritty.yml
-
-font:
-  size: 11.0
+  - ~/.config/alacritty/partial/smallfont.yml

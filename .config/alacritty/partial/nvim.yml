@@ -1,0 +1,6 @@
+# Tweak the background color for dedicated neovim terminals
+# to make them stand out.
+
+colors:
+  primary:
+    background: '#181818'
