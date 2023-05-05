@@ -1,0 +1,26 @@
+Notes about troubleshooting/debugging issues that I may want to refer to
+in the future.
+
+# Auto display backlight dimming on Dell XPS 13
+
+The screen of this machine dims automatically depending on the content of the
+screen (brighter when the screen is mostly white, for example). This leads to
+incredibly annoying behavior when using white text on dark background (say vim
+in full-screen) where the backlight constantly changes its setting.
+
+Disable this in the BIOS:
+    Video > Dynamic Backlight Control > Disabled
+
+# "Failed to connect to lvmetad" boot error
+
+I randomly got an error on boot like
+
+  WARNING: Failed to connect to lvmetad. Falling back to device scanning.
+  ...
+  ALERT! /some/disk does not exist.
+  ...
+
+It looks like this was caused by a bad BIOS setting. (Not sure how it got
+reset.) The fix is:
+
+  System Configuration > SATA Operation > Change "RAID On" to "AHCI"

@@ -1,52 +1,64 @@
-# Ubuntu initial setup
+System setup notes and installation/compiler settings.
 
-* Install Ubuntu Desktop normally
-* Install packages
-  - build-essential
-  - curl
-  - fonts-inconsolata
-  - fonts-roboto
-  - gh
-  - gnome-tweaks
-  - grimshot
-  - htop
-  - l3afpad
-  - mako-notifier
-  - openssh-server
-  - pavucontrol
-  - python-is-python3
-  - python3-pip
-  - ripgrep
-  - screen
-  - sway
-  - swayidle
-  - swaylock
-  - tmux
-  - ttf-mscorefonts-installer
-  - wl-clipboard
-  - wtype
-  - xdg-desktop-portal-wlr
-  - zsh
-* Install a few packages from PPAs:
-  - Alacritty: sudo add-apt-repository ppa:aslatter/ppa
-  - Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
-  - Git: sudo add-apt-repository ppa:git-core/ppa
+[A]: Arch
+[U]: Ubuntu
+[D]: Desktop
+[LT]: Laptop
 
-# Arch initial setup
+###### Ubuntu initial setup ######
 
-Followed the normal install guide at https://wiki.archlinux.org/title/Installation_guide
+Install Ubuntu Desktop normally
+Install packages
+  build-essential
+  curl
+  fonts-inconsolata
+  fonts-roboto
+  gh
+  gnome-tweaks
+  grimshot
+  htop
+  l3afpad
+  mako-notifier
+  openssh-server
+  pavucontrol
+  playerctl
+  python-is-python3
+  python3-pip
+  ripgrep
+  screen
+  sway
+  swayidle
+  swaylock
+  tmux
+  ttf-mscorefonts-installer
+  wl-clipboard
+  wtype
+  xdg-desktop-portal-wlr
+  zsh
+Install a few packages from PPAs:
+  Alacritty: sudo add-apt-repository ppa:aslatter/ppa
+  Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
+  Git: sudo add-apt-repository ppa:git-core/ppa
+
+##### Arch initial setup #####
+
+Follow the normal install guide at https://wiki.archlinux.org/title/Installation_guide
 For disk setup, use LVM on LUKS: https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS
-  Also followed https://gist.github.com/huntrar/e42aee630bee3295b2c671d098c81268 (slightly outdated)
-  Separate swap, root, home, /data
-  ESP is mounted at /boot
+  Also see https://gist.github.com/huntrar/e42aee630bee3295b2c671d098c81268 (slightly outdated)
+  Disk layout:
+    nvme0n1p1 /boot; ESP mounted here
+    nvme0n1p2 LVM on LUKS (named cryptlvm)
+      swap    same size as ram, for hibernation
+      /       40 GB
+      /home   60 GB
+      /data   remaining space
 Essential packages install:
   pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 neovim iwd
-    TODO
 For fstab, change relatime to noatime
 mkinitcpio.conf required adding "encrypt lvm2"
 Grub
   pacman -S grub
-  (Didn't customize /etc/default/grub)
+  (Didn't customize /etc/default/grub at this point)
   grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
   grub-mkconfig -o /boot/grub/grub.cfg
 Reboot to new system
@@ -62,6 +74,7 @@ Networking with systemd-networkd (see http://www.lukylx.org/installation/essenti
   ln -sf /usr/lib/systemd/resolv.conf /etc/resolv.conf
   systemctl enable --now iwd
   iwctl -> connect
+  (Once sway is running, I use iwgtk instead)
 Install zsh, sudo
 User creation: useradd -m -G adm,log,sys,wheel -s /bin/zsh caleb
   EDITOR=vim visudo and give wheel sudo access
@@ -82,6 +95,7 @@ Install many packages
   openssh
   pamixer
   pavucontrol
+  playerctl
   polkit
   ripgrep
   screen
@@ -107,9 +121,7 @@ Install some yay packages
   yaru-gtk-theme
   yaru-icon-theme
 
-# Common Ubuntu/Arch Sway setup
-
-[U] = Ubuntu, [A] = Arch
+##### Common Ubuntu/Arch Sway setup #####
 
 Copy in SSH keys from backup/previous installation
 Clone dotfiles:
@@ -119,10 +131,11 @@ Clone dotfiles:
   git su
 Clone neovim config:
   git clone git@github.com:cespare/nvim-config.git .config/nvim
+  cd .config/nvim
   git su
-Clone private repo and symlink ~/.ssh/config
+Clone private repo at ~/private
 [U] sudo update-alternatives --config editor
-  - choose nvim
+  choose nvim
 [U] Install waybar following directions below
 [U] Fix mako according to directions below
 [U] Install fuzzel according to directions below
@@ -138,15 +151,27 @@ Install my own tools
   swayctrl
   cputemp
 Start Sway
-Launch alacritty terminal (should use zsh)
+Launch alacritty terminal (it should use tmux, zsh)
 Install Chrome ([U] Use deb; [A] yay -S google-chrome)
   chrome://flags > Preferred Ozone platform "Auto" > Relaunch
   Sign into Google
   Sign into 1Password
-  Settings > Appearance > Page zoom 125% (desktop only)
+  [D] Settings > Appearance > Page zoom 125%
   Settings > Appearance > Use system title bar and borders
-[A] Set up suspend and hibernation. Suspend should work out of the box but
-  hibernation takes some tweaks. But it should still be easy using LVM on LUKS.
+Install fzf: go install github.com/junegunn/fzf@latest
+Activate the ssh-agent systemd unit:
+  systemctl --user enable --now ssh-agent
+Passwordless sudo:
+  sudo visudo
+  Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
+Configure ssh server not to accept passwords (`PasswordAuthentication no`)
+Raise file descriptor limits by editing /etc/security/limits.conf to have
+  *                soft    nofile          50000
+  *                hard    nofile          50000
+Install and configure syncthing (see details in home repo).
+[A, LT] Set up suspend and hibernation.
+  Suspend should work out of the box but hibernation takes some tweaks.
+  Using LVM on LUKS makes it pretty easy.
   Add "resume" to /etc/mkinitcpio.conf: ...lvm2 filesystems resume fsck
   Regenerate initramfs with 'sudo mkinitcpio -p linux'
   Edit /etc/default/grub to append to GRUB_CMDLINE_LINUX_DEFAULT "resume=UUID=<uuid of swap partition>"
@@ -160,27 +185,15 @@ Install Chrome ([U] Use deb; [A] yay -S google-chrome)
     (We'll handle idle suspend with sway)
   Edit /etc/systemd/sleep.conf to change one option:
     HibernateDelaySec=3h
-Install fzf: go install github.com/junegunn/fzf@latest
-Activate the ssh-agent systemd unit:
-  systemctl --user enable --now ssh-agent
-Passwordless sudo:
-  sudo visudo
-  Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
-Configure ssh server not to accept passwords (`PasswordAuthentication no`)
-Raise file descriptor limits by editing /etc/security/limits.conf to have
-  *                soft    nofile          50000
-  *                hard    nofile          50000
-Install and configure syncthing (see details in home repo).
+[A, LT] At 4k, TTY text is extremely small. Run grub at a lower resolution:
+  Edit /etc/default/grub and change the GRUB_GFXMODE line to
+    GRUB_GFXMODE=1920x1440,auto
+  (Or whatever an appropriate resolution is. Use grub's 'videoinfo' command to
+  see the supported options.)
+  Regenerate grub with 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
+  The Linux framebuffer resolution/font seems to be reasonable by default.
 
-
-
-
-Sway TODO:
-
-Figure out weird movement (bad binding?)
-Ideas: https://github.com/Crandel/home/blob/master/.config/sway/config
-Figure out how to make media play/pause shortcut work
-
+##### Install instructions #####
 
 # Waybar
 
@@ -281,4 +294,13 @@ cp /usr/share/applications/slack.desktop ~/.local/share/applications/
 Edit ~/.local/share/applications/slack.desktop to add flags:
 --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer
 
-In preferences > Accessibility, set Zoom to 125%.
+[D] In preferences > Accessibility, set Zoom to 125%.
+
+# Mount GCS bucket
+
+Install gcsfuse (https://github.com/GoogleCloudPlatform/gcsfuse) and
+authenticate.
+
+Add fstab entry:
+
+    home.ctrl-c.us  /mnt/gcs gcsfuse rw,noauto,user

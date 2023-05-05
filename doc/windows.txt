@@ -1,0 +1,11 @@
+Windows setup notes. (These are for Windows 10 and are probably out of date.)
+
+Unpin everything from the task bar and start bar
+  right click -> unpin works on most things
+Install Chrome; set as default browser
+Install Powertoys: https://learn.microsoft.com/en-us/windows/powertoys/
+  Swap caps/escape
+Fix key repeat rate:
+  open control panel > keyboard
+  repeat delay all the way to "short"
+  repeat rate all the way to "fast"
