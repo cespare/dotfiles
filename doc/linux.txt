@@ -304,3 +304,52 @@ authenticate.
 Add fstab entry:
 
     home.ctrl-c.us  /mnt/gcs gcsfuse rw,noauto,user
+
+# PostgreSQL
+
+Ubuntu:
+
+Use these directions to install a particular Postgres version: https://www.postgresql.org/download/linux/ubuntu/
+Make my own user be a Postgres superuser. Run this from /:
+
+  sudo -u postgres createuser -s caleb
+
+Edit /etc/postgresql/15/main/pg_hba.conf as root. Change the lines at the bottom
+to have METHOD "trust".
+
+Edit /etc/postgresql/15/main/postgresql.conf to have fsync=off.
+
+Apply settings with 'sudo systemctl restart postgresql'.
+
+Arch:
+
+(Directions adapted from https://wiki.archlinux.org/title/PostgreSQL.)
+
+Install: sudo pacman -S postgresql
+
+Create the data dir:
+
+  mkdir -p /data/postgres/data
+  chown -R postgres:postgres /data/postgres
+
+As the postgres user, initialize the data dir:
+
+  sudo -iu postgres
+  initdb -D /data/postgres
+  sudo systemctl enable --now postgresql.service      NOTE: this will fail
+  sudo systemctl edit postgresql.service --drop-in pgroot.conf
+
+Add these contents:
+
+  [Service]
+  Environment=PGROOT=/data/postgres
+  PIDFile=/data/postgres/data/postmaster.pid
+
+Then 'sudo systemctl restart postgresql' should work.
+
+Edit /data/postgresql/data/postgresql.conf and set fsync=off. Reload the service.
+(The default pg_hba.conf settings should be fine.)
+
+Make my own user be a postgres superuser (run from /):
+
+  sudo -u postgres createuser -s caleb
