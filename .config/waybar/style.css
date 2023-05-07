@@ -44,7 +44,7 @@ button:hover {
 #network,
 #battery,
 #tray,
-#clock {
+#custom-clock {
   padding: 0 4px;
   margin: 4px;
 }

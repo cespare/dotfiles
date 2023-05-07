@@ -17,8 +17,7 @@
     "network",
     "battery",
     "tray",
-    "clock",
-    "clock#utc",
+    "custom/clock",
   ],
 
   "output": ["DP-3", "eDP-1"],
@@ -87,14 +86,9 @@
   "tray": {
     "spacing": 10,
   },
-  "clock": {
-    "timezone": "",
-    "format": "{:%b %e %H:%M %Z}",
-    "tooltip": false,
-  },
-  "clock#utc": {
-    "timezone": "UTC",
-    "format": "{:%b %e %H:%M %Z}",
+  "custom/clock": {
+    "exec": "~/bin/barclock",
+    "format": "{}",
     "tooltip": false,
   },
 }
