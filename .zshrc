@@ -173,12 +173,11 @@ function mcd() {
   mkdir -p "$1" && cd "$1"
 }
 
-# Make screen sessions named for the program and resume to them easily with 's' and 'sr'
-function s() {
-  screen -S "$1" "$1"
+# Run a command through a pager (if the output is long).
+# Useful for 'go doc' and 'go help', especially.
+function p() {
+  "$@" | less --quit-if-one-screen
 }
-# TODO: completion
-alias sr='screen -r'
 
 ### Build my prompt ------------------------------------------------------------------------------------------
 
