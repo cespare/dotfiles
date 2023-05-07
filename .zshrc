@@ -103,7 +103,7 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*' group-name ''
 # Case-insensitive matching, partial word and then substring completion last
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # TODO: Colors for completions
 #zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
 # Color for 'kill'
