@@ -181,6 +181,10 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Sleep exec scripts/powermenu
 bindsym $mod+shift+p exec scripts/powermenu
 
+# Bind some of the extra buttons on my Keychron Q6.
+bindsym XF86Tools exec playerctl play-pause
+bindsym XF86Launch7 exec scripts/powermenu
+
 # Screen brightness buttons
 bindsym XF86MonBrightnessUp exec brightnessctl -e s 8%+
 bindsym XF86MonBrightnessDown exec brightnessctl -n500 -e s 8%-
