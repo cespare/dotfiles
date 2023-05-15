@@ -39,7 +39,11 @@ case "$(prompt)" in
     exec swaylock
     ;;
   1)
-    with_prompt systemctl suspend-then-hibernate
+    if [[ "$(sudo dmidecode --string chassis-type | tr A-Z a-z)" == 'desktop' ]]; then
+      with_prompt systemctl suspend
+    else
+      with_prompt systemctl suspend-then-hibernate
+    fi
     ;;
   2)
     with_prompt swaymsg exit
