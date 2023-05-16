@@ -38,8 +38,8 @@ Install packages
   zsh
 Install a few packages from PPAs:
   Alacritty: sudo add-apt-repository ppa:aslatter/ppa
-  Neovim: sudo add-apt-repository ppa:neovim-ppa/stable
   Git: sudo add-apt-repository ppa:git-core/ppa
+Install neovim following directions below.
 
 ##### Arch initial setup #####
 
@@ -228,6 +228,21 @@ git clone https://github.com/Alexays/Waybar .
 meson build
 ninja -C build
 cp ./build/waybar ~/bin
+
+# Neovim
+
+As of May 2023, the neovim "stable" PPA is quite stale. Build the latest stable
+release from source:
+
+sudo apt install ninja-build gettext cmake unzip curl
+cd ~/apps && git clone https://github.com/neovim/neovim && cd neovim
+git checkout stable
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+# Install using dpkg rather than 'sudo make install' to make it easier to remove.
+cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+# Set nvim as the default editor.
+sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 1
+sudo update-alternatives --set editor /usr/bin/nvim
 
 # Mako
 
