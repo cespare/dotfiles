@@ -191,12 +191,13 @@ bindsym XF86MonBrightnessDown exec brightnessctl -n500 -e s 8%-
 
 # Application setup
 
-bindsym shift+alt+space exec $swayctrl focus -appid google-chrome -launch $chrome-cmd
-bindsym shift+alt+t exec $swayctrl focus -title '^tmux \| ' -launch '$term'
-bindsym shift+alt+g exec $swayctrl focus -title '^nvim$'
-bindsym shift+alt+s exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
-bindsym shift+alt+e exec $swayctrl focus -appid l3afpad -launch l3afpad
-bindsym shift+alt+f exec $swayctrl focus -appid org.gnome.Nautilus -launch nautilus
+# These are a bit cryptic; they're optimized to be easy to type.
+bindsym shift+alt+space     exec $swayctrl focus -appid google-chrome -launch $chrome-cmd
+bindsym shift+alt+semicolon exec $swayctrl focus -title '^tmux \| ' -launch '$term'
+bindsym shift+alt+return    exec $swayctrl focus -title '^nvim$'
+bindsym shift+alt+s         exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
+bindsym shift+alt+e         exec $swayctrl focus -appid l3afpad -launch l3afpad
+bindsym shift+alt+f         exec $swayctrl focus -appid org.gnome.Nautilus -launch nautilus
 
 mouse_warping none
 
