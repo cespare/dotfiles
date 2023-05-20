@@ -191,7 +191,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl -n500 -e s 8%-
 
 # Application setup
 
-bindsym shift+alt+b exec $swayctrl focus -appid google-chrome -launch $chrome-cmd
+bindsym shift+alt+space exec $swayctrl focus -appid google-chrome -launch $chrome-cmd
 bindsym shift+alt+t exec $swayctrl focus -title '^tmux \| ' -launch '$term'
 bindsym shift+alt+g exec $swayctrl focus -title '^nvim$'
 bindsym shift+alt+s exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
