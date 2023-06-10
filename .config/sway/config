@@ -181,6 +181,9 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Sleep exec scripts/powermenu
 bindsym $mod+shift+p exec scripts/powermenu
 
+# Open up a screen scaling menu.
+bindsym XF86Launch5 exec scripts/screenmenu
+
 # Bind some of the extra buttons on my Keychron Q6.
 bindsym XF86Tools exec playerctl play-pause
 bindsym XF86Launch7 exec scripts/powermenu

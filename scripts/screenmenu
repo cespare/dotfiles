@@ -1,0 +1,38 @@
+#!/bin/bash
+set -eu -o pipefail
+
+# See powermenu comments for fuzzel notes.
+
+# For running as a sway shortcut.
+export PATH="${HOME}/bin:${PATH}"
+
+function choose_output() {
+  swayctrl swaymsg -t get_outputs |
+    jq -r '.[].name' |
+    fuzzel \
+      --dmenu \
+      --prompt 'Choose display: ' \
+      --lines 3 \
+      --width 15
+}
+
+function choose_scale() {
+  echo -e '1\n2\n3' |
+    fuzzel \
+      --dmenu \
+      --prompt 'Scaling factor: ' \
+      --lines 4 \
+      --width 15
+}
+
+output="$(choose_output)"
+if [[ -z "${output}" ]]; then
+  exit 0
+fi
+
+scale="$(choose_scale)"
+if [[ -z "${scale}" ]]; then
+  exit 0
+fi
+
+swayctrl swaymsg output "${output}" scale "${scale}"
