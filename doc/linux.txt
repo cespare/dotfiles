@@ -312,6 +312,16 @@ Edit ~/.local/share/applications/slack.desktop to add flags:
 
 [D] In preferences > Accessibility, set Zoom to 125%.
 
+# Discord
+
+This is similar to Slack. First, install the app from .deb: https://discord.com/download
+
+cp /usr/share/applications/discord.desktop ~/.local/share/applications/
+Edit ~/.local/share/applications/discord.desktop to add flags:
+--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer
+
+[D] In user settings > Appearance, change Zoom Level to 125%.
+
 # Mount GCS bucket
 
 Install gcsfuse (https://github.com/GoogleCloudPlatform/gcsfuse) and

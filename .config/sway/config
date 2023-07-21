@@ -37,6 +37,7 @@ for_window {
   [app_id="google-chrome"] floating disable
   [app_id="Alacritty"] floating disable
   [app_id="Slack"] floating disable
+  [app_id="discord"] floating disable
 }
 
 exec mako
@@ -199,6 +200,7 @@ bindsym shift+alt+space     exec $swayctrl focus -appid google-chrome -launch $c
 bindsym shift+alt+semicolon exec $swayctrl focus -title '^tmux \| ' -launch '$term'
 bindsym shift+alt+return    exec $swayctrl focus -title '^nvim$'
 bindsym shift+alt+s         exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
+bindsym shift+alt+d         exec $swayctrl focus -appid discord -launch 'gtk-launch discord'
 bindsym shift+alt+e         exec $swayctrl focus -appid l3afpad -launch l3afpad
 bindsym shift+alt+f         exec $swayctrl focus -appid org.gnome.Nautilus -launch nautilus
 
