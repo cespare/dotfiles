@@ -176,7 +176,7 @@ function mcd() {
 # Run a command through a pager (if the output is long).
 # Useful for 'go doc' and 'go help', especially.
 function p() {
-  "$@" | less --quit-if-one-screen
+  "$@" 2>&1 | less --quit-if-one-screen
 }
 
 ### Build my prompt ------------------------------------------------------------------------------------------
