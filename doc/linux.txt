@@ -194,6 +194,18 @@ Install and configure syncthing (see details in home repo).
   Regenerate grub with 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
   The Linux framebuffer resolution/font seems to be reasonable by default.
 
+##### Package manager notes #####
+
+# Arch
+
+Install/update a normal package with 'sudo pacman -S <pkgname>'.
+Install/update an AUR package with 'yay -S <pkgname>'.
+
+Run a system update with, simply, 'yay'.
+
+This internally runs a pacman update ('sudo pacman -Syu') followed by AUR
+updates ('yay -Syu').
+
 ##### Install instructions #####
 
 # Waybar
@@ -304,7 +316,12 @@ Run with: flatpak run org.gimp.GIMP//beta
 
 # Slack
 
-Slack on Wayland needs special treatment. First, install their .deb as normal.
+Slack on Wayland needs special treatment. First, install:
+
+Ubuntu: download the .deb
+Arch: yay -S slack-desktop
+
+Then:
 
 cp /usr/share/applications/slack.desktop ~/.local/share/applications/
 Edit ~/.local/share/applications/slack.desktop to add flags:
@@ -314,7 +331,10 @@ Edit ~/.local/share/applications/slack.desktop to add flags:
 
 # Discord
 
-This is similar to Slack. First, install the app from .deb: https://discord.com/download
+This is similar to Slack.
+
+Ubuntu: install the app from .deb: https://discord.com/download
+Arch: yay -S discord
 
 cp /usr/share/applications/discord.desktop ~/.local/share/applications/
 Edit ~/.local/share/applications/discord.desktop to add flags:
