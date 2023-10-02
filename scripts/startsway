@@ -1,0 +1,5 @@
+#!/bin/bash
+set -eu -o pipefail
+
+export XDG_CURRENT_DESKTOP=sway
+sway "$@"
