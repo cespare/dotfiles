@@ -401,7 +401,7 @@ Create the data dir:
 As the postgres user, initialize the data dir:
 
   sudo -iu postgres
-  initdb -D /data/postgres
+  initdb --locale=C.UTF-8 --encoding=UTF8 -D /data/postgres/data
   sudo systemctl enable --now postgresql.service      NOTE: this will fail
   sudo systemctl edit postgresql.service --drop-in pgroot.conf
 
@@ -413,7 +413,7 @@ Add these contents:
 
 Then 'sudo systemctl restart postgresql' should work.
 
-Edit /data/postgresql/data/postgresql.conf and set fsync=off. Reload the service.
+Edit /data/postgres/data/postgresql.conf and set fsync=off. Reload the service.
 (The default pg_hba.conf settings should be fine.)
 
 Make my own user be a postgres superuser (run from /):
