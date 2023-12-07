@@ -254,24 +254,6 @@ zle -N zle-keymap-select
 
 autoload -U spectrum
 
-# rbenv: https://github.com/rbenv/rbenv
-pushpath ~/.rbenv/bin
-eval "$(rbenv init -)"
-#[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)"
-# The above line is very slow. Hardcode instead.
-[[ $_zsh_platform == "mac" ]] && export CONFIGURE_OPTS="--with-readline-dir=/usr/local/opt/readline"
-
-# pyenv: https://github.com/pyenv/pyenv
-export PYENV_ROOT=$HOME/.pyenv
-pushpath ${PYENV_ROOT}/bin
-eval "$(pyenv init -)"
-
-# nvm: https://github.com/nvm-sh/nvm
-# Commented out by default since this is slow and I usually don't need specific
-# node versions.
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 # vidir: https://github.com/trapd00r/vidir
 pushpath ~/scripts/external/vidir/bin
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
