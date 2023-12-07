@@ -10,4 +10,5 @@ inode/directory=org.gnome.Nautilus
 image/png=org.xfce.ristretto.desktop
 
 [Added Associations]
-image/png=org.xfce.ristretto.desktop;org.gimp.GIMP.desktop;
+image/png=org.gimp.GIMP.desktop;org.xfce.ristretto.desktop;
+application/pdf=google-chrome.desktop;
