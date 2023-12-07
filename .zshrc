@@ -273,6 +273,10 @@ gdoc() {
 }
 export BROWSER="google-chrome"
 
+# Zig
+
+pushpath ~/3p/zig
+
 # Rust
 pushpath ~/.cargo/bin
 

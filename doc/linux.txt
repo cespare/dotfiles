@@ -419,3 +419,13 @@ Edit /data/postgres/data/postgresql.conf and set fsync=off. Reload the service.
 Make my own user be a postgres superuser (run from /):
 
   sudo -u postgres createuser -s caleb
+
+# Zig
+
+Download a tarball from https://ziglang.org/download/.
+
+  mkdir -p ~/3p/zig
+  cd ~/3p/zig
+  tar xf ~/Downloads/path/to/zig.tar.xz --strip-components=1
+
+.zshrc adds ~/3p/zig to $PATH.
