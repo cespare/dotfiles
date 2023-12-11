@@ -1,0 +1,41 @@
+# Ghostty issues to sort out:
+# - Get dynamic cursor types working (without blinking).
+# - Why doesn't -e seem to work at all?
+# - Icon isn't working in some contexts
+
+#window-decoration = false
+gtk-titlebar = false
+
+font-family = Inconsolata
+
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+# Color scheme
+background = 0c0c0c
+foreground = fafafa
+
+# black
+palette = 0=#111111
+palette = 8=#555555
+# red
+palette = 1=#ff5555
+palette = 9=#ff8080
+# green
+palette = 2=#55c055
+palette = 10=#82d082
+# yellow
+palette = 3=#f0f055
+palette = 11=#f6f696
+# blue
+palette = 4=#0087ff
+palette = 12=#78a2d5
+# magenta
+palette = 5=#d75fff
+palette = 13=#e7a0fe
+# cyan
+palette = 6=#40f0f0
+palette = 14=#baffff
+# white
+palette = 7=#dddddd
+palette = 15=#ffffff

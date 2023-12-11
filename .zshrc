@@ -142,6 +142,7 @@ compdef sshrc=ssh
 # Add the usual dirs for my locally installed programs and scripts.
 pushpath ~/bin
 pushpath ~/scripts
+pushpath ~/.local/bin
 
  # Manpages for locally installed programs.
 export MANPATH=~/man/:$MANPATH
