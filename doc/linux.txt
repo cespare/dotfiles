@@ -11,7 +11,6 @@ Install Ubuntu Desktop normally
 Install packages
   build-essential
   curl
-  fonts-inconsolata
   fonts-roboto
   gh
   gnome-tweaks
@@ -104,7 +103,6 @@ Install many packages
   swayidle
   swaylock
   tmux
-  ttf-inconsolata
   ttf-roboto
   waybar
   wl-clipboard
@@ -134,6 +132,7 @@ Clone neovim config:
   cd .config/nvim
   git su
 Clone private repo at ~/private
+Refresh font cache: fc-cache
 [U] sudo update-alternatives --config editor
   choose nvim
 [U] Install waybar following directions below

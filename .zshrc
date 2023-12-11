@@ -61,8 +61,6 @@ setopt EXTENDED_GLOB # Extended glob patterns
 setopt NO_MATCH      # Raise an error if a filename pattern has no matches
 unsetopt CASE_GLOB   # Make globbing case-insensitive
 
-# Color is good
-export CLICOLOR=1
 # Don't override tmux's color
 if [[ -z "$TMUX" ]]; then
   export TERM="xterm-256color"
@@ -72,7 +70,6 @@ fi
 setopt AUTO_PUSHD        # Push each directory onto the stack
 setopt PUSHD_IGNORE_DUPS # Don't push duplicate entries onto the stack
 setopt AUTO_CD           # If a command is invalid but is the name of a directory, cd to it
-
 
 # Misc
 setopt NOTIFY # Immediately report status of background jobs

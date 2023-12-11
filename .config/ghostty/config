@@ -19,16 +19,16 @@ foreground = fafafa
 palette = 0=#111111
 palette = 8=#555555
 # red
-palette = 1=#ff5555
+palette = 1=#ff6666
 palette = 9=#ff8080
 # green
-palette = 2=#55c055
+palette = 2=#66d066
 palette = 10=#82d082
 # yellow
-palette = 3=#f0f055
+palette = 3=#f4f480
 palette = 11=#f6f696
 # blue
-palette = 4=#0087ff
+palette = 4=#6090c6
 palette = 12=#78a2d5
 # magenta
 palette = 5=#d75fff
