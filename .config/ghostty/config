@@ -11,6 +11,10 @@ font-family = Inconsolata
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
 # Color scheme
 background = 0c0c0c
 foreground = fafafa
