@@ -14,6 +14,9 @@ shell-integration-features = no-cursor
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
+# My version of Inconsolata does glyph composition to render `` differently from `.
+# Turn that off.
+font-feature = -ccmp
 
 # Color scheme
 background = 0c0c0c
