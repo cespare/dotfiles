@@ -36,7 +36,7 @@ for_window {
   [title=".*"] floating enable
   [app_id="google-chrome"] floating disable
   [app_id="Alacritty"] floating disable
-  [app_id="com.mitchellh.ghostty"] floating disable
+  [app_id="^com.mitchellh.ghostty$"] floating disable
   [app_id="Slack"] floating disable
   [app_id="discord"] floating disable
 }
