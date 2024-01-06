@@ -419,6 +419,13 @@ Make my own user be a postgres superuser (run from /):
 
   sudo -u postgres createuser -s caleb
 
+Edit the pacman config to ignore the postgresql package when running updates (so
+we won't do random major-version postgres updates which require database format
+changes):
+
+* Eidt `/etc/pacman.conf`
+* Add `IgnorePkg = postgresql`
+
 # Zig
 
 Download a tarball from https://ziglang.org/download/.
