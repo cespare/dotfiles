@@ -164,6 +164,10 @@ alias gs='g s' # Stupid ghostscript
 # part of a command is an alias, zsh keeps expanding the next term.
 alias sudo='sudo '
 
+# Shorthands for some common git things.
+export h=HEAD
+export u='@{upstream}'
+
 ### Convenience functions ------------------------------------------------------------------------------------
 
 # Make a directory and cd to it
