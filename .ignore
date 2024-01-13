@@ -1,6 +1,11 @@
-# Ignore common kinds of logs and text fixtures.
 *.log
 *.edn
 *.json
-# Ignore Go vendor directories.
 vendor/
+*.min.css
+*.min.js
+*.pb.go
+*_pb2.py
+*.twirp.go
+*_twirp.py
+*_easyjson.go
