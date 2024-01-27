@@ -1,0 +1,10 @@
+#!/bin/bash
+set -eu -o pipefail
+
+if makoctl mode | grep dnd >/dev/null; then
+  makoctl mode -r dnd >/dev/null
+  echo "do not disturb: off" >&2
+else
+  makoctl mode -a dnd >/dev/null
+  echo "do not disturb: on" >&2
+fi

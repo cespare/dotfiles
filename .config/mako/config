@@ -12,3 +12,6 @@ padding=12
 border-size=0
 #border-color=#aaaaaadd
 border-radius=8
+
+[mode=dnd]
+invisible=1
