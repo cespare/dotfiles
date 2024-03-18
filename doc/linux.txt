@@ -435,3 +435,21 @@ Download a tarball from https://ziglang.org/download/.
   tar xf ~/Downloads/path/to/zig.tar.xz --strip-components=1
 
 .zshrc adds ~/3p/zig to $PATH.
+
+# Yubikey
+
+OTP is annoying because it spews a bunch of text when you touch it. To prevent
+this, change the Yubikey's mode to FIDO only. First, install ykman.
+
+Ubuntu: sudo apt install ykman
+
+Then:
+
+  ykman config mode FIDO
+
+See https://developers.yubico.com/libu2f-host/Mode_switch_YubiKey.html for more
+information about the modes. (But it's FIDO now, not U2F.)
+
+Newer yubikeys are different. This is probably the command (untested):
+
+  ykman config usb --disable otp
