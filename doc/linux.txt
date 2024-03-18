@@ -442,6 +442,7 @@ OTP is annoying because it spews a bunch of text when you touch it. To prevent
 this, change the Yubikey's mode to FIDO only. First, install ykman.
 
 Ubuntu: sudo apt install ykman
+Arch: sudo pacman -S yubikey-manager
 
 Then:
 
