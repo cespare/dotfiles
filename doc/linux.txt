@@ -446,7 +446,7 @@ Arch: sudo pacman -S yubikey-manager
 
 Then:
 
-  ykman config mode FIDO
+  ykman config mode FIDO+CCID
 
 See https://developers.yubico.com/libu2f-host/Mode_switch_YubiKey.html for more
 information about the modes. (But it's FIDO now, not U2F.)
