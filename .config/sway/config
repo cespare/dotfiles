@@ -21,11 +21,11 @@ exec $swayctrl daemon
 
 output * bg $background fill
 
-# Hack to completely hide titlebar borders.
-# As an aded bonus, tabbed containers have no top border so Chrome tabs extend
-# the top of the output and so clicking/scrolling doesn't require precise mouse
-# movement.
-font pango:monospace 0
+# Hack to mostly hide titlebar borders.
+# See https://github.com/swaywm/sway/pull/7127
+# and https://github.com/swaywm/sway/issues/7409
+# tracking better implementations. Sigh.
+font pango:monospace 0.001
 titlebar_border_thickness 0
 titlebar_padding 0
 
