@@ -423,8 +423,22 @@ Edit the pacman config to ignore the postgresql package when running updates (so
 we won't do random major-version postgres updates which require database format
 changes):
 
-* Eidt `/etc/pacman.conf`
+* Edit `/etc/pacman.conf`
 * Add `IgnorePkg = postgresql`
+
+Note that this means that system updates can sometimes break Postgres (because
+it's not getting updated with its dependencies). When this happens, check the
+current installed version with
+
+  pacman -Q | grep postgres
+
+If the required update is just a minor version change, it's generally safe to
+manually install (overriding the IgnorePkg directive):
+
+  sudo pacman -Sy postgresql postgresql-libs
+
+If it's a major version upgrade, see
+https://wiki.archlinux.org/title/PostgreSQL#Upgrading_PostgreSQL.
 
 # Zig
 
