@@ -1,0 +1,7 @@
+\set COMP_KEYWORD_CASE upper
+
+\set QUIET ON
+\pset null '(null)'
+\pset pager off
+\timing
+\set QUIET OFF
