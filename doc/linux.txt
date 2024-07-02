@@ -16,6 +16,7 @@ Install packages
   gnome-tweaks
   grimshot
   htop
+  btop
   l3afpad
   openssh-server
   pavucontrol
