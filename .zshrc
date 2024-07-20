@@ -264,7 +264,6 @@ export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 alias g='git'
 
 # Go
-export GOPATH=$HOME/p/go
 export GOBIN=$HOME/bin
 cdpath+=($HOME/p/go/src/github.com/cespare)
 pushpath ~/apps/go/bin
