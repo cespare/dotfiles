@@ -469,3 +469,18 @@ information about the modes. (But it's FIDO now, not U2F.)
 Newer yubikeys are different. This is probably the command (untested):
 
   ykman config usb --disable otp
+
+# EAP wifi
+
+This is used for some WeWorks.
+
+Create `/var/lib/iwd/<ssid>.8021x`. Contents:
+
+    [Security]
+    EAP-Method=PEAP
+    EAP-Identity=anonymous
+    EAP-PEAP-Phase2-Method=MSCHAPV2
+    EAP-PEAP-Phase2-Identity=<email>
+    EAP-PEAP-Phase2-Password=<password>
+
+This should get picked up automatically. Then you can connect with iwgtk.
