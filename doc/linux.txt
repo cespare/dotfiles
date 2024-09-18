@@ -192,6 +192,21 @@ Install and configure syncthing (see details in home repo).
   see the supported options.)
   Regenerate grub with 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
   The Linux framebuffer resolution/font seems to be reasonable by default.
+Configure application associations by editing ~/.config/mimeapps.list.
+  (No longer stored in git because it gets edited all the time.)
+  Example:
+    [Default Applications]
+    text/html=google-chrome.desktop
+    x-scheme-handler/http=google-chrome.desktop
+    x-scheme-handler/https=google-chrome.desktop
+    x-scheme-handler/about=google-chrome.desktop
+    x-scheme-handler/unknown=google-chrome.desktop
+    x-scheme-handler/webcal=google-chrome.desktop
+    x-scheme-handler/mailto=google-chrome.desktop
+    inode/directory=org.gnome.Nautilus
+    image/png=org.xfce.ristretto.desktop
+    image/jpeg=org.xfce.ristretto.desktop;
+    application/pdf=google-chrome.desktop;
 
 ##### Package manager notes #####
 
