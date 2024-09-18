@@ -39,6 +39,7 @@
   },
   "custom/title": {
     "exec": "~/bin/swayctrl focustitle",
+    "escape": true,
     "format": "{}",
     "tooltip": true,
     "max-length": 120,
