@@ -247,6 +247,7 @@ release from source:
 
 sudo apt install ninja-build gettext cmake unzip curl
 cd ~/apps && git clone https://github.com/neovim/neovim && cd neovim
+git pull --tags --force   # they bump a 'stable' tag
 git checkout stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 # Install using dpkg rather than 'sudo make install' to make it easier to remove.
