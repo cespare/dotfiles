@@ -9,7 +9,7 @@ gtk-titlebar = false
 font-family = Inconsolata
 
 cursor-style-blink = false
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor,no-title
 
 font-feature = -calt
 font-feature = -liga
