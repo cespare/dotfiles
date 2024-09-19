@@ -467,6 +467,23 @@ Download a tarball from https://ziglang.org/download/.
 
 .zshrc adds ~/3p/zig to $PATH.
 
+# Ghostty
+
+Install zig. You need the exact version ghostty wants (0.13 as of Sep 2024).
+Clone https://github.com/ghostty-org/ghostty.
+
+Install dependencies. Ubuntu:
+
+  sudo apt install libgtk-4-dev libadwaita-1-dev
+
+Arch:
+
+  sudo pacman -S gtk4 libadwaita
+
+Then build and install:
+
+  zig build -p $HOME/.local -Doptimize=ReleaseFast
+
 # Yubikey
 
 OTP is annoying because it spews a bunch of text when you touch it. To prevent
