@@ -71,6 +71,7 @@
 
 [rebase]
   autoSquash = true
+  updateRefs = true
 
 [init]
   defaultBranch = main
