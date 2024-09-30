@@ -16,7 +16,6 @@
   a = add
   f = filename
   sn = status --short --branch --untracked=no
-  co = checkout
   sw = switch
   wc = whatchanged
   l = log
