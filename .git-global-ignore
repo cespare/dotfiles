@@ -10,3 +10,6 @@ dump.rdb
 
 # Clojure stuff
 .nrepl-port
+
+# aider (https://aider.chat)
+.aider*
