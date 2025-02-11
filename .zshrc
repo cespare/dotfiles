@@ -316,4 +316,4 @@ export TWOFA="${HOME}/n/2fa.txt"
 
 ### Load further configs -------------------------------------------------------------------------------------
 
-source_if_exists ~/private/zshrc.work
+#source_if_exists ~/private/zshrc.work
