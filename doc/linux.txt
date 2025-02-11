@@ -9,16 +9,19 @@ System setup notes and installation/compiler settings.
 
 Install Ubuntu Desktop normally
 Install packages
+  btop
   build-essential
   curl
   fonts-roboto
+  fuzzel
   gh
   gnome-tweaks
   grimshot
   htop
-  btop
   l3afpad
+  mako-notifier
   openssh-server
+  pamixer
   pavucontrol
   playerctl
   python-is-python3
@@ -31,12 +34,12 @@ Install packages
   swaylock
   tmux
   ttf-mscorefonts-installer
+  waybar
   wl-clipboard
   wtype
   xdg-desktop-portal-wlr
   zsh
 Install a few packages from PPAs:
-  Alacritty: sudo add-apt-repository ppa:aslatter/ppa
   Git: sudo add-apt-repository ppa:git-core/ppa
 Install neovim following directions below.
 
@@ -80,7 +83,6 @@ User creation: useradd -m -G adm,log,sys,wheel -s /bin/zsh caleb
   EDITOR=vim visudo and give wheel sudo access
   Then I can log in as my user
 Install many packages
-  alacritty
   base-devel
   brightnessctl
   fuzzel
@@ -136,9 +138,7 @@ Clone private repo at ~/private
 Refresh font cache: fc-cache
 [U] sudo update-alternatives --config editor
   choose nvim
-[U] Install waybar following directions below
-[U] Install/fix mako according to directions below
-[U] Install fuzzel according to directions below
+Install ghostty following directions below
 Install Go
   https://go.dev/doc/install and download latest release
   mkdir $GOROOT_BOOTSTRAP && cd $GOROOT_BOOTSTRAP
@@ -147,11 +147,15 @@ Install Go
   git clone https://go.googlesource.com/go go
   cp -r go godev
   cd go/src && git checkout <tag> && ./all.bash
-Install my own tools
+Install my own tools from the utils repo
   swayctrl
   cputemp
+  barclock
+Passwordless sudo:
+  sudo visudo
+  Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
 Start Sway
-Launch alacritty terminal (it should use tmux, zsh)
+Launch ghostty (it should use tmux, zsh)
 Install Chrome ([U] Use deb; [A] yay -S google-chrome)
   chrome://flags > Preferred Ozone platform "Auto" > Relaunch
   Sign into Google
@@ -161,15 +165,12 @@ Install Chrome ([U] Use deb; [A] yay -S google-chrome)
 Install fzf: go install github.com/junegunn/fzf@latest
 Activate the ssh-agent systemd unit:
   systemctl --user enable --now ssh-agent
-Passwordless sudo:
-  sudo visudo
-  Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
 Configure ssh server not to accept passwords (`PasswordAuthentication no`)
 Raise file descriptor limits by editing /etc/security/limits.conf to have
   *                soft    nofile          50000
   *                hard    nofile          50000
 Install and configure syncthing (see details in home repo).
-[A, LT] Set up suspend and hibernation.
+[A+LT] Set up suspend and hibernation.
   Suspend should work out of the box but hibernation takes some tweaks.
   Using LVM on LUKS makes it pretty easy.
   Add "resume" to /etc/mkinitcpio.conf: ...lvm2 filesystems resume fsck
@@ -185,7 +186,7 @@ Install and configure syncthing (see details in home repo).
     (We'll handle idle suspend with sway)
   Edit /etc/systemd/sleep.conf to change one option:
     HibernateDelaySec=3h
-[A, LT] At 4k, TTY text is extremely small. Run grub at a lower resolution:
+[A+LT] At 4k, TTY text is extremely small. Run grub at a lower resolution:
   Edit /etc/default/grub and change the GRUB_GFXMODE line to
     GRUB_GFXMODE=1920x1440,auto
   (Or whatever an appropriate resolution is. Use grub's 'videoinfo' command to
@@ -222,39 +223,6 @@ updates ('yay -Syu').
 
 ##### Install instructions #####
 
-# Waybar
-
-As of March 2023 the version of waybar in the Ubuntu 22.04 repos is old and has
-some bugs that break the clock display. Install from source:
-
-sudo apt install \
-  clang-tidy \
-  gobject-introspection \
-  libdbusmenu-gtk3-dev \
-  libevdev-dev \
-  libfmt-dev \
-  libgirepository1.0-dev \
-  libgtk-3-dev \
-  libgtkmm-3.0-dev \
-  libinput-dev \
-  libjsoncpp-dev \
-  libmpdclient-dev \
-  libnl-3-dev \
-  libnl-genl-3-dev \
-  libpulse-dev \
-  libsigc++-2.0-dev \
-  libspdlog-dev \
-  libwayland-dev \
-  libxkbregistry-dev \
-  meson \
-  scdoc \
-  upower
-mkdir -p ~/apps/waybar && cd ~/apps/waybar
-git clone https://github.com/Alexays/Waybar .
-meson build
-ninja -C build
-cp ./build/waybar ~/bin
-
 # Neovim
 
 As of May 2023, the neovim "stable" PPA is quite stale. Build the latest stable
@@ -266,80 +234,10 @@ git pull --tags --force   # they bump a 'stable' tag
 git checkout stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 # Install using dpkg rather than 'sudo make install' to make it easier to remove.
-cd build && cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+cd build && cpack -G DEB && sudo dpkg -i nvim-linux-x86_64.deb
 # Set nvim as the default editor.
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 1
 sudo update-alternatives --set editor /usr/bin/nvim
-
-# Mako
-
-Ubuntu 22.04 ships with mako 1.6 which has a bug that makes it eventually stop
-working. Build from source to get a more recent version (1.8+):
-
-sudo apt install \
-  jq \
-  libcairo2-dev \
-  libgdk-pixbuf-2.0-dev \
-  libpango1.0-dev \
-  libsystemd-dev \
-  libwayland-dev \
-  meson \
-  scdoc
-gh repo clone emersion/mako ~/apps/mako
-cd ~/apps/mako
-meson build
-ninja -C build
-sudo ninja -C build install
-
-The below was previously necessary with the apt package.
-TODO: next time I do a setup, check whether it's still needed.
-
-On Ubuntu 22.04, there's a permission issue and it doesn't launch by default.
-https://github.com/emersion/mako/issues/257
-Fix with:
-sudo apt install apparmor-utils
-sudo aa-disable /etc/apparmor.d/fr.emersion.Mako
-
-# Fuzzel
-
-Fuzzel is not in the Ubuntu 22.04 repos. It looks like it will be in 23.04 and
-beyond. For now, build from source:
-
-sudo apt install \
-  libpixman-1-dev \
-  libwayland-dev \
-  libxkbcommon-dev \
-  libcairo2-dev \
-  libpng-dev \
-  librsvg2-dev \
-  meson \
-  ninja-build \
-  scdoc
-mkdir -p ~/apps/fuzzel && cd ~/apps/fuzzel
-git clone https://codeberg.org/dnkl/fuzzel.git .
-mkdir -p bld/release && cd bld/release
-meson \
-  --buildtype=release \
-  -Denable-cairo=enabled \
-  -Dpng-backend=libpng \
-  -Dsvg-backend=librsvg \
-  --prefix=/usr \
-  ../..
-ninja
-sudo ninja install
-
-# pamixer
-
-Pamixer is not in the Ubuntu 22.04 repos. Build from source:
-
-sudo apt install \
-  libpulse-dev \
-  libcxxopts-dev
-mkdir -p ~/apps/pamixer && cd ~/apps/pamixer
-git clone https://github.com/cdemoulins/pamixer.git .
-meson setup build
-meson compile -C build
-sudo meson install -C build
 
 # GIMP
 
@@ -469,6 +367,12 @@ Download a tarball from https://ziglang.org/download/.
 
 # Ghostty
 
+Ubuntu: download the latest deb from https://github.com/mkasberg/ghostty-ubuntu
+and install it. TODO: hopefully there's a proper PPA set up next time I need
+this.
+
+## Install Ghostty from source
+
 Install zig. You need the exact version ghostty wants (0.13 as of Sep 2024).
 Clone https://github.com/ghostty-org/ghostty.
 
@@ -485,6 +389,15 @@ Then build and install:
   zig build -p $HOME/.local -Doptimize=ReleaseFast
 
 # Yubikey
+
+For FIDO2 (passkey) operation, a PIN is required. This can be altered using
+Yubico's CLI or GUI tools, but an easier way is to use Chrome:
+
+    chrome://settings/securityKeys
+
+This can be used to change the PIN.
+
+NOTE: It doesn't seem like any of the below is needed in newer Ubuntu.
 
 OTP is annoying because it spews a bunch of text when you touch it. To prevent
 this, change the Yubikey's mode to FIDO only. First, install ykman.
@@ -517,3 +430,139 @@ Create `/var/lib/iwd/<ssid>.8021x`. Contents:
     EAP-PEAP-Phase2-Password=<password>
 
 This should get picked up automatically. Then you can connect with iwgtk.
+
+# FW13 Bios updates
+
+Easy once Ubuntu is installed:
+
+    fwupdmgr refresh
+    fwupdmgr get-updates
+    fwupdmgr update
+
+# Ubuntu TPM / Full Disk Encryption notes
+
+In Ubuntu 24.04+, you can select TPM-based FDE in the installer. But it can be
+hard to coax it to offer that option. On FW13, I had to:
+
+* Not use Ventoy -- copy the ISO to a flash device normally
+* Go into the BIOS and clear TPM
+* Not select "install third-party drivers" during the installer
+
+After the install, run
+
+    snap recovery --show-keys
+
+and print out the recovery key and keep somewhere safe.
+
+------------- BELOW THIS LINE IS PROBABLY OUTDATED/UNNECESSARY -----------------
+
+# Waybar
+
+(No longer needed in Ubuntu 24.04+.)
+
+As of March 2023 the version of waybar in the Ubuntu 22.04 repos is old and has
+some bugs that break the clock display. Install from source:
+
+sudo apt install \
+  clang-tidy \
+  gobject-introspection \
+  libdbusmenu-gtk3-dev \
+  libevdev-dev \
+  libfmt-dev \
+  libgirepository1.0-dev \
+  libgtk-3-dev \
+  libgtkmm-3.0-dev \
+  libinput-dev \
+  libjsoncpp-dev \
+  libmpdclient-dev \
+  libnl-3-dev \
+  libnl-genl-3-dev \
+  libpulse-dev \
+  libsigc++-2.0-dev \
+  libspdlog-dev \
+  libwayland-dev \
+  libxkbregistry-dev \
+  meson \
+  scdoc \
+  upower
+mkdir -p ~/apps/waybar && cd ~/apps/waybar
+git clone https://github.com/Alexays/Waybar .
+meson build
+ninja -C build
+cp ./build/waybar ~/bin
+
+# Mako
+
+(No longer needed in Ubuntu 24.04+.)
+
+Ubuntu 22.04 ships with mako 1.6 which has a bug that makes it eventually stop
+working. Build from source to get a more recent version (1.8+):
+
+sudo apt install \
+  jq \
+  libcairo2-dev \
+  libgdk-pixbuf-2.0-dev \
+  libpango1.0-dev \
+  libsystemd-dev \
+  libwayland-dev \
+  meson \
+  scdoc
+gh repo clone emersion/mako ~/apps/mako
+cd ~/apps/mako
+meson build
+ninja -C build
+sudo ninja -C build install
+
+The below was previously necessary with the apt package.
+TODO: next time I do a setup, check whether it's still needed.
+
+On Ubuntu 22.04, there's a permission issue and it doesn't launch by default.
+https://github.com/emersion/mako/issues/257
+Fix with:
+sudo apt install apparmor-utils
+sudo aa-disable /etc/apparmor.d/fr.emersion.Mako
+
+# Fuzzel
+
+(No longer needed in Ubuntu 24.04+.)
+
+Fuzzel is not in the Ubuntu 22.04 repos. It looks like it will be in 23.04 and
+beyond. For now, build from source:
+
+sudo apt install \
+  libpixman-1-dev \
+  libwayland-dev \
+  libxkbcommon-dev \
+  libcairo2-dev \
+  libpng-dev \
+  librsvg2-dev \
+  meson \
+  ninja-build \
+  scdoc
+mkdir -p ~/apps/fuzzel && cd ~/apps/fuzzel
+git clone https://codeberg.org/dnkl/fuzzel.git .
+mkdir -p bld/release && cd bld/release
+meson \
+  --buildtype=release \
+  -Denable-cairo=enabled \
+  -Dpng-backend=libpng \
+  -Dsvg-backend=librsvg \
+  --prefix=/usr \
+  ../..
+ninja
+sudo ninja install
+
+# pamixer
+
+(No longer needed in Ubuntu 24.04+.)
+
+Pamixer is not in the Ubuntu 22.04 repos. Build from source:
+
+sudo apt install \
+  libpulse-dev \
+  libcxxopts-dev
+mkdir -p ~/apps/pamixer && cd ~/apps/pamixer
+git clone https://github.com/cdemoulins/pamixer.git .
+meson setup build
+meson compile -C build
+sudo meson install -C build

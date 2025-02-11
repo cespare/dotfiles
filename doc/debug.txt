@@ -11,6 +11,14 @@ in full-screen) where the backlight constantly changes its setting.
 Disable this in the BIOS:
     Video > Dynamic Backlight Control > Disabled
 
+# Auto display dimming on Framework 13
+
+I turned this "Automatic Screen Brightness" in Gnome settings.
+
+Seems like I can do this from Sway with gsettings. Or install dconf-editor
+and change the /com/ubuntu/touch/system/auto-brigthness settings. (Not 100% sure
+this is the same thing.)
+
 # "Failed to connect to lvmetad" boot error
 
 I randomly got an error on boot like
