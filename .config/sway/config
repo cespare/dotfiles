@@ -1,7 +1,5 @@
-# Load notebook.conf or desktop.conf.
-include "~/.config/sway/$(sudo dmidecode --string chassis-type | tr A-Z a-z).conf"
-# Load ubuntu.conf or arch.conf.
-include "~/.config/sway/$(cat /etc/os-release | sed -n 's/^ID=\(.*\)$/\1/p').conf"
+# Load per-host config.
+include "~/.config/sway/$(hostname).conf"
 
 set {
   # Use the windows key as the main modifier.
