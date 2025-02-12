@@ -3,6 +3,6 @@ set -eu -o pipefail
 
 swayctrl launch ghostty \
   --config-file="${HOME}/.config/ghostty/nvim.conf" \
-  --config-file="${HOME}/.config/ghostty/${FORM_FACTOR}.conf" \
+  --config-file="${HOME}/.config/ghostty/$(hostname).conf" \
   --title=nvim \
   --command=nvim >/dev/null 2>&1 &
