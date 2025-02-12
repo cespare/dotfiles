@@ -179,6 +179,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Open up a suspend/lock/reboot/etc menu.
 bindsym XF86Sleep exec scripts/powermenu
+# FW13 sends this when you press the framework logo key.
+bindsym XF86AudioMedia exec scripts/powermenu
 bindsym $mod+shift+p exec scripts/powermenu
 
 # Open up a screen scaling menu.

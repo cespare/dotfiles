@@ -9,6 +9,7 @@ System setup notes and installation/compiler settings.
 
 Install Ubuntu Desktop normally
 Install packages
+  brightnessctl
   btop
   build-essential
   curl
@@ -154,6 +155,8 @@ Install my own tools from the utils repo
 Passwordless sudo:
   sudo visudo
   Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
+[LT] Let brightnessctl work without root by adding myself to the video group
+  sudo usermod -a -G video caleb
 Start Sway
 Launch ghostty (it should use tmux, zsh)
 Install Chrome ([U] Use deb; [A] yay -S google-chrome)

@@ -1,7 +1,6 @@
 # Ghostty issues to sort out:
 # - Get dynamic cursor types working (without blinking).
 # - Why doesn't -e seem to work at all?
-# - Icon isn't working in some contexts
 
 #window-decoration = false
 gtk-titlebar = false
