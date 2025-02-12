@@ -1,8 +1,9 @@
 # Ghostty issues to sort out:
 # - Get dynamic cursor types working (without blinking).
-# - Why doesn't -e seem to work at all?
+# - quit-after-last-window-closed=true (which is set automatically by -e)
+#   doesn't seem to work. If I close the terminal, the old ghostty process
+#   lingers.
 
-#window-decoration = false
 gtk-titlebar = false
 
 font-family = Inconsolata
@@ -18,3 +19,5 @@ font-feature = -dlig
 font-feature = -ccmp
 
 theme = cespare
+
+mouse-hide-while-typing = true
