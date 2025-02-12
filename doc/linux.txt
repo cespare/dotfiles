@@ -168,6 +168,7 @@ Install Chrome ([U] Use deb; [A] yay -S google-chrome)
 Install fzf: go install github.com/junegunn/fzf@latest
 Activate the ssh-agent systemd unit:
   systemctl --user enable --now ssh-agent
+[U+LT] Follow directions below to switch from NetworkManager to systemd-networkd.
 Configure ssh server not to accept passwords (`PasswordAuthentication no`)
 Raise file descriptor limits by editing /etc/security/limits.conf to have
   *                soft    nofile          50000
@@ -456,6 +457,37 @@ After the install, run
     snap recovery --show-keys
 
 and print out the recovery key and keep somewhere safe.
+
+# Switching Ubuntu from NetworkManager to systemd-networkd
+
+  sudo apt install iwd
+  sudo systemctl disable --now NetworkManager
+  sudo systemctl mask NetworkManager
+  sudo systemctl enable --now systemd-networkd
+  sudo systemctl enable --now iwd
+
+Create .network file for wifi at /etc/systemd/network/25-wireless.network:
+
+    [Match]
+    Name=w*
+    [Network]
+    DHCP=yes
+    IgnoreCarrierLoss=3s
+
+Now the networking should work, or if it doesn't use iwctl to connect.
+
+Next, install iwgtk. No package, so do this from source.
+
+    cd ~/3p && gh repo clone J-Lentz/iwgtk
+    cd iwgtk
+    # check out latest release tag
+    sudo apt install libgtk-4-dev libqrencode-dev adwaita-icon-theme meson scdoc
+    meson setup build
+    cd build
+    meson compile
+    sudo meson install
+
+Now clicking on the network icon in waybar should work.
 
 ------------- BELOW THIS LINE IS PROBABLY OUTDATED/UNNECESSARY -----------------
 
