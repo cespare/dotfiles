@@ -265,7 +265,6 @@ alias g='git'
 export GOBIN=$HOME/bin
 cdpath+=($HOME/p/go/src/github.com/cespare)
 pushpath ~/apps/go/bin
-pushpath ~/p/go/bin
 export GOROOT_BOOTSTRAP=~/apps/gobootstrap
 gdoc() {
   ~/apps/godev/bin/go doc "$@"
@@ -279,25 +278,8 @@ pushpath ~/3p/zig
 # Rust
 pushpath ~/.cargo/bin
 
-# Octave
-alias oct='octave -q'
-
-#if [[ $_zsh_platform == "linux" ]]; then
-  ## Start up keychain
-  #keychain id_rsa
-  #source ~/.keychain/$HOST-sh
-#fi
-
-# qs: https://github.com/cespare/qs
-pushpath ~/scripts/external/qs
-
-# Ansible
-alias a='ansible'
-alias ap='ansible-playbook'
-
 # ripgrep
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep.conf
-alias rgt="rg -g '!*_test.go'"
 
 # fzf
 fzf_repo=~/3p/fzf
@@ -311,6 +293,9 @@ export ESCDELAY=10
 
 # 2fa
 export TWOFA="${HOME}/n/2fa.txt"
+
+# Jujutsu
+source <(COMPLETE=zsh jj)
 
 ### Load further configs -------------------------------------------------------------------------------------
 
