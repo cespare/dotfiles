@@ -2,7 +2,7 @@ if ! status --is-interactive
   return
 end
 
-fish_config theme choose 'Solarized Dark'
+fish_config theme choose cespare
 
 # Turn off greeting.
 set fish_greeting
