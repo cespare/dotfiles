@@ -5,4 +5,5 @@ swayctrl launch ghostty \
   --config-file="${HOME}/.config/ghostty/nvim.conf" \
   --config-file="${HOME}/.config/ghostty/$(hostname).conf" \
   --title=nvim \
+  --class=ghostty.nvim \
   --command=nvim >/dev/null 2>&1 &

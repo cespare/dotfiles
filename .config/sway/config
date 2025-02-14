@@ -35,8 +35,7 @@ titlebar_padding 0
 for_window {
   [title=".*"] floating enable
   [app_id="google-chrome"] floating disable
-  [app_id="Alacritty"] floating disable
-  [app_id="^com.mitchellh.ghostty$"] floating disable
+  [app_id="ghostty"] floating disable
   [app_id="Slack"] floating disable
   [app_id="discord"] floating disable
 }
@@ -200,8 +199,11 @@ bindsym XF86MonBrightnessDown exec brightnessctl -n500 -e s 8%-
 
 # These are a bit cryptic; they're optimized to be easy to type.
 bindsym shift+alt+space     exec $swayctrl focus -appid google-chrome -launch $chrome-cmd
-bindsym shift+alt+semicolon exec $swayctrl focus -title '^tmux \| ' -launch '$term'
-bindsym shift+alt+return    exec $swayctrl focus -title '^nvim$'
+# These app IDs are chosen so that waybar selects the ghostty/nvim icon via
+# whatever fuzzy matching it uses on application ID. Also see the gv script
+# that launches the dedicated nvim terminal.
+bindsym shift+alt+semicolon exec $swayctrl focus -appid main.ghostty -launch '$term --class=main.ghostty'
+bindsym shift+alt+return    exec $swayctrl focus -appid ghostty.nvim
 bindsym shift+alt+s         exec $swayctrl focus -appid Slack -launch 'gtk-launch slack'
 bindsym shift+alt+d         exec $swayctrl focus -appid discord -launch 'gtk-launch discord'
 bindsym shift+alt+e         exec $swayctrl focus -appid l3afpad -launch l3afpad
