@@ -13,6 +13,8 @@ fish_vi_key_bindings
 set fish_cursor_default block
 set fish_cursor_insert line
 
+bind -M insert \v forward-char # make ctrl+k accept auto-completes
+
 # TODO: consider adding a hook that prints the duration of long-running
 # commands. See https://github.com/fish-shell/fish-shell/issues/1279
 # (and especially https://github.com/fish-shell/fish-shell/issues/1279#issuecomment-1203233446).
