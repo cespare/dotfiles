@@ -14,7 +14,7 @@ set {
 
   $background ~/private/backgrounds/1045118.jpg
 
-  $term $term-cmd --config-file="${HOME}/.config/ghostty/$(hostname).conf" -e tmux -f "${HOME}/.tmux.linux.conf"
+  $term $term-cmd --config-file="${HOME}/.config/ghostty/$(hostname).conf"
 }
 
 exec $swayctrl daemon

@@ -5,6 +5,7 @@
 #   lingers.
 
 gtk-titlebar = false
+command = fish
 
 font-family = Inconsolata
 
