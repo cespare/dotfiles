@@ -13,3 +13,6 @@ dump.rdb
 
 # aider (https://aider.chat)
 .aider*
+
+# jj (Jujutsu)
+.jj/
