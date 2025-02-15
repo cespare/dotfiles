@@ -9,7 +9,7 @@ function fish_prompt
     set -lx fish_prompt_pwd_dir_length 0
 
     # Color the prompt differently when we're root.
-    set -l suffix '❯'
+    set -l suffix '▶'
     if fish_is_root_user
         if set -q fish_color_cwd_root
             set cwd_color (set_color $fish_color_cwd_root)
