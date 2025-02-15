@@ -35,7 +35,6 @@ Install packages
   swaylock
   tmux
   ttf-mscorefonts-installer
-  waybar
   wl-clipboard
   wtype
   xdg-desktop-portal-wlr
@@ -157,6 +156,7 @@ Passwordless sudo:
   Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
 [LT] Let brightnessctl work without root by adding myself to the video group
   sudo usermod -a -G video caleb
+Install waybar via directions below
 Start Sway
 Launch ghostty (it should use tmux, zsh)
 Install Chrome ([U] Use deb; [A] yay -S google-chrome)
@@ -491,14 +491,12 @@ Next, install iwgtk. No package, so do this from source.
 
 Now clicking on the network icon in waybar should work.
 
-------------- BELOW THIS LINE IS PROBABLY OUTDATED/UNNECESSARY -----------------
-
 # Waybar
 
-(No longer needed in Ubuntu 24.04+.)
-
-As of March 2023 the version of waybar in the Ubuntu 22.04 repos is old and has
-some bugs that break the clock display. Install from source:
+The version of waybar in Ubuntu 24.04 (0.9.24) reports buggy CPU usage numbers.
+Build from source instead. Be careful about picking the latest release -- this
+project has lots of bugs. As of Feb 2025 the latest release (0.11.0) breaks the
+application tray. The previous release (0.10.4) seems to work OK.
 
 sudo apt install \
   clang-tidy \
@@ -509,6 +507,7 @@ sudo apt install \
   libgirepository1.0-dev \
   libgtk-3-dev \
   libgtkmm-3.0-dev \
+  libiniparser-dev \
   libinput-dev \
   libjsoncpp-dev \
   libmpdclient-dev \
@@ -527,6 +526,8 @@ git clone https://github.com/Alexays/Waybar .
 meson build
 ninja -C build
 cp ./build/waybar ~/bin
+
+------------- BELOW THIS LINE IS PROBABLY OUTDATED/UNNECESSARY -----------------
 
 # Mako
 
