@@ -272,9 +272,11 @@ Edit ~/.local/share/applications/slack.desktop to add flags:
 This is similar to Slack.
 
 Ubuntu: install the app from .deb: https://discord.com/download
+        or from snap: sudo snap install discord
 Arch: yay -S discord
 
 cp /usr/share/applications/discord.desktop ~/.local/share/applications/
+(or from /var/lib/snapd/desktop/applications/discord_discord.desktop)
 Edit ~/.local/share/applications/discord.desktop to add flags:
 --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer
 
