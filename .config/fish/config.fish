@@ -34,12 +34,17 @@ set -gxp CDPATH ~/src ~/p
 alias l 'ls -l'
 alias ls 'ls -h -F --color=auto --tabsize=0 --group-directories-first'
 alias la 'ls -la'
-alias ... 'cd ../..'
 alias v nvim
 alias suv 'sudo -E nvim'
 alias g git
 # I type this by accident a lot and I never mean ghostscript.
 alias gs 'g s'
+
+# A nice suggestion from the manual.
+function multicd
+    echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+end
+abbr --add dotdot --regex '^\.\.+$' --function multicd
 
 # Shorthands for a few common git things.
 set -gx h HEAD
