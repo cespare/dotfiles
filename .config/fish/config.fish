@@ -29,7 +29,7 @@ set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.sock"
 
 fish_add_path ~/bin ~/scripts ~/.local/bin
 
-set -gxp CDPATH ~/src ~/p
+set -gx CDPATH . ~/src ~/p
 
 alias l 'ls -l'
 alias ls 'ls -h -F --color=auto --tabsize=0 --group-directories-first'
@@ -37,6 +37,7 @@ alias la 'ls -la'
 alias v nvim
 alias suv 'sudo -E nvim'
 alias g git
+abbr jst 'jj st'
 # I type this by accident a lot and I never mean ghostscript.
 alias gs 'g s'
 
