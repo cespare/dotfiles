@@ -1,5 +1,4 @@
 [core]
-  excludesfile = ~/.git-global-ignore
   editor = "nvim -c '1 | startinsert!'"
 
 [user]
@@ -8,6 +7,13 @@
 
 [diff]
   tool = vimdiff
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
+[column]
+	ui = auto
 
 [alias]
   stat = status
@@ -22,7 +28,6 @@
   b = branch
   sub = submodule
   pom = push origin master
-  pu = push -u origin HEAD
   t = tag
   root = rev-parse --show-toplevel
   su = !"cd `git root` && git sub update --init --recursive && cd -"
@@ -56,13 +61,24 @@
   sync = codereview sync
 
 [branch]
-  autosetuprebase = always
+  autoSetupRebase = always
+  sort = committerdate
+
+[tag]
+  sort = version:refname
+
+[commit]
+  verbose = true
 
 [merge]
-  conflictstyle = zdiff3
+  conflictStyle = zdiff3
+
+[fetch]
+  prune = true
+  pruneTags = true
 
 [push]
-  default = simple
+  autoSetupRemote = true
   followTags = true
 
 [pull]
