@@ -37,6 +37,7 @@ alias la 'ls -la'
 alias v nvim
 alias suv 'sudo -E nvim'
 alias g git
+alias j jj
 abbr jst 'jj st'
 # I type this by accident a lot and I never mean ghostscript.
 alias gs 'g s'
