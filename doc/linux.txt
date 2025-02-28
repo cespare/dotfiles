@@ -38,9 +38,9 @@ Install packages
   wl-clipboard
   wtype
   xdg-desktop-portal-wlr
-  zsh
 Install a few packages from PPAs:
   Git: sudo add-apt-repository ppa:git-core/ppa
+  Fish: sudo apt-add-repository ppa:fish-shell/release-4
 Install neovim following directions below.
 
 ##### Arch initial setup #####
@@ -78,7 +78,7 @@ Networking with systemd-networkd (see http://www.lukylx.org/installation/essenti
   systemctl enable --now iwd
   iwctl -> connect
   (Once sway is running, I use iwgtk instead)
-Install zsh, sudo
+Install zsh, sudo         # TODO: update to fish
 User creation: useradd -m -G adm,log,sys,wheel -s /bin/zsh caleb
   EDITOR=vim visudo and give wheel sudo access
   Then I can log in as my user
@@ -158,7 +158,7 @@ Passwordless sudo:
   sudo usermod -a -G video caleb
 Install waybar via directions below
 Start Sway
-Launch ghostty (it should use tmux, zsh)
+Launch ghostty
 Install Chrome ([U] Use deb; [A] yay -S google-chrome)
   chrome://flags > Preferred Ozone platform "Auto" > Relaunch
   Sign into Google
@@ -369,7 +369,7 @@ Download a tarball from https://ziglang.org/download/.
   cd ~/3p/zig
   tar xf ~/Downloads/path/to/zig.tar.xz --strip-components=1
 
-.zshrc adds ~/3p/zig to $PATH.
+Fish config adds ~/3p/zig to $PATH.
 
 # Ghostty
 
