@@ -211,6 +211,9 @@ bindsym shift+alt+f         exec $swayctrl focus -appid org.gnome.Nautilus -laun
 
 mouse_warping none
 
+# This theme lives in git (in ~/.icons).
+set $cursor-theme Notwaita-White
+
 exec_always gsettings set org.gnome.desktop.interface {
   cursor-theme $cursor-theme
   cursor-size $cursor-size
