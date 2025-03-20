@@ -1,8 +1,26 @@
 # Ghostty issues to sort out:
-# - Get dynamic cursor types working (without blinking).
-# - quit-after-last-window-closed=true (which is set automatically by -e)
-#   doesn't seem to work. If I close the terminal, the old ghostty process
-#   lingers.
+# - There's a GTK bug where navigating splits does the wrong thing
+#   https://github.com/ghostty-org/ghostty/issues/524
+#   https://github.com/ghostty-org/ghostty/pull/5654
+#   https://github.com/ghostty-org/ghostty/discussions/6637
+#   https://github.com/ghostty-org/ghostty/discussions/6778
+#
+# TODOs to get functionality I used in tmux:
+# - Keyboard-based selection (right now I can only expand/contract the
+#   selection, but not create it).
+#     https://github.com/ghostty-org/ghostty/discussions/3488
+# - Name/rename tabs
+#   Can name a window with echo -en "\033]0;Blah blah\a"
+#     The no-title option helps
+#     But when you open a new split, that takes over
+#     Maybe splits could inherit the title by default?
+#   See also:
+#     https://github.com/ghostty-org/ghostty/issues/1026
+#     https://github.com/ghostty-org/ghostty/issues/2509
+#     https://github.com/ghostty-org/ghostty/discussions/3709
+# - Searching scrollback
+#     https://github.com/ghostty-org/ghostty/issues/189
+#     Keyboard-based would be nice
 
 gtk-titlebar = false
 command = fish
@@ -75,6 +93,8 @@ keybind = ctrl+shift+t=new_tab
 keybind = ctrl+shift+n=new_window
 keybind = ctrl+page_up=previous_tab
 keybind = ctrl+page_down=next_tab
+keybind = ctrl+shift+alt+h=move_tab:-1
+keybind = ctrl+shift+alt+l=move_tab:1
 keybind = ctrl+space>one=goto_tab:1
 keybind = ctrl+space>two=goto_tab:2
 keybind = ctrl+space>three=goto_tab:3

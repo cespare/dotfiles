@@ -379,12 +379,16 @@ this.
 
 ## Install Ghostty from source
 
-Install zig. You need the exact version ghostty wants (0.13 as of Sep 2024).
+Install zig. You need the exact version ghostty wants (0.14 as of March 2025).
 Clone https://github.com/ghostty-org/ghostty.
 
 Install dependencies. Ubuntu:
 
-  sudo apt install libgtk-4-dev libadwaita-1-dev
+  sudo apt install \
+    blueprint-compiler \
+    libadwaita-1-dev \
+    libgtk-4-dev \
+    libxml2-utils
 
 Arch:
 
