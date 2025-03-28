@@ -72,8 +72,8 @@ keybind = shift+left=adjust_selection:left
 keybind = shift+right=adjust_selection:right
 
 # Navigation
-keybind = ctrl+space>p=jump_to_prompt:-1
-keybind = ctrl+space>n=jump_to_prompt:1
+keybind = ctrl+up=jump_to_prompt:-1
+keybind = ctrl+down=jump_to_prompt:1
 keybind = shift+home=scroll_to_top
 keybind = shift+end=scroll_to_bottom
 keybind = shift+page_up=scroll_page_lines:-4
