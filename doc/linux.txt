@@ -236,7 +236,7 @@ sudo apt install ninja-build gettext cmake unzip curl
 cd ~/3p && git clone https://github.com/neovim/neovim && cd neovim
 git pull --tags --force   # they bump a 'stable' tag
 git checkout stable
-make CMAKE_BUILD_TYPE=RelWithDebInfo
+make CMAKE_BUILD_TYPE=RelWithDebInfo    # run 'git clean -fxd' first if needed
 # Install using dpkg rather than 'sudo make install' to make it easier to remove.
 cd build && cpack -G DEB && sudo dpkg -i nvim-linux-x86_64.deb
 # Set nvim as the default editor.
