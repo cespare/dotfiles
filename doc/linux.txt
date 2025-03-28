@@ -115,7 +115,7 @@ Install many packages
   xorg-xwayland
   Choose droid as ttf-font
 Install yay
-  cd apps && git clone https://aur.archlinux.org/yay.git
+  cd 3p && git clone https://aur.archlinux.org/yay.git
   cd yay && makepkg -si
 Install some yay packages
   grimshot
@@ -143,7 +143,7 @@ Install Go
   https://go.dev/doc/install and download latest release
   mkdir $GOROOT_BOOTSTRAP && cd $GOROOT_BOOTSTRAP
   tar -xzf ~/Downloads/go.xyz.tgz && mv go/* ./ && rmdir go
-  cd ~/apps
+  cd ~/3p
   git clone https://go.googlesource.com/go go
   cp -r go godev
   cd go/src && git checkout <tag> && ./all.bash
@@ -233,7 +233,7 @@ As of May 2023, the neovim "stable" PPA is quite stale. Build the latest stable
 release from source:
 
 sudo apt install ninja-build gettext cmake unzip curl
-cd ~/apps && git clone https://github.com/neovim/neovim && cd neovim
+cd ~/3p && git clone https://github.com/neovim/neovim && cd neovim
 git pull --tags --force   # they bump a 'stable' tag
 git checkout stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -525,7 +525,7 @@ sudo apt install \
   meson \
   scdoc \
   upower
-mkdir -p ~/apps/waybar && cd ~/apps/waybar
+mkdir -p ~/3p/waybar && cd ~/3p/waybar
 git clone https://github.com/Alexays/Waybar .
 meson build
 ninja -C build
@@ -549,8 +549,8 @@ sudo apt install \
   libwayland-dev \
   meson \
   scdoc
-gh repo clone emersion/mako ~/apps/mako
-cd ~/apps/mako
+gh repo clone emersion/mako ~/3p/mako
+cd ~/3p/mako
 meson build
 ninja -C build
 sudo ninja -C build install
@@ -581,7 +581,7 @@ sudo apt install \
   meson \
   ninja-build \
   scdoc
-mkdir -p ~/apps/fuzzel && cd ~/apps/fuzzel
+mkdir -p ~/3p/fuzzel && cd ~/3p/fuzzel
 git clone https://codeberg.org/dnkl/fuzzel.git .
 mkdir -p bld/release && cd bld/release
 meson \
@@ -603,7 +603,7 @@ Pamixer is not in the Ubuntu 22.04 repos. Build from source:
 sudo apt install \
   libpulse-dev \
   libcxxopts-dev
-mkdir -p ~/apps/pamixer && cd ~/apps/pamixer
+mkdir -p ~/3p/pamixer && cd ~/3p/pamixer
 git clone https://github.com/cdemoulins/pamixer.git .
 meson setup build
 meson compile -C build

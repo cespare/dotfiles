@@ -54,8 +54,8 @@ set -gx u '@{upstream}'
 
 # Go
 set -gx GOBIN $HOME/bin
-fish_add_path ~/apps/go/bin
-set -gx GOROOT_BOOTSTRAP $HOME/apps/gobootstrap
+fish_add_path ~/3p/go/bin
+set -gx GOROOT_BOOTSTRAP $HOME/3p/gobootstrap
 set -gx BROWSER google-chrome
 
 # Zig
