@@ -5,6 +5,11 @@ System setup notes and installation/compiler settings.
 [D]: Desktop
 [LT]: Laptop
 
+###### Boot notes #######
+
+Framework laptop: F2 - BIOS, F12 - one-time boot menu
+Redwood: F2 - BIOS, F11 - one-time boot menu
+
 ###### Ubuntu initial setup ######
 
 Install Ubuntu Desktop normally
