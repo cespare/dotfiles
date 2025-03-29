@@ -152,6 +152,7 @@ Install Go
   git clone https://go.googlesource.com/go go
   cp -r go godev
   cd go/src && git checkout <tag> && ./all.bash
+Install fzf: go install github.com/junegunn/fzf@latest
 Install my own tools from the utils repo
   swayctrl
   cputemp
@@ -162,6 +163,7 @@ Passwordless sudo:
 [LT] Let brightnessctl work without root by adding myself to the video group
   sudo usermod -a -G video caleb
 Install waybar via directions below
+Install jj via directions below
 Start Sway
 Launch ghostty
 Install Chrome ([U] Use deb; [A] yay -S google-chrome)
@@ -170,7 +172,6 @@ Install Chrome ([U] Use deb; [A] yay -S google-chrome)
   Sign into 1Password
   [D] Settings > Appearance > Page zoom 125%
   Settings > Appearance > Use system title bar and borders
-Install fzf: go install github.com/junegunn/fzf@latest
 Activate the ssh-agent systemd unit:
   systemctl --user enable --now ssh-agent
 [U+LT] Follow directions below to switch from NetworkManager to systemd-networkd.
@@ -402,6 +403,15 @@ Arch:
 Then build and install:
 
   zig build -p $HOME/.local -Doptimize=ReleaseFast
+
+# jj (jujutsu)
+
+Go to the releases page: https://github.com/jj-vcs/jj/releases
+Download the latest release for Linux.
+
+mkdir -p ~/3p/jj && cd ~/3p/jj
+tar xf ~/Downloads/jj-...tar.gz
+cp jj ~/bin/
 
 # Yubikey
 
