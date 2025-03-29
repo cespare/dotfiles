@@ -1,18 +1,16 @@
 #!/bin/bash
 set -eu -o pipefail
 
-# TODO: I'm setting --lines to a value 1 more than needed due to this bug:
-# https://codeberg.org/dnkl/fuzzel/issues/234.
-# In addition, https://codeberg.org/dnkl/fuzzel/issues/144 tracks the feature
-# whereby I could use --minimal-lines rather than specifying a particular number
-# of --lines at all.
+# Note: https://codeberg.org/dnkl/fuzzel/issues/144 tracks the feature whereby I
+# could use --minimal-lines rather than specifying a particular number of
+# --lines at all.
 
 function prompt() {
   echo -e ' Lock\n Suspend\n Exit Sway\n Reboot\n Power off' |
     fuzzel \
       --dmenu \
       --index \
-      --lines 6 \
+      --lines 5 \
       --width 15
 }
 
@@ -22,7 +20,7 @@ function confirm() {
       --dmenu \
       --index \
       --prompt 'Are you sure? ' \
-      --lines 3 \
+      --lines 2 \
       --width 15
 }
 
