@@ -39,6 +39,10 @@ font-feature = -ccmp
 
 theme = cespare
 
+unfocused-split-opacity = 0.94
+unfocused-split-fill = #2277ff
+split-divider-color = #666666
+
 mouse-hide-while-typing = true
 # 1 MB
 # TODO: does this setting work?
