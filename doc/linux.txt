@@ -23,7 +23,6 @@ Install packages
   gh
   gnome-tweaks
   grimshot
-  htop
   l3afpad
   libappindicator3-dev
   mako-notifier
