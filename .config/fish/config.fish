@@ -45,7 +45,7 @@ alias gs 'g s'
 
 # A nice suggestion from the manual.
 function multicd
-    echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+  echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
 end
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
@@ -78,3 +78,9 @@ set -gx TWOFA ~/n/2fa.txt
 
 # Jujutsu
 COMPLETE=fish jj | source
+
+function source_if_exists
+  test -f $argv[1]; and source $argv[1]
+end
+
+source_if_exists ~/private/work.fish
