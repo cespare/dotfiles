@@ -21,6 +21,7 @@ bind -M insert ctrl-k forward-char # make ctrl+k accept auto-completes
 
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+set -gx MANPAGER 'nvim +Man!'
 
 set -gx GREP_COLORS 'mt=1;32'
 
