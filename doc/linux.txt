@@ -25,6 +25,7 @@ Install packages
   grimshot
   htop
   l3afpad
+  libappindicator3-dev
   mako-notifier
   openssh-server
   pamixer
@@ -40,6 +41,7 @@ Install packages
   swaylock
   tmux
   ttf-mscorefonts-installer
+  udiskie
   wl-clipboard
   wtype
   xdg-desktop-portal-wlr

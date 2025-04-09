@@ -41,6 +41,7 @@ for_window {
 }
 
 exec mako
+exec udiskie --smart-tray
 
 input "type:keyboard" {
   xkb_options caps:swapescape
