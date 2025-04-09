@@ -262,14 +262,18 @@ Run with: flatpak run org.gimp.GIMP//beta
 
 # Slack
 
-Slack on Wayland needs special treatment. First, install:
+Ubuntu:
 
-Ubuntu: download the .deb
-Arch: yay -S slack-desktop
+  sudo snap install slack
+  cp /var/lib/snapd/desktop/applications/slack_slack.desktop ~/.local/share/applications/slack.desktop
+
+Arch:
+
+  yay -S slack-desktop
+  cp /usr/share/applications/slack.desktop ~/.local/share/applications/
 
 Then:
 
-cp /usr/share/applications/slack.desktop ~/.local/share/applications/
 Edit ~/.local/share/applications/slack.desktop to add flags:
 --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer
 
@@ -279,13 +283,17 @@ Edit ~/.local/share/applications/slack.desktop to add flags:
 
 This is similar to Slack.
 
-Ubuntu: install the app from .deb: https://discord.com/download
-        or from snap: sudo snap install discord
-Arch: yay -S discord
+Ubuntu:
 
-cp /usr/share/applications/discord.desktop ~/.local/share/applications/
-(or from /var/lib/snapd/desktop/applications/discord_discord.desktop)
-Edit ~/.local/share/applications/discord.desktop to add flags:
+  sudo snap install discord
+  cp /var/lib/snapd/desktop/applications/discord_discord.desktop ~/.local/share/applications/discord.desktop
+
+Arch:
+
+  yay -S discord
+  cp /usr/share/applications/discord.desktop ~/.local/share/applications/
+
+Then edit ~/.local/share/applications/discord.desktop to add flags:
 --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer
 
 [D] In user settings > Appearance, change Zoom Level to 125%.
