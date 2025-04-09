@@ -16,7 +16,3 @@ tabbar tabbox tab:selected {
   background-color: #2d2d2d;
   color: #ffffff;
 }
-
-tabbar tabbox tab label {
-  font-size: 16px;
-}
