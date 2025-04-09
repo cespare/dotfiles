@@ -18,6 +18,7 @@ Install packages
   btop
   build-essential
   curl
+  fd-find
   fonts-roboto
   fuzzel
   gh
