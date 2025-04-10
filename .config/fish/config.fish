@@ -13,6 +13,8 @@ fish_vi_key_bindings
 set fish_cursor_default block
 set fish_cursor_insert line
 
+set fish_autosuggestion_enabled 0
+
 bind -M insert ctrl-k forward-char # make ctrl+k accept auto-completes
 
 # TODO: consider adding a hook that prints the duration of long-running
