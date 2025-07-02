@@ -21,13 +21,9 @@ exec $swayctrl daemon
 
 output * bg $background fill
 
-# Hack to mostly hide titlebar borders.
-# See https://github.com/swaywm/sway/pull/7127
-# and https://github.com/swaywm/sway/issues/7409
-# tracking better implementations. Sigh.
-font pango:monospace 0.001
+font pango:Roboto Regular 12
 titlebar_border_thickness 0
-titlebar_padding 0
+titlebar_padding 2
 
 # TODO: This doesn't seem to have an effect.
 # for_window [title=".*"] urgent deny
