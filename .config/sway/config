@@ -25,6 +25,8 @@ font pango:Roboto Regular 12
 titlebar_border_thickness 0
 titlebar_padding 2
 
+hide_edge_borders --i3 smart
+
 # TODO: This doesn't seem to have an effect.
 # for_window [title=".*"] urgent deny
 
