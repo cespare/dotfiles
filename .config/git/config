@@ -23,7 +23,7 @@
   f = filename
   sn = status --short --branch --untracked=no
   sw = switch
-  wc = whatchanged
+  wc = log --name-status
   l = log
   b = branch
   sub = submodule
