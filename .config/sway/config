@@ -222,6 +222,7 @@ exec_always gsettings set org.gnome.desktop.interface {
   gtk-theme 'Yaru-blue'
   gtk-color-theme 'Yaru-blue'
   icon-theme 'Yaru-blue'
+  enable-animations false
 }
 
 seat seat0 xcursor_theme $cursor-theme $cursor-size
