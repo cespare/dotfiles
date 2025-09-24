@@ -264,39 +264,44 @@ Run with: flatpak run org.gimp.GIMP//beta
 
 Ubuntu:
 
-  sudo snap install slack
-  cp /var/lib/snapd/desktop/applications/slack_slack.desktop ~/.local/share/applications/slack.desktop
+Download and install .deb from the Slack website.
+
+Install a custom launcher at ~/.local/share/applications/slack.desktop:
+
+    [Desktop Entry]
+    Type=Application
+    Name=Slack
+    Exec=slack --ozone-platform=wayland %U
+    Icon=slack
+    Categories=Network;InstantMessaging;
+    StartupWMClass=Slack
+    MimeType=x-scheme-handler/slack;
 
 Arch:
 
   yay -S slack-desktop
-  cp /usr/share/applications/slack.desktop ~/.local/share/applications/
-
-Then:
-
-Edit ~/.local/share/applications/slack.desktop to add flags:
---ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer
-
-[D] In preferences > Accessibility, set Zoom to 125%.
+  ... install slack.desktop...
 
 # Discord
-
-This is similar to Slack.
 
 Ubuntu:
 
   sudo snap install discord
-  cp /var/lib/snapd/desktop/applications/discord_discord.desktop ~/.local/share/applications/discord.desktop
+
+Create ~/.local/share/applications/discord.desktop:
+
+    [Desktop Entry]
+    Type=Application
+    Name=Discord
+    Exec=/snap/bin/discord --ozone-platform=wayland
+    Icon=/snap/discord/current/meta/gui/icon.png
+    Categories=Network;InstantMessaging;
+    StartupWMClass=discord
 
 Arch:
 
   yay -S discord
-  cp /usr/share/applications/discord.desktop ~/.local/share/applications/
-
-Then edit ~/.local/share/applications/discord.desktop to add flags:
---ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer
-
-[D] In user settings > Appearance, change Zoom Level to 125%.
+  ... create discord.desktop...
 
 # Mount GCS bucket
 

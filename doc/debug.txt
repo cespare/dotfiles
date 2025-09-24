@@ -32,3 +32,28 @@ It looks like this was caused by a bad BIOS setting. (Not sure how it got
 reset.) The fix is:
 
   System Configuration > SATA Operation > Change "RAID On" to "AHCI"
+
+# Logitech mouse causes instant wake after suspend when using wireless dongle
+
+Check /proc/acpi/wakeup to find which device it is. (XHC0 in my case.)
+
+You can temporarily toggle enabled/disabled via
+
+    echo XHC0 | sudo tee /proc/acpi/wakeup
+
+Make it permanent via a systemd unit at /etc/systemd/system/disable-mouse-wakeup.service:
+
+    [Unit]
+    Description=Disable mouse wakeup
+
+    [Service]
+    Type=oneshot
+    ExecStart=/bin/sh -c 'echo XHC0 > /proc/acpi/wakeup'
+
+    [Install]
+    WantedBy=multi-user.target
+
+Then
+
+    sudo systemctl daemon-reload
+    sudo systemctl enable --now disable-mouse-wakeup.service
