@@ -271,11 +271,15 @@ Install a custom launcher at ~/.local/share/applications/slack.desktop:
     [Desktop Entry]
     Type=Application
     Name=Slack
-    Exec=slack --ozone-platform=wayland %U
+    Exec=/usr/bin/slack --ozone-platform=wayland %U
     Icon=slack
     Categories=Network;InstantMessaging;
     StartupWMClass=Slack
     MimeType=x-scheme-handler/slack;
+
+Then run
+
+    update-desktop-database ~/.local/share/applications
 
 Arch:
 
