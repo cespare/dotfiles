@@ -1,9 +1,15 @@
 #!/bin/bash
 set -eu -o pipefail
 
+dir='inherit'
+if [[ "$#" -gt 0 ]]; then
+  dir="$(realpath "$1")"
+fi
+
 swayctrl launch ghostty \
   --config-file="${HOME}/.config/ghostty/nvim.conf" \
   --config-file="${HOME}/.config/ghostty/$(hostname).conf" \
+  --working-directory="${dir}" \
   --title=nvim \
   --class=ghostty.nvim \
   --command=nvim >/dev/null 2>&1 &
