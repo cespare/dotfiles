@@ -1,0 +1,18 @@
+[user]
+name = "Caleb Spare"
+email = "cespare@gmail.com"
+
+[ui]
+default-command = "log"
+
+[aliases]
+la = ["log", "-r", "all()"]
+wc = ["log", "--summary"]
+
+[colors]
+# Replace the underlines with background highlight.
+"diff removed token" = { bg = "#331111", underline = false }
+"diff added token" = { bg = "#113311", underline = false }
+
+[templates]
+git_push_bookmark = '"caleb.push-" ++ change_id.short()'
