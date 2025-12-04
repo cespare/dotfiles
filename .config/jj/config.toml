@@ -2,6 +2,12 @@
 name = "Caleb Spare"
 email = "cespare@gmail.com"
 
+[fsmonitor]
+backend = "watchman"
+
+[snapshot]
+# auto-track = "none()"
+
 [ui]
 default-command = "log"
 

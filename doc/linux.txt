@@ -428,9 +428,37 @@ Then build and install:
 Go to the releases page: https://github.com/jj-vcs/jj/releases
 Download the latest release for Linux.
 
-mkdir -p ~/3p/jj && cd ~/3p/jj
-tar xf ~/Downloads/jj-...tar.gz
-cp jj ~/bin/
+  mkdir -p ~/3p/jj && cd ~/3p/jj
+  tar xf ~/Downloads/jj-...tar.gz
+  cp jj ~/bin/
+
+Then install watchman.
+
+# Watchman (for jj)
+
+Official directions (deb) are broken.
+They also suggest using homebrew(!). Not gonna touch that
+Compiling is quite difficult (I couldn't get it to work as of 2025-12-02.)
+
+So, install the pre-compiled binaries. First, download the linux prebuilt
+binaries for the latest release at https://github.com/facebook/watchman/releases.
+Then:
+
+  mkdir -p ~/3p/watchman && cd ~/3p/watchman
+  unzip ~/Downloads/watchman-...
+  cd watchman-...
+  sudo mkdir -p /usr/local/{bin,lib} /usr/local/var/run/watchman
+  sudo cp bin/watchman /usr/local/bin
+  sudo cp lib/* /usr/local/lib
+  sudo chmod 0755 /usr/local/bin/watchman
+  sudo chmod 2777 /usr/local/var/run/watchman
+
+# Rust/cargo
+
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  # Then hit enter to use the default config.
+
+The fish config sets up the directories.
 
 # Yubikey
 
