@@ -302,6 +302,10 @@ Create ~/.local/share/applications/discord.desktop:
     Categories=Network;InstantMessaging;
     StartupWMClass=discord
 
+Fix audio after installation with:
+
+    sudo snap connect discord:audio-record :audio-record
+
 Arch:
 
   yay -S discord
