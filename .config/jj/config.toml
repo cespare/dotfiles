@@ -3,7 +3,7 @@ name = "Caleb Spare"
 email = "cespare@gmail.com"
 
 [fsmonitor]
-backend = "watchman"
+# backend = "watchman"
 
 [snapshot]
 # auto-track = "none()"
