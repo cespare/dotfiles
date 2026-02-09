@@ -102,3 +102,4 @@ keybind = ctrl+space>seven=goto_tab:7
 keybind = ctrl+space>eight=goto_tab:8
 keybind = ctrl+space>nine=goto_tab:9
 keybind = ctrl+space>zero=last_tab
+keybind = shift+enter=text:\x1b\r
