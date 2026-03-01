@@ -16,3 +16,6 @@ dump.rdb
 
 # jj (Jujutsu)
 .jj/
+
+# Claude code
+**/.claude/settings.local.json
