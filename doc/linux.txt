@@ -402,13 +402,22 @@ Fish config adds ~/3p/zig to $PATH.
 
 # Ghostty
 
-Ubuntu: download the latest deb from https://github.com/mkasberg/ghostty-ubuntu
-and install it. TODO: hopefully there's a proper PPA set up next time I need
-this.
+If I want to use a release version, I can download a deb from
+https://github.com/mkasberg/ghostty-ubuntu and install it. Unfortunately,
+ghostty releases are few and far between so I usually want to build from main
+instead.
+
+TODO: hopefully there's a proper PPA set up in the future.
 
 ## Install Ghostty from source
 
-Install zig. You need the exact version ghostty wants (0.14 as of March 2025).
+TODO: Hopefully this becomes a lot easier in the future and can be simplified.
+Check after Ubuntu 26.04.
+
+Install zig. You need the exact version ghostty wants (0.15.2 as of Feb 2026).
+Just download the zig tarball somewhere and unpack it (no need to install more
+than that; just run the binary directly).
+
 Clone https://github.com/ghostty-org/ghostty.
 
 Install dependencies. Ubuntu:
@@ -417,15 +426,70 @@ Install dependencies. Ubuntu:
     blueprint-compiler \
     libadwaita-1-dev \
     libgtk-4-dev \
-    libxml2-utils
+    libgtk-layer-shell-dev \
+    libxml2-utils \
+    pandoc
 
-Arch:
+For Ubuntu 24.04, we need blueprint-compiler that is at least 0.16.0, which is
+newer than the one that installed via apt above. Let's make a new one available
+without doing a system install. Some patching is necessary to make this work.
 
-  sudo pacman -S gtk4 libadwaita
+  cd ~/3p
+  git clone https://gitlab.gnome.org/jwestman/blueprint-compiler.git
+  cd blueprint-compiler
 
-Then build and install:
+  # Check out the v0.16.0 tag.
 
-  zig build -p $HOME/.local -Doptimize=ReleaseFast
+  # Fix version string (meson template var isn't substituted in a raw checkout)
+  # by replacing
+  #
+  #   version = "@VERSION"
+  #
+  # with
+  #
+  #   version = "0.16.0"
+
+  # Replace the shebang line with "#!/usr/bin/python3" so it uses system python
+  # rather than my work python.
+
+  # Symlink the .py file without the extension:
+  ln -s blueprint-compiler.py blueprint-compiler
+
+Compile ghostty:
+
+  cd ~/3p/ghostty
+  export PATH="$HOME/3p/blueprint-compiler:$PATH"
+
+  DESTDIR=/tmp/ghostty-staging path/to/zig build \
+    --prefix /usr \
+    -Doptimize=ReleaseFast \
+    -Dcpu=baseline \
+    -fsys=fontconfig \
+    -fno-sys=gtk4-layer-shell
+
+NOTE: -fsys=fontconfig is required to prevent ghostty from crashing with Claude
+Code. See https://github.com/ghostty-org/ghostty/issues/10432#issuecomment-3901927747.
+
+NOTE: -fno-sys=gtk4-layer-shell builds gtk4-layer-shell from source, since
+libgtk4-layer-shell-dev isn't available on Ubuntu 24.04 (only 24.10+).
+
+Package as a deb (change the version below):
+
+  mkdir -p /tmp/ghostty-staging/DEBIAN
+  cat > /tmp/ghostty-staging/DEBIAN/control << 'EOF'
+  Package: ghostty
+  Version: [CURRENT VERSION]~git
+  Architecture: amd64
+  Maintainer: Caleb Spare <cespare@gmail.com>
+  Depends: libadwaita-1-0, libgtk-4-1
+  Description: Fast, native, feature-rich terminal emulator
+  EOF
+
+  dpkg-deb --build --root-owner-group /tmp/ghostty-staging /tmp/ghostty-1.2.1-git.deb
+
+Install the deb:
+
+  sudo dpkg -i /tmp/ghostty-1.2.1-git.deb
 
 # jj (jujutsu)
 
