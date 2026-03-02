@@ -39,8 +39,8 @@ keybind = clear
 # I'm using a "leader"-based setup (similar to tmux) for many of my keybinds so
 # I can have lots of easy-to-remember bindings without collisions.
 # The leader is ctrl-space.
-# First, set esc as a way to get out of the sequence once I hit ctrl-space once.
-keybind = ctrl+space>escape=ignore
+# First, let any unmapped key bail out of the ctrl+space sequence.
+keybind = ctrl+space>catch_all=ignore
 
 # General
 keybind = ctrl+space>r=reload_config
