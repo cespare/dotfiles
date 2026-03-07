@@ -4,3 +4,6 @@
 [submodule "scripts/external/sshrc"]
 	path = scripts/external/sshrc
 	url = https://github.com/cdown/sshrc
+[submodule "scripts/external/fzf-git.sh"]
+	path = scripts/external/fzf-git.sh
+	url = https://github.com/junegunn/fzf-git.sh.git

@@ -86,3 +86,4 @@ function source_if_exists
 end
 
 source_if_exists ~/private/work.fish
+source_if_exists ~/scripts/external/fzf-git.sh/fzf-git.fish
