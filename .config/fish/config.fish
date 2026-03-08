@@ -81,6 +81,9 @@ set -gx TWOFA ~/n/2fa.txt
 # Jujutsu
 COMPLETE=fish jj | source
 
+# sshrc
+complete -c sshrc -w ssh
+
 function source_if_exists
   test -f $argv[1]; and source $argv[1]
 end
