@@ -53,12 +53,17 @@ keybind = ctrl+zero=reset_font_size
 keybind = ctrl+minus=decrease_font_size:1
 keybind = ctrl+plus=increase_font_size:1
 keybind = ctrl+equal=increase_font_size:1
-keybind = shift+up=adjust_selection:up
-keybind = shift+down=adjust_selection:down
-keybind = shift+left=adjust_selection:left
-keybind = shift+right=adjust_selection:right
+keybind = ctrl+shift+up=adjust_selection:up
+keybind = ctrl+shift+down=adjust_selection:down
+keybind = ctrl+shift+left=adjust_selection:left
+keybind = ctrl+shift+right=adjust_selection:right
 keybind = shift+enter=text:\x1b\r
 keybind = ctrl+space>n=prompt_tab_title
+keybind = ctrl+f=start_search
+
+# Notifications
+notify-on-command-finish = unfocused
+notify-on-command-finish-after = 15s
 
 # Navigation
 keybind = shift+up=jump_to_prompt:-1
