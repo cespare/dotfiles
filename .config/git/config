@@ -16,19 +16,17 @@
 	ui = auto
 
 [alias]
-  stat = status
   s = status --short --branch --ignore-submodules=untracked
   c = commit
   a = add
-  f = filename
   sn = status --short --branch --untracked=no
   sw = switch
   wc = log --name-status
   l = log
   b = branch
   sub = submodule
-  pom = push origin master
   t = tag
+  w = worktree
   root = rev-parse --show-toplevel
   su = !"cd `git root` && git sub update --init --recursive && cd -"
   ff = merge --ff-only
