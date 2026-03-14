@@ -2,9 +2,6 @@
 # - Keyboard-based selection (right now I can only expand/contract the
 #   selection, but not create it).
 #     https://github.com/ghostty-org/ghostty/discussions/3488
-# - Searching scrollback
-#     https://github.com/ghostty-org/ghostty/issues/189
-#     Keyboard-based would be nice
 
 gtk-titlebar = false
 command = fish
@@ -59,7 +56,7 @@ keybind = ctrl+shift+left=adjust_selection:left
 keybind = ctrl+shift+right=adjust_selection:right
 keybind = shift+enter=text:\x1b\r
 keybind = ctrl+space>n=prompt_tab_title
-keybind = ctrl+f=start_search
+keybind = ctrl+shift+f=start_search
 
 # Notifications
 notify-on-command-finish = unfocused
