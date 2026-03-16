@@ -458,9 +458,9 @@ without doing a system install. Some patching is necessary to make this work.
 Compile ghostty:
 
   cd ~/3p/ghostty
-  export PATH="$HOME/3p/blueprint-compiler:$PATH"
+  xport PATH="$HOME/3p/blueprint-compiler:$HOME/3p/zig/zig-x86_64-linux-0.15.2:$PATH"
 
-  DESTDIR=/tmp/ghostty-staging path/to/zig build \
+  DESTDIR=/tmp/ghostty-staging zig build \
     --prefix /usr \
     -Doptimize=ReleaseFast \
     -Dcpu=baseline \
@@ -485,11 +485,15 @@ Package as a deb (change the version below):
   Description: Fast, native, feature-rich terminal emulator
   EOF
 
-  dpkg-deb --build --root-owner-group /tmp/ghostty-staging /tmp/ghostty-1.2.1-git.deb
+  dpkg-deb \
+    --build \
+    --root-owner-group \
+    /tmp/ghostty-staging \
+    /tmp/ghostty-[CURRENT VERSION]-git.deb
 
 Install the deb:
 
-  sudo dpkg -i /tmp/ghostty-1.2.1-git.deb
+  sudo dpkg -i /tmp/ghostty-[CURRENT VERSION]-git.deb
 
 # jj (jujutsu)
 
