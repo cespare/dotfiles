@@ -42,6 +42,17 @@ function fish_prompt
     set -lx __fish_git_prompt_char_upstream_diverged '±'
     set -lx __fish_git_prompt_showcolorhints 1
 
-    echo -s (prompt_login) ' ' $cwd_color (prompt_pwd) $vcs_color (fish_vcs_prompt) $normal ' ' $prompt_status
+    set -l login (prompt_login)
+    set -l cwd (prompt_pwd)
+    set -l vcs (fish_vcs_prompt)
+
+    # Elide VCS info first if the line would exceed terminal width.
+    set -l mode_w (fish_mode_prompt 2>/dev/null | string join '' | string length --visible)
+    set -l line_w (math $mode_w + (string length --visible -- "$login $cwd$vcs"))
+    if test $line_w -gt $COLUMNS; and test -n "$vcs"
+        echo -s $login ' ' $cwd_color $cwd $normal ' ' $prompt_status
+    else
+        echo -s $login ' ' $cwd_color $cwd $vcs_color $vcs $normal ' ' $prompt_status
+    end
     echo -n -s (set_color brgreen) $suffix ' ' $normal
 end

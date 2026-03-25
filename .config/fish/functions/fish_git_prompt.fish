@@ -365,6 +365,13 @@ function fish_git_prompt --description "Prompt function for Git"
     end
 
     set b (string replace refs/heads/ '' -- $b)
+    # Condense upstream: if remote branch matches local, show only "remote/·".
+    if set -q p[2]
+        set -l upstream_parts (string split -m1 '/' -- $p[2])
+        if test (count $upstream_parts) -ge 2; and test "$upstream_parts[2]" = "$b"
+            set p[2] "$upstream_parts[1]/·"
+        end
+    end
     if string match -qr '^\d+$' "$__fish_git_prompt_shorten_branch_len"
         set -q __fish_git_prompt_shorten_branch_char_suffix
         and set -l char -c "$__fish_git_prompt_shorten_branch_char_suffix"
