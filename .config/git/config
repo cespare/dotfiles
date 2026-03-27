@@ -27,6 +27,7 @@
   sub = submodule
   t = tag
   w = worktree
+  p = pull --quiet
   root = rev-parse --show-toplevel
   su = !"cd `git root` && git sub update --init --recursive && cd -"
   ff = merge --ff-only
