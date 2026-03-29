@@ -495,6 +495,30 @@ Install the deb:
 
   sudo dpkg -i /tmp/ghostty-[CURRENT VERSION]-git.deb
 
+# jai (https://jai.scs.stanford.edu/)
+
+On Ubuntu 24.04, need to install a newer GCC (15+).
+
+  sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  sudo apt update
+  sudo apt install g++-15
+
+Install the rest of the deps:
+
+  sudo apt install \
+    autoconf \
+    automake \
+    libacl1-dev \
+    libmount-dev \
+    pandoc \
+    pkg-config
+
+Then follow build from git instructions here:
+https://jai.scs.stanford.edu/install.html#building-from-git
+
+Set up Claude Code with the instructions here:
+https://jai.scs.stanford.edu/recipes.html#claude-code
+
 # jj (jujutsu)
 
 Go to the releases page: https://github.com/jj-vcs/jj/releases
