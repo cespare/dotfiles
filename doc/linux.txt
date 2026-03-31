@@ -516,6 +516,10 @@ Install the rest of the deps:
 Then follow build from git instructions here:
 https://jai.scs.stanford.edu/install.html#building-from-git
 
+When running configure, do
+
+  CXX=g++-15 ./configure
+
 Set up Claude Code with the instructions here:
 https://jai.scs.stanford.edu/recipes.html#claude-code
 
