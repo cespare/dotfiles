@@ -1,0 +1,17 @@
+# This file is the one I check into git, because it has a higher priority than
+# mimeapps.list and random applications don't edit it. However, it's only used
+# if I'm running under Sway, so I'll need to give it a different name if I
+# switch WMs.
+[Default Applications]
+text/html=open-url.desktop
+x-scheme-handler/http=open-url.desktop
+x-scheme-handler/https=open-url.desktop
+x-scheme-handler/about=open-url.desktop
+x-scheme-handler/unknown=open-url.desktop
+x-scheme-handler/mailto=google-chrome.desktop
+image/jpeg=org.xfce.ristretto.desktop
+image/png=org.xfce.ristretto.desktop
+
+[Added Associations]
+image/jpeg=org.xfce.ristretto.desktop;
+image/png=org.xfce.ristretto.desktop;

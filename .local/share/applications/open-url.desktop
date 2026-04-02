@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Open URLs
+GenericName=Web Browser
+Exec=/home/caleb/bin/open-url %U
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;

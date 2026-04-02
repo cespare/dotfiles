@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+
+# This script is associated with web MIME types via sway-mimeapps.list.
+# It opens work-specific URLs using my work Chrome profile.
+
+url="$1"
+
+case "${url}" in
+  *'.liftoff.io'* | *'github.com/liftoffio/'*)
+    exec google-chrome --profile-directory='Profile 2' "${url}"
+    ;;
+  *)
+    # Use the default behavior (most recently-focused window).
+    exec google-chrome "${url}"
+    ;;
+esac
