@@ -30,7 +30,7 @@ set -gx GREP_COLORS 'mt=1;32'
 # Set SSH_AUTH_SOCK for ssh-agent that's running as a systemd unit.
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.sock"
 
-fish_add_path ~/bin ~/scripts ~/.local/bin
+fish_add_path -g ~/bin ~/scripts ~/.local/bin
 
 set -gx CDPATH . ~/src ~/p
 
@@ -57,14 +57,14 @@ set -gx u '@{upstream}'
 
 # Go
 set -gx GOBIN $HOME/bin
-fish_add_path ~/3p/go/bin
+fish_add_path -g ~/3p/go/bin
 set -gx GOROOT_BOOTSTRAP $HOME/3p/gobootstrap
 
 # Zig
-fish_add_path ~/3p/zig
+fish_add_path -g ~/3p/zig
 
 # Rust
-fish_add_path ~/.cargo/bin
+fish_add_path -g ~/.cargo/bin
 
 # Ripgrep.
 set -gx RIPGREP_CONFIG_PATH ~/.config/ripgrep.conf
