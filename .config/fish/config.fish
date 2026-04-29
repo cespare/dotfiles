@@ -83,6 +83,10 @@ COMPLETE=fish jj | source
 # sshrc
 complete -c sshrc -w ssh
 
+# Bun
+set -gx BUN_INSTALL ~/.bun
+fish_add_path -g "$BUN_INSTALL/bin"
+
 function source_if_exists
   test -f $argv[1]; and source $argv[1]
 end
