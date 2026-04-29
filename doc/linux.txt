@@ -10,6 +10,60 @@ System setup notes and installation/compiler settings.
 Framework laptop: F2 - BIOS, F12 - one-time boot menu
 Redwood: F2 - BIOS, F11 - one-time boot menu
 
+###### Ubuntu full disk encryption notes #######
+
+Certain things may be required for Ubuntu to install TPM-backed FDE:
+
+- Before you start, clear the TPM in the bios.
+  (The installer will do it for you, but it's faster not to have to run through
+  the installer twice.)
+- Secure boot needs to be enabled in the bios.
+- Copy the ISO to the whole USB drive; don't use Ventoy.
+- Don't select third-party drivers during install.
+  - "Support for additional media formats" is fine.
+
+After install, be sure to print out the recovery key.
+
+As of Ubuntu 26.04, the installer refuses to use Framework's TPM. The error says:
+
+  PCR_UNUSABLE
+  error with secure boot policy (PCR7) measurements: generating secure boot
+  profiles for systems with timestamp revocation (dbt) support is currently
+  not supported
+
+This is because of limitations in the Ubuntu secboot tool. For now, the
+workaround is to set up a normal LUKS+passphrase configuration and then use
+systemd to enroll the TPM after installation:
+
+- Run through the installer and select encryption with passphrase. Use any
+  password you will remember (we're going to delete the passphrase at the end).
+- After install: use `lsblk -f` to identify the LUKS partition (fstype
+  crypto_LUKS). It's /dev/nvme0n1p3 for me so I'll assume that below.
+- 'sudo cryptsetup luksDump /dev/nvme0n1p3' should show slot 0 with the
+  passphrase.
+- Install tpm2-tools.
+- Enroll a recovery key: sudo systemd-cryptenroll /dev/nvme0n1p3 --recover-key
+- Write that down and store it offline.
+- Enroll a TPM key: sudo systemd-cryptenroll /dev/nvme0n1p3 --tpm2-device=auto --tpm2-pcrs=7
+- Confirm the new slots show up: sudo systemd-cryptenroll /dev/nvme0n1p3
+  It should show three slots: password, recovery, tpm2.
+- Create /etc/dracut.conf.d/tpm2.conf with the single line:
+
+    add_dracutmodules+=" tpm2-tss "
+
+- Append ",tpm2-device=auto" to the only line in /etc/crypttab.
+- Regenerate the initramfs: sudo dracut -f --regenerate-all
+- After this, 'sudo lsinitrd /boot/initrd.img-$(uname -r) | grep -i tpm' should
+  show references to tpm2 and tss2.
+- Do a reboot. It should unlock the disk without a passphrase. Do it twice to
+  make sure.
+- Remove the passphrase slot: sudo systemd-cryptenroll /dev/nvme0n1p3 --wipe-slot=0
+
+Any firmware update will change PCR 7 and break the TPM unseal. Use the recovery
+key to get back in, then re-enroll against the new PCR value:
+
+  sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7
+
 ###### Ubuntu initial setup ######
 
 Install Ubuntu Desktop normally
