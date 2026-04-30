@@ -191,6 +191,7 @@ Clone dotfiles:
   git remote add origin git@github.com:cespare/dotfiles.git
   git pull origin main
   git su
+Install tree-sitter (see below).
 Clone neovim config:
   git clone git@github.com:cespare/nvim-config.git .config/nvim
   cd .config/nvim
@@ -305,14 +306,18 @@ cd build && cpack -G DEB && sudo dpkg -i nvim-linux-x86_64.deb
 sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 1
 sudo update-alternatives --set editor /usr/bin/nvim
 
-# GIMP
+# Tree-sitter
 
-The 2.xx versions in Ubuntu don't have Wayland (gtk 3) support.
-One way to install a newer version is with flatpak:
+My nvim-treesitter version requires a fairly recent version of tree-sitter-cli.
 
-sudo apt install flatpak
-flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
-Run with: flatpak run org.gimp.GIMP//beta
+Download a prebuilt binary from GitHub:
+
+  # Check latest release at https://github.com/tree-sitter/tree-sitter/releases
+  VERSION=v0.28.0   # or whatever's current
+  curl -L "https://github.com/tree-sitter/tree-sitter/releases/download/${VERSION}/tree-sitter-linux-x64.gz" \
+    | gunzip > ~/bin/tree-sitter
+  chmod +x ~/bin/tree-sitter
+  tree-sitter --version # check
 
 # Slack
 
@@ -824,3 +829,15 @@ git clone https://github.com/cdemoulins/pamixer.git .
 meson setup build
 meson compile -C build
 sudo meson install -C build
+
+# GIMP
+
+(No longer needed in Ubuntu 26.04+.)
+
+The 2.xx versions in Ubuntu don't have Wayland (gtk 3) support.
+One way to install a newer version is with flatpak:
+
+sudo apt install flatpak
+flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
+Run with: flatpak run org.gimp.GIMP//beta
+
