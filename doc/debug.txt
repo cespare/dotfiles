@@ -13,10 +13,12 @@ Disable this in the BIOS:
 
 # Auto display dimming on Framework 13
 
-I turned this "Automatic Screen Brightness" in Gnome settings.
+(Not necessary outside of gnome?)
+
+I turned off this "Automatic Screen Brightness" in Gnome settings.
 
 Seems like I can do this from Sway with gsettings. Or install dconf-editor
-and change the /com/ubuntu/touch/system/auto-brigthness settings. (Not 100% sure
+and change the /com/ubuntu/touch/system/auto-brightness settings. (Not 100% sure
 this is the same thing.)
 
 # "Failed to connect to lvmetad" boot error
