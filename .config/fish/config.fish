@@ -78,7 +78,7 @@ fzf --fish | source
 set -gx TWOFA ~/n/2fa.txt
 
 # Jujutsu
-COMPLETE=fish jj | source
+# COMPLETE=fish jj | source
 
 # sshrc
 complete -c sshrc -w ssh

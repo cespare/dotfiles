@@ -96,6 +96,7 @@ Install packages
   tmux
   ttf-mscorefonts-installer
   udiskie
+  waybar
   wl-clipboard
   wtype
   xdg-desktop-portal-wlr
@@ -195,7 +196,6 @@ Install tree-sitter (see below).
 Clone neovim config:
   git clone git@github.com:cespare/nvim-config.git .config/nvim
   cd .config/nvim
-  git su
 Clone private repo at ~/private
 Refresh font cache: fc-cache
 [U] sudo update-alternatives --config editor
@@ -219,12 +219,9 @@ Passwordless sudo:
   Change appropriate line to: %sudo	ALL=(ALL:ALL) NOPASSWD: ALL
 [LT] Let brightnessctl work without root by adding myself to the video group
   sudo usermod -a -G video caleb
-Install waybar via directions below
-Install jj via directions below
 Start Sway
 Launch ghostty
 Install Chrome ([U] Use deb; [A] yay -S google-chrome)
-  chrome://flags > Preferred Ozone platform "Auto" > Relaunch
   Sign into Google
   Sign into 1Password
   [D] Settings > Appearance > Page zoom 125%
@@ -232,7 +229,7 @@ Install Chrome ([U] Use deb; [A] yay -S google-chrome)
 Activate the ssh-agent systemd unit:
   systemctl --user enable --now ssh-agent
 [U+LT] Follow directions below to switch from NetworkManager to systemd-networkd.
-Configure ssh server not to accept passwords (`PasswordAuthentication no`)
+[D] Configure ssh server not to accept passwords (`PasswordAuthentication no`)
 Raise file descriptor limits by editing /etc/security/limits.conf to have
   *                soft    nofile          50000
   *                hard    nofile          50000
@@ -470,9 +467,6 @@ TODO: hopefully there's a proper PPA set up in the future.
 
 ## Install Ghostty from source
 
-TODO: Hopefully this becomes a lot easier in the future and can be simplified.
-Check after Ubuntu 26.04.
-
 Install zig. You need the exact version ghostty wants (0.15.2 as of Feb 2026).
 Just download the zig tarball somewhere and unpack it (no need to install more
 than that; just run the binary directly).
@@ -485,52 +479,16 @@ Install dependencies. Ubuntu:
     blueprint-compiler \
     libadwaita-1-dev \
     libgtk-4-dev \
-    libgtk-layer-shell-dev \
+    libgtk4-layer-shell-dev \
     libxml2-utils \
     pandoc
 
-For Ubuntu 24.04, we need blueprint-compiler that is at least 0.16.0, which is
-newer than the one that installed via apt above. Let's make a new one available
-without doing a system install. Some patching is necessary to make this work.
-
-  cd ~/3p
-  git clone https://gitlab.gnome.org/jwestman/blueprint-compiler.git
-  cd blueprint-compiler
-
-  # Check out the v0.16.0 tag.
-
-  # Fix version string (meson template var isn't substituted in a raw checkout)
-  # by replacing
-  #
-  #   version = "@VERSION"
-  #
-  # with
-  #
-  #   version = "0.16.0"
-
-  # Replace the shebang line with "#!/usr/bin/python3" so it uses system python
-  # rather than my work python.
-
-  # Symlink the .py file without the extension:
-  ln -s blueprint-compiler.py blueprint-compiler
-
 Compile ghostty:
 
-  cd ~/3p/ghostty
-  xport PATH="$HOME/3p/blueprint-compiler:$HOME/3p/zig/zig-x86_64-linux-0.15.2:$PATH"
-
-  DESTDIR=/tmp/ghostty-staging zig build \
+  DESTDIR=/tmp/ghostty-staging path/to/zig build \
     --prefix /usr \
     -Doptimize=ReleaseFast \
-    -Dcpu=baseline \
-    -fsys=fontconfig \
-    -fno-sys=gtk4-layer-shell
-
-NOTE: -fsys=fontconfig is required to prevent ghostty from crashing with Claude
-Code. See https://github.com/ghostty-org/ghostty/issues/10432#issuecomment-3901927747.
-
-NOTE: -fno-sys=gtk4-layer-shell builds gtk4-layer-shell from source, since
-libgtk4-layer-shell-dev isn't available on Ubuntu 24.04 (only 24.10+).
+    -Dcpu=baseline
 
 Package as a deb (change the version below):
 
@@ -541,6 +499,8 @@ Package as a deb (change the version below):
   Architecture: amd64
   Maintainer: Caleb Spare <cespare@gmail.com>
   Depends: libadwaita-1-0, libgtk-4-1
+  Replaces: ncurses-term
+  Breaks: ncurses-term (<< 6.6+20251231-1)
   Description: Fast, native, feature-rich terminal emulator
   EOF
 
@@ -549,6 +509,8 @@ Package as a deb (change the version below):
     --root-owner-group \
     /tmp/ghostty-staging \
     /tmp/ghostty-[CURRENT VERSION]-git.deb
+
+(The ncurses-term stuff is because both packages ship a ghostty terminfo file.)
 
 Install the deb:
 
@@ -701,22 +663,19 @@ Create .network file for wifi at /etc/systemd/network/25-wireless.network:
     DHCP=yes
     IgnoreCarrierLoss=3s
 
+Then
+
+  sudo networkctl reload
+
 Now the networking should work, or if it doesn't use iwctl to connect.
 
-Next, install iwgtk. No package, so do this from source.
+Next, install iwgtk. Clicking on the network icon in waybar should now work.
 
-    cd ~/3p && gh repo clone J-Lentz/iwgtk
-    cd iwgtk
-    # check out latest release tag
-    sudo apt install libgtk-4-dev libqrencode-dev adwaita-icon-theme meson scdoc
-    meson setup build
-    cd build
-    meson compile
-    sudo meson install
-
-Now clicking on the network icon in waybar should work.
+------------- BELOW THIS LINE IS PROBABLY OUTDATED/UNNECESSARY -----------------
 
 # Waybar
+
+(No longer needed in Ubuntu 26.04+.)
 
 The version of waybar in Ubuntu 24.04 (0.9.24) reports buggy CPU usage numbers.
 Build from source instead. Be careful about picking the latest release -- this
@@ -751,8 +710,6 @@ git clone https://github.com/Alexays/Waybar .
 meson build
 ninja -C build
 cp ./build/waybar ~/bin
-
-------------- BELOW THIS LINE IS PROBABLY OUTDATED/UNNECESSARY -----------------
 
 # Mako
 
