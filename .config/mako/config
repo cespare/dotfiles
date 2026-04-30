@@ -1,17 +1,20 @@
 default-timeout=8000
 font=Roboto 14
-#background-color=#333333dd
-#text-color=#ffffff
 layer=overlay
-background-color=#e0e0e0dd
+background-color=#e0e0e0aa
 text-color=#111111
 width=500
 height=200
 margin=30
 padding=12
 border-size=0
-#border-color=#aaaaaadd
-border-radius=8
+# border-color=#aaaaaadd
+border-radius=4
 
 [mode=dnd]
 invisible=1
+
+[app-name="Google Chrome" urgency=high]
+# Calendar notifications are critical and never time out by default.
+default-timeout=30000
+ignore-timeout=1
