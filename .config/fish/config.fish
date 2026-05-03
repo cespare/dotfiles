@@ -38,7 +38,7 @@ alias l 'ls -l'
 alias ls 'ls -h -F --color=auto --tabsize=0 --group-directories-first'
 alias la 'ls -la'
 alias v nvim
-alias suv 'sudo -E nvim'
+alias suv sudoedit # It uses $EDITOR (if $SUDO_EDITOR isn't set).
 alias g git
 alias j jj
 abbr jst 'jj st'
