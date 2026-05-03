@@ -35,15 +35,16 @@ This is because of limitations in the Ubuntu secboot tool. For now, the
 workaround is to set up a normal LUKS+passphrase configuration and then use
 systemd to enroll the TPM after installation:
 
-- Run through the installer and select encryption with passphrase. Use any
-  password you will remember (we're going to delete the passphrase at the end).
+- Run through the installer and select encryption with passphrase. Use a good
+  passphrase because we'll keep it enrolled in addition to the TPM.
 - After install: use `lsblk -f` to identify the LUKS partition (fstype
   crypto_LUKS). It's /dev/nvme0n1p3 for me so I'll assume that below.
 - 'sudo cryptsetup luksDump /dev/nvme0n1p3' should show slot 0 with the
   passphrase.
 - Install tpm2-tools.
 - Enroll a recovery key: sudo systemd-cryptenroll /dev/nvme0n1p3 --recover-key
-- Write that down and store it offline.
+- Print that out and store it offline. (It should really never be needed though;
+  the passphrase should suffice.)
 - Enroll a TPM key: sudo systemd-cryptenroll /dev/nvme0n1p3 --tpm2-device=auto --tpm2-pcrs=7
 - Confirm the new slots show up: sudo systemd-cryptenroll /dev/nvme0n1p3
   It should show three slots: password, recovery, tpm2.
@@ -57,12 +58,15 @@ systemd to enroll the TPM after installation:
   show references to tpm2 and tss2.
 - Do a reboot. It should unlock the disk without a passphrase. Do it twice to
   make sure.
+
 - Remove the passphrase slot: sudo systemd-cryptenroll /dev/nvme0n1p3 --wipe-slot=0
 
 Any firmware update will change PCR 7 and break the TPM unseal. Use the recovery
-key to get back in, then re-enroll against the new PCR value:
+key to get back in, then:
 
-  sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=7
+  sudo systemd-cryptenroll /dev/nvme0n1p3                 # note the tpm2 slot
+  sudo systemd-cryptenroll /dev/nvme0n1p3 --wipe-slot=2   # wipe the tpm2 slot
+  sudo systemd-cryptenroll /dev/nvme0n1p3 --tpm2-device=auto --tpm2-pcrs=7
 
 ###### Ubuntu initial setup ######
 
