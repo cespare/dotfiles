@@ -1,1 +1,2 @@
+# .jai contains root-owned files, so it messes with git branch status printing.
 /.jai
