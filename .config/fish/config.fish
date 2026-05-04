@@ -35,7 +35,14 @@ fish_add_path -g ~/bin ~/scripts ~/.local/bin
 set -gx CDPATH . ~/src ~/p
 
 alias l 'ls -l'
-alias ls 'ls -h -F --color=auto --tabsize=0 --group-directories-first'
+# Prefer gnuls if available: on Ubuntu 26.04, the default ls is the uutils
+# version, which has an ordering bug with --group-directories-first:
+# https://github.com/uutils/coreutils/issues/11997
+if type -q gnuls
+    alias ls 'gnuls -h -F --color=auto --tabsize=0 --group-directories-first'
+else
+    alias ls 'ls -h -F --color=auto --tabsize=0 --group-directories-first'
+end
 alias la 'ls -la'
 alias v nvim
 alias suv sudoedit # It uses $EDITOR (if $SUDO_EDITOR isn't set).
