@@ -204,6 +204,8 @@ Clone private repo at ~/private
 Refresh font cache: fc-cache
 [U] sudo update-alternatives --config editor
   choose nvim
+[U] Disable Ubuntu Pro advertisements:
+  sudo pro config set apt_news=false
 Install ghostty following directions below
 Install Go
   https://go.dev/doc/install and download latest release
