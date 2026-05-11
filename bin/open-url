@@ -19,7 +19,7 @@ done
 url="$1"
 
 case "${url}" in
-  *'.liftoff.io'* | *'github.com/liftoffio/'*)
+  *'.liftoff.io'* | *'github.com/liftoffio/'* | *'liftoff.okta.com'*)
     if [[ -z "${work_profile}" ]]; then
       echo >&2 "open-url: no Chrome profile found for @liftoff.io"
       exit 1
