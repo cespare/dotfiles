@@ -30,7 +30,7 @@ set -gx GREP_COLORS 'mt=1;32'
 # Set SSH_AUTH_SOCK for ssh-agent that's running as a systemd unit.
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.sock"
 
-fish_add_path -g ~/bin ~/scripts ~/.local/bin
+fish_add_path -g ~/bin ~/private/bin ~/scripts ~/.local/bin
 
 set -gx CDPATH . ~/src ~/p
 
