@@ -125,6 +125,38 @@
   dark = true
   hyperlinks = true
   syntax-theme = cespare
+  wrap-max-lines = unlimited
+  wrap-right-percent = 1
+
+  file-added-label = [+]
+  file-copied-label = [==]
+  file-modified-label = [M]
+  file-removed-label = [-]
+  file-renamed-label = [->]
+  file-style = bold
+  file-decoration-style = ul
+  hunk-header-decoration-style = "#555555" ul
+  hunk-header-file-style = bold
+  hunk-header-line-number-style = "#5c8ec9" normal
+  hunk-header-style = line-number syntax bold
+  line-numbers = true
+  line-numbers-left-format = "{nm:>1}│"
+  line-numbers-right-format = "{np:>1}│"
+  line-numbers-left-style = "#555555" normal
+  line-numbers-right-style = "#555555" normal
+  line-numbers-zero-style = "#8a8a8a"
+  line-numbers-minus-style = "#ff6b6b"
+  line-numbers-plus-style = "#6ee06e"
+
+  # These are delta's dark-theme hunk background defaults.
+  minus-style = syntax "#3f0001"
+  minus-non-emph-style = minus-style
+  minus-emph-style = syntax "#901011"
+  minus-empty-line-marker-style = normal "#3f0001"
+  plus-style = syntax "#002800"
+  plus-non-emph-style = plus-style
+  plus-emph-style = syntax "#006000"
+  plus-empty-line-marker-style = normal "#002800"
 
   # For colorMoved.
   # Include normal here because git doesn't properly color leading tabs of
