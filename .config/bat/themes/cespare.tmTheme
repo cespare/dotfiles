@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>cespare</string>
+  <key>settings</key>
+  <array>
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#141414</string>
+        <key>caret</key>
+        <string>#F0F0F0</string>
+        <key>foreground</key>
+        <string>#F0F0F0</string>
+        <key>fontStyle</key>
+        <string></string>
+        <key>invisibles</key>
+        <string>#444444</string>
+        <key>lineHighlight</key>
+        <string>#444444</string>
+        <key>selection</key>
+        <string>#005F87</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Comment</string>
+      <key>scope</key>
+      <string>comment, punctuation.definition.comment</string>
+      <key>settings</key>
+      <dict>
+        <key>fontStyle</key>
+        <string></string>
+        <key>foreground</key>
+        <string>#949494</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Literal</string>
+      <key>scope</key>
+      <string>string, constant.numeric, constant.character, constant.language</string>
+      <key>settings</key>
+      <dict>
+        <key>fontStyle</key>
+        <string></string>
+        <key>foreground</key>
+        <string>#AFD787</string>
+      </dict>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Invalid</string>
+      <key>scope</key>
+      <string>invalid</string>
+      <key>settings</key>
+      <dict>
+        <key>background</key>
+        <string>#4E4E4E</string>
+        <key>fontStyle</key>
+        <string></string>
+        <key>foreground</key>
+        <string>#F0F0F0</string>
+      </dict>
+    </dict>
+  </array>
+  <key>uuid</key>
+  <string>7D9C5A8A-7891-48F5-9A6B-4D77F6F2B0B1</string>
+  <key>colorSpaceName</key>
+  <string>sRGB</string>
+  <key>semanticClass</key>
+  <string>theme.dark.cespare</string>
+</dict>
+</plist>

@@ -72,6 +72,7 @@ key to get back in, then:
 
 Install Ubuntu Desktop normally
 Install packages
+  bat
   brightnessctl
   btop
   build-essential
@@ -240,6 +241,8 @@ Raise file descriptor limits by editing /etc/security/limits.conf to have
   *                soft    nofile          50000
   *                hard    nofile          50000
 Install and configure syncthing (see details in home repo).
+Regenerate bat cache
+  bat cache --build
 [A+LT] Set up suspend and hibernation.
   Suspend should work out of the box but hibernation takes some tweaks.
   Using LVM on LUKS makes it pretty easy.
