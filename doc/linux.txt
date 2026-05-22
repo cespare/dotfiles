@@ -243,6 +243,7 @@ Raise file descriptor limits by editing /etc/security/limits.conf to have
 Install and configure syncthing (see details in home repo).
 Regenerate bat cache
   bat cache --build
+Install git-delta from directions below
 [A+LT] Set up suspend and hibernation.
   Suspend should work out of the box but hibernation takes some tweaks.
   Using LVM on LUKS makes it pretty easy.
@@ -360,6 +361,13 @@ Arch:
 
   yay -S discord
   ... create discord.desktop...
+
+# Delta (https://github.com/dandavison/delta)
+
+Download and install a deb from the releases page:
+https://github.com/dandavison/delta/releases
+
+Some older versions have bad performance bugs. 0.19.2 seems to be working well.
 
 # Mount GCS bucket
 

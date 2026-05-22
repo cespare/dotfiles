@@ -1,5 +1,6 @@
 [core]
   editor = "nvim -c '1 | startinsert!'"
+  pager = delta
 
 [user]
   name = Caleb Spare
@@ -118,6 +119,25 @@
   added = yellow
   changed = green
   untracked = cyan
+
+[delta]
+  navigate = true
+  dark = true
+  hyperlinks = true
+  syntax-theme = cespare
+
+  # For colorMoved.
+  # Include normal here because git doesn't properly color leading tabs of
+  # moved-to blocks.
+  map-styles = \
+    normal => syntax "#0d3531", \
+    bold purple => syntax "#330f29", \
+    bold blue => syntax "#271344", \
+    bold cyan => syntax "#0d3531", \
+    bold yellow => syntax "#222f14"
+
+[interactive]
+  diffFilter = delta --color-only
 
 [github]
   user = cespare
