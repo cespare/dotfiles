@@ -1,3 +1,5 @@
+# Use my minimal theme.
 --theme=cespare
 
---style="numbers"
+# Turn off most decorations.
+--style=numbers
