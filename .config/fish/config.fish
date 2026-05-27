@@ -62,17 +62,6 @@ abbr --add dotdot --regex '^\.\.+$' --function multicd
 set -gx h HEAD
 set -gx u '@{upstream}'
 
-# Configure delta to use side-by-side only if the window is wide enough.
-# Remove if https://github.com/dandavison/delta/issues/2083 is merged.
-function _delta_sbs --on-signal SIGWINCH
-  if test $COLUMNS -ge 160
-    set -gx DELTA_FEATURES '+side-by-side'
-  else
-    set -gx DELTA_FEATURES '+'
-  end
-end
-_delta_sbs
-
 # Go
 set -gx GOBIN $HOME/bin
 fish_add_path -g ~/3p/go/bin

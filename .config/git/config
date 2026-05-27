@@ -122,6 +122,7 @@
 
 [delta]
   navigate = true
+  side-by-side = 160
   dark = true
   hyperlinks = true
   syntax-theme = cespare
