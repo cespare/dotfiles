@@ -364,10 +364,17 @@ Arch:
 
 # Delta (https://github.com/dandavison/delta)
 
-Download and install a deb from the releases page:
-https://github.com/dandavison/delta/releases
+Need a custom version:
 
-Some older versions have bad performance bugs. 0.19.2 seems to be working well.
+- Old versions in Ubuntu repos have a bad perf bug
+- I use this unmerged feature: https://github.com/dandavison/delta/pull/2084
+
+Clone my fork to ~/3p/delta. Make sure rust is installed (see directions below).
+
+Then:
+
+  make
+  cp target/release/delta ~/bin/
 
 # Mount GCS bucket
 
