@@ -242,7 +242,7 @@ Raise file descriptor limits by editing /etc/security/limits.conf to have
   *                hard    nofile          50000
 Install and configure syncthing (see details in home repo).
 Regenerate bat cache
-  bat cache --build
+  batcat cache --build
 Install git-delta from directions below
 [A+LT] Set up suspend and hibernation.
   Suspend should work out of the box but hibernation takes some tweaks.
