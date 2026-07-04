@@ -619,7 +619,7 @@ Create `/var/lib/iwd/<ssid>.8021x`. Contents:
 
 This should get picked up automatically. Then you can connect with iwgtk.
 
-# FW13 Bios updates
+# FW13 bios/firmware updates
 
 Easy once Ubuntu is installed:
 
