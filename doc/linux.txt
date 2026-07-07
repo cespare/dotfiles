@@ -576,6 +576,11 @@ Then:
 
 The fish config sets up the directories.
 
+# Bluetooth
+
+First, install blueman. Then launch Bluetooth Manager in the launcher. It runs
+a tray applet as well.
+
 # Yubikey
 
 For FIDO2 (passkey) operation, a PIN is required. This can be altered using
