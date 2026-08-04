@@ -1,7 +1,5 @@
 System setup notes and installation/compiler settings.
 
-[A]: Arch
-[U]: Ubuntu
 [D]: Desktop
 [LT]: Laptop
 
@@ -110,86 +108,7 @@ Install a few packages from PPAs:
   Fish: sudo apt-add-repository ppa:fish-shell/release-4
 Install neovim following directions below.
 
-##### Arch initial setup #####
-
-Follow the normal install guide at https://wiki.archlinux.org/title/Installation_guide
-For disk setup, use LVM on LUKS: https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS
-  Also see https://gist.github.com/huntrar/e42aee630bee3295b2c671d098c81268 (slightly outdated)
-  Disk layout:
-    nvme0n1p1 /boot; ESP mounted here
-    nvme0n1p2 LVM on LUKS (named cryptlvm)
-      swap    same size as ram, for hibernation
-      /       40 GB
-      /home   60 GB
-      /data   remaining space
-Essential packages install:
-  pacstrap /mnt base linux linux-firmware mkinitcpio lvm2 neovim iwd
-For fstab, change relatime to noatime
-mkinitcpio.conf required adding "encrypt lvm2"
-Grub
-  pacman -S grub
-  (Didn't customize /etc/default/grub at this point)
-  grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
-  grub-mkconfig -o /boot/grub/grub.cfg
-Reboot to new system
-Networking with systemd-networkd (see http://www.lukylx.org/installation/essentials-installation.html)
-  /etc/systemd/network/25-wireless.network
-    [Match]
-    Name=w*
-    [Network]
-    DHCP=yes
-    IgnoreCarrierLoss=3s
-  systemctl enable --now systemd-networkd
-  systemctl enable --now systemd-resolved
-  ln -sf /usr/lib/systemd/resolv.conf /etc/resolv.conf
-  systemctl enable --now iwd
-  iwctl -> connect
-  (Once sway is running, I use iwgtk instead)
-Install zsh, sudo         # TODO: update to fish
-User creation: useradd -m -G adm,log,sys,wheel -s /bin/zsh caleb
-  EDITOR=vim visudo and give wheel sudo access
-  Then I can log in as my user
-Install many packages
-  base-devel
-  brightnessctl
-  fuzzel
-  git
-  github-cli
-  gnome-tweaks
-  htop
-  l3afpad
-  mako
-  man-db
-  nautilus
-  openssh
-  pamixer
-  pavucontrol
-  playerctl
-  polkit
-  ripgrep
-  screen
-  sway
-  swaybg
-  swayidle
-  swaylock
-  tmux
-  ttf-roboto
-  waybar
-  wl-clipboard
-  wtype
-  xcursor-vanilla-dmz
-  xdg-desktop-portal-wlr
-  xorg-xwayland
-  Choose droid as ttf-font
-Install yay
-  cd 3p && git clone https://aur.archlinux.org/yay.git
-  cd yay && makepkg -si
-Install some yay packages
-  grimshot
-  yaru-gtk-theme
-  yaru-icon-theme
-
-##### Common Ubuntu/Arch Sway setup #####
+##### Standard Linux/Sway setup #####
 
 Copy in SSH keys from backup/previous installation
 Clone dotfiles:
@@ -228,7 +147,7 @@ Passwordless sudo:
   sudo usermod -a -G video caleb
 Start Sway
 Launch ghostty
-Install Chrome ([U] Use deb; [A] yay -S google-chrome)
+Install Chrome from deb
   Sign into Google
   Sign into 1Password
   [D] Settings > Appearance > Page zoom 125%
@@ -245,41 +164,6 @@ Install and configure syncthing (see details in home repo).
 Regenerate bat cache
   batcat cache --build
 Install git-delta from directions below
-[A+LT] Set up suspend and hibernation.
-  Suspend should work out of the box but hibernation takes some tweaks.
-  Using LVM on LUKS makes it pretty easy.
-  Add "resume" to /etc/mkinitcpio.conf: ...lvm2 filesystems resume fsck
-  Regenerate initramfs with 'sudo mkinitcpio -p linux'
-  Edit /etc/default/grub to append to GRUB_CMDLINE_LINUX_DEFAULT "resume=UUID=<uuid of swap partition>"
-  Regnerate grub with 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
-  Now hibernation should work (can test with 'systemctl hibernate')
-  Edit /etc/systemd/logind.conf to add a few non-default opts:
-    HandleSuspendKey=ignore
-    HandleSuspendKeyLongPress=ignore
-    HandleLidSwitch=suspend-then-hibernate
-    HandleLidSwitchExternalPower=suspend-then-hibernate
-    (We'll handle idle suspend with sway)
-  Edit /etc/systemd/sleep.conf to change one option:
-    HibernateDelaySec=3h
-[A+LT] At 4k, TTY text is extremely small. Run grub at a lower resolution:
-  Edit /etc/default/grub and change the GRUB_GFXMODE line to
-    GRUB_GFXMODE=1920x1440,auto
-  (Or whatever an appropriate resolution is. Use grub's 'videoinfo' command to
-  see the supported options.)
-  Regenerate grub with 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
-  The Linux framebuffer resolution/font seems to be reasonable by default.
-
-##### Package manager notes #####
-
-# Arch
-
-Install/update a normal package with 'sudo pacman -S <pkgname>'.
-Install/update an AUR package with 'yay -S <pkgname>'.
-
-Run a system update with, simply, 'yay'.
-
-This internally runs a pacman update ('sudo pacman -Syu') followed by AUR
-updates ('yay -Syu').
 
 ##### Install instructions #####
 
@@ -314,8 +198,6 @@ Download a prebuilt binary from GitHub:
 
 # Slack
 
-Ubuntu:
-
 Download and install .deb from the Slack website.
 
 Install a custom launcher at ~/.local/share/applications/slack.desktop:
@@ -333,14 +215,7 @@ Then run
 
     update-desktop-database ~/.local/share/applications
 
-Arch:
-
-  yay -S slack-desktop
-  ... install slack.desktop...
-
 # Discord
-
-Ubuntu:
 
   sudo snap install discord
 
@@ -357,11 +232,6 @@ Create ~/.local/share/applications/discord.desktop:
 Fix audio after installation with:
 
     sudo snap connect discord:audio-record :audio-record
-
-Arch:
-
-  yay -S discord
-  ... create discord.desktop...
 
 # Delta (https://github.com/dandavison/delta)
 
@@ -388,8 +258,6 @@ Add fstab entry:
 
 # PostgreSQL
 
-Ubuntu:
-
 Use these directions to install a particular Postgres version: https://www.postgresql.org/download/linux/ubuntu/
 Make my own user be a Postgres superuser. Run this from /:
 
@@ -401,60 +269,6 @@ to have METHOD "trust".
 Edit /etc/postgresql/15/main/postgresql.conf to have fsync=off.
 
 Apply settings with 'sudo systemctl restart postgresql'.
-
-Arch:
-
-(Directions adapted from https://wiki.archlinux.org/title/PostgreSQL.)
-
-Install: sudo pacman -S postgresql
-
-Create the data dir:
-
-  mkdir -p /data/postgres/data
-  chown -R postgres:postgres /data/postgres
-
-As the postgres user, initialize the data dir:
-
-  sudo -iu postgres
-  initdb --locale=C.UTF-8 --encoding=UTF8 -D /data/postgres/data
-  sudo systemctl enable --now postgresql.service      NOTE: this will fail
-  sudo systemctl edit postgresql.service --drop-in pgroot.conf
-
-Add these contents:
-
-  [Service]
-  Environment=PGROOT=/data/postgres
-  PIDFile=/data/postgres/data/postmaster.pid
-
-Then 'sudo systemctl restart postgresql' should work.
-
-Edit /data/postgres/data/postgresql.conf and set fsync=off. Reload the service.
-(The default pg_hba.conf settings should be fine.)
-
-Make my own user be a postgres superuser (run from /):
-
-  sudo -u postgres createuser -s caleb
-
-Edit the pacman config to ignore the postgresql package when running updates (so
-we won't do random major-version postgres updates which require database format
-changes):
-
-* Edit `/etc/pacman.conf`
-* Add `IgnorePkg = postgresql`
-
-Note that this means that system updates can sometimes break Postgres (because
-it's not getting updated with its dependencies). When this happens, check the
-current installed version with
-
-  pacman -Q | grep postgres
-
-If the required update is just a minor version change, it's generally safe to
-manually install (overriding the IgnorePkg directive):
-
-  sudo pacman -Sy postgresql postgresql-libs
-
-If it's a major version upgrade, see
-https://wiki.archlinux.org/title/PostgreSQL#Upgrading_PostgreSQL.
 
 # Zig
 
@@ -596,8 +410,7 @@ NOTE: It doesn't seem like any of the below is needed in newer Ubuntu.
 OTP is annoying because it spews a bunch of text when you touch it. To prevent
 this, change the Yubikey's mode to FIDO only. First, install ykman.
 
-Ubuntu: sudo apt install ykman
-Arch: sudo pacman -S yubikey-manager
+  sudo apt install ykman
 
 Then:
 
