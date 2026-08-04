@@ -236,6 +236,7 @@ Install Chrome ([U] Use deb; [A] yay -S google-chrome)
 Activate the ssh-agent systemd unit:
   systemctl --user enable --now ssh-agent
 [U+LT] Follow directions below to switch from NetworkManager to systemd-networkd.
+[U+LT] Follow directions below to disable firmware update desktop notifications.
 [D] Configure ssh server not to accept passwords (`PasswordAuthentication no`)
 Raise file descriptor limits by editing /etc/security/limits.conf to have
   *                soft    nofile          50000
@@ -626,7 +627,16 @@ This should get picked up automatically. Then you can connect with iwgtk.
 
 # FW13 bios/firmware updates
 
-Easy once Ubuntu is installed:
+By default, the firmware updater sends annoying desktop notifications. Disable
+these with:
+
+    sudo snap stop --users=all --disable firmware-updater.firmware-notifier
+
+See the current status with:
+
+    snap services firmware-updater
+
+Do firmware updates with:
 
     fwupdmgr refresh
     fwupdmgr get-updates
