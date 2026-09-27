@@ -498,6 +498,10 @@ Next, install iwgtk. Clicking on the network icon in waybar should now work.
 
 # Waybar
 
+NOTE: I have run into this bug where the network status gets stuck saying "No
+IP": https://github.com/Alexays/Waybar/pull/4967. I'd need to go back to
+building waybar from source if I want the fix for now.
+
 (No longer needed in Ubuntu 26.04+.)
 
 The version of waybar in Ubuntu 24.04 (0.9.24) reports buggy CPU usage numbers.
