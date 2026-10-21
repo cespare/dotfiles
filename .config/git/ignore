@@ -19,3 +19,6 @@ dump.rdb
 
 # Claude code
 **/.claude/settings.local.json
+
+# playwright-cli
+**/.playwright-cli/
