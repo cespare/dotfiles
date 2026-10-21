@@ -1,0 +1,10 @@
+#!/bin/bash
+set -euo pipefail
+
+export TMPDIR="$HOME/.cache/playwright-tmp"
+export PLAYWRIGHT_CLI_SESSION="${PLAYWRIGHT_CLI_SESSION:-dev}"
+
+umask 077
+mkdir -p "$TMPDIR"
+
+exec playwright-cli "$@"
